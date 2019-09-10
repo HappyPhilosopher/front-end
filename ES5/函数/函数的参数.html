@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>函数的参数</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 无法直接省略函数前面的参数，如果非要这么做，可以手动将前面的参数设定为 undefined
+      function add(a, b, c) {
+        return a + b + c;
+      }
+      console.log(add(undefined, 'hello', 'world'));
+    </script>
+  </body>
+</html>

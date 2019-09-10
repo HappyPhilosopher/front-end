@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>斐波那契数列</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 递归函数，函数体内调用自身
+      /*
+       * 斐波那契数列：第一个值为0，第二个值为1，往后每个值都是前面两个值之和
+       * @param {Number} num 斐波那契数列第几个值
+       */
+      function fib(num) {
+        if (num === 0) return 0;
+        if (num === 1) return 1;
+        return fib(num - 2) + fib(num - 1);
+      }
+      console.log(fib(6));
+    </script>
+  </body>
+</html>

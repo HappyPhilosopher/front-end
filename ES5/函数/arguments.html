@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>arguments</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      function add() {
+        // arguments 是伪数组
+        // Array.prototype.slice.call() 可以将伪数组转化为数组
+        return (
+          Array.prototype.slice
+            .call(arguments)
+            // reduce 在回调函数后可以传递第二个参数，代表回调函数的第一个参数的默认值
+            // .reduce((sum, cur) => sum + cur, 0);
+            .reduce((acc, cur) => acc + cur)
+        );
+      }
+      console.log(add(1, 2, 3, 4));
+    </script>
+  </body>
+</html>

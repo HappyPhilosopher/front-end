@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>闭包</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /* function f1() {
+        var n = 999;
+        return function() {
+          console.log(n);
+        };
+      }
+
+      var result = f1();
+      result(); */
+
+      /* function createIncrementor(start) {
+        return function() {
+          return start++;
+        };
+      }
+
+      var inc = createIncrementor(5);
+
+      console.log(inc());
+      console.log(inc());
+      console.log(inc()); */
+
+      function Person(name) {
+        var age;
+        function setAge(n) {
+          age = n;
+        }
+        function getAge() {
+          return age;
+        }
+        return {
+          name: name,
+          getAge: getAge,
+          setAge: setAge
+        };
+      }
+
+      var p1 = Person('张三');
+      p1.setAge(25);
+      console.log(p1.getAge());
+    </script>
+  </body>
+</html>

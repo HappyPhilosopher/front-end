@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>使用call方法</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <ul>
+      <li>element1</li>
+      <li>element2</li>
+      <li>element3</li>
+    </ul>
+
+    <script>
+      var liArr = document.getElementsByTagName('li');
+      // 使用 call 让伪数组调用数组方法的性能比不上使用原生数组方法，所以最好的办法还是先将伪数组转化为数组，再使用数组方法
+      /* Array.prototype.forEach.call(liArr, function(item, index) {
+        if (index % 2 === 0) {
+          item.setAttribute('style', 'color: red');
+        } else {
+          item.setAttribute('style', 'background-color: lightblue');
+        }
+      }); */
+
+      Array.prototype.slice.call(liArr).forEach(item => {
+        item.setAttribute('style', 'color: red');
+      });
+    </script>
+  </body>
+</html>

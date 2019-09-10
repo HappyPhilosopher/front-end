@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>函数的属性</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /* name 属性 */
+      function add() {}
+      console.log(add.name);
+
+      const minus = function() {};
+      console.log(minus.name);
+
+      /* length 属性 */
+      function f1(param1, param2) {}
+      console.log(f1.length);
+
+      /* toString() */
+      function f() {
+        // 可以返回注释
+        a();
+        b();
+        c();
+      }
+      console.log(f.toString()); // 函数的源码
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>函数的传值</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 传址传值
+      var obj = { name: '狗蛋' };
+      function f(o) {
+        o.name = '二蛋';
+      }
+      f(obj);
+      console.log(obj);
+    </script>
+  </body>
+</html>

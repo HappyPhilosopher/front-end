@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?j8ow3z");
+  src: url("../fonts/icomoon.eot?j8ow3z#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?j8ow3z") format("truetype"), url("../fonts/icomoon.woff?j8ow3z") format("woff"), url("../fonts/icomoon.svg?j8ow3z#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-next:before {
+  content: '\e900';
+}
+
+.icon-prev:before {
+  content: '\e901';
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  position: relative;
+  width: 750px;
+  margin: 50px auto 0;
+}
+
+.container .controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 50px;
+}
+
+.container .controller .prev,
+.container .controller .next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 30px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+}
+
+.container .controller .prev::after,
+.container .controller .next::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container .controller .prev:hover,
+.container .controller .next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.container .pagination {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container .pagination .pagination-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: lightblue;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.container .pagination .pagination-bullet:nth-last-child(1) {
+  margin-right: 0;
+}
+
+.active {
+  background-color: #f00 !important;
+}
