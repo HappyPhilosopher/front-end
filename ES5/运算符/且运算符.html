@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>且运算符</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 且运算符（&&）往往用于多个表达示的求值
+      // 它的运算规则是：如果第一个运算子的布尔值为 true，则返回第二个运算子的值（注意是值，不是布尔值）；如果第一个运算子的布尔值为 false，则直接返回第一个运算子的值，且不再对第二个运算子求值。
+      console.log('t' && ''); // ''
+      console.log('t' && 'f'); // 'f'
+      console.log('t' && 1 + 2); // 3
+      console.log('' && 'f'); // ''
+      console.log('' && ''); // ''
+
+      var x = 1;
+      1 - 1 && (x += 1);
+      console.log(x); // 1
+
+      // 谨慎使用，因为不容易看出这么写代码的目的，除错困难。最好使用 if 语句替代。
+      var y = 2;
+      y > 1 && console.log('done!');
+    </script>
+  </body>
+</html>

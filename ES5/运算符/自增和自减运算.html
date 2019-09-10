@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>自增和自减运算</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 自增和自减运算符有一个需要注意的地方，就是放在变量之后，会先返回变量操作前的值，在进行自增/自减操作；放在变量之前，会先进行自增/自减操作，再返回变量操作后的值。
+      var x = 1;
+      var y = 1;
+      console.log(`x 的值为 ${x}，++x 的值为 ${++x}`);
+      // console.log(`x 的值为 ${x}，x++ 的值为 ${x++}`);
+      console.log(x);
+    </script>
+  </body>
+</html>
