@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 通过 call 方法，join() 方法也可用于字符串或类数组的对象。
+      console.log(Array.prototype.join.call('hello', '-'));
+
+      var obj = { 0: 'a', 1: 'b', length: 2 };
+      console.log(Array.prototype.join.call(obj, '/'));
+    </script>
+  </body>
+</html>

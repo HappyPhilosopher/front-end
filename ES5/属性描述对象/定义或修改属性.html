@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>定义或修改属性</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // Object.defineProperty() 修改单个属性； Object.defineProperties() 修改多个属性
+      // Object.defineProperty() 和 Object.defineProperties() 的描述属性（writable, enumerable, configurable）默认为 false
+      var obj = Object.defineProperty({}, 'p', {
+        value: 'hello',
+        writable: false,
+        enumerable: true,
+        configurable: false
+      });
+
+      console.log(obj.p);
+
+      obj.p = 'world';
+      console.log(obj.p);
+
+      delete obj.p;
+      console.log(obj.p);
+
+      obj.a = 'test';
+      console.log(obj);
+
+      delete obj.a;
+      console.log(obj);
+      console.log('----------------------------');
+
+      // 设置存取器（get/set）后就不能设置 writable: true，否则会报错，因为存储器不能与属性值或者可写性共存
+      var user = Object.defineProperties(
+        {},
+        {
+          firstName: { value: 'Zhang', enumerable: true },
+          lastName: { value: 'San', enumerable: true },
+          fullName: {
+            get() {
+              return this.firstName + this.lastName;
+            },
+            enumerable: true,
+            configurable: true
+          }
+        }
+      );
+      console.dir(user);
+      console.log('-----------------------------------');
+
+      var dog = {};
+      Object.defineProperties(dog, {
+        name: { value: '大黄', enumerable: true },
+        age: { value: 2, enumerable: true },
+        skill: { value: 'keep kids' }
+      });
+      console.dir(dog);
+      console.log(Object.keys(dog));
+
+      // 判断属性是否可遍历
+      var cat = { name: 'huahua', skill: '卖萌' };
+      console.log(cat.propertyIsEnumerable('name'));
+      console.log(cat.propertyIsEnumerable('skill'));
+    </script>
+  </body>
+</html>

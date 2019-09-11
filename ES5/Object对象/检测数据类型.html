@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>检测数据类型</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      const type = {
+        checkDataType(o) {
+          const value = Object.prototype.toString.call(o);
+          return value.match(/\[object (.*?)\]/)[1].toLowerCase();
+        }
+      };
+
+      [
+        'Null',
+        'Undefined',
+        'Object',
+        'Array',
+        'Function',
+        'Number',
+        'String',
+        'Boolean',
+        'Symbol'
+      ].forEach(item => {
+        type[`is${item}`] = o => type.checkDataType(o) === item.toLowerCase();
+      });
+
+      const s = Symbol();
+
+      console.log(type.checkDataType({}));
+      console.log(type.checkDataType([]));
+      console.log(type.checkDataType(1));
+      console.log(type.checkDataType('hello'));
+      console.log(type.checkDataType(null));
+      console.log(type.checkDataType(undefined));
+      console.log(type.checkDataType(new Date()));
+      console.log(type.checkDataType(/ab/));
+      console.log(type.checkDataType(s));
+
+      console.log(type.isSymbol(s));
+      console.log(type.isObject({}));
+      console.log(type.isUndefined(undefined));
+    </script>
+  </body>
+</html>

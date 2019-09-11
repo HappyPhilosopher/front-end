@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // map 方法还可以接受第二个参数，用来绑定回调函数内部的 this 变量。
+      var arr = ['a', 'b', 'c'];
+      var newArr = [1, 2].map(function(n) {
+        return this[n];
+      }, arr);
+      console.log(newArr);
+    </script>
+  </body>
+</html>

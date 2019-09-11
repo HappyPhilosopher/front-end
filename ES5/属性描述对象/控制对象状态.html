@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /*
+       * 有时需要冻结对象的读写状态，防止对象被改变。
+       * Object.preventExtensions() 使对象无法再添加新的属性——弱
+       * Object.isExtensible() 检查一个对象是否用了 Object.preventExtensions() 方法。
+       * Object.seal() 使一个对象既无法添加新属性，也无法删除旧属性——中;如果使用了该方法，Object.isExtensible() 返回 false
+       * Object.isSealed() 检查一个对象是否用了 Object.seal() 方法。
+       * Object.freeze() 使一个对象无法添加新属性、无法删除旧属性、也无法改变属性的值，使得这个对象实际上变成了常量——强
+       * Object.isFrozen() 检测一个对象是否使用了 Object.freeze() 方法；如果使用了该方法，Object.isExtensible() 返回 false，Object.isSealed() 返回 true
+       */
+
+      // var obj = {};
+      // Object.preventExtensions(obj);
+      // obj.p = 1;
+      // console.log(obj.p); // undefined
+      // Object.defineProperty(obj, 'p', { value: 1 });  // 报错
+
+      // var obj = {};
+      // console.log(Object.isExtensible(obj));
+      // Object.preventExtensions(obj);
+      // console.log(Object.isExtensible(obj));
+
+      /* var obj = { p: 'hello' };
+      console.log(Object.getOwnPropertyDescriptor(obj, 'p')); // {configurable: true}
+      Object.seal(obj);
+
+      delete obj.p;
+      console.log(obj.p); // hello
+      obj.x = 'world';
+      console.log(obj.x); // undefined
+      console.log(Object.getOwnPropertyDescriptor(obj, 'p')); // {configurable: false}
+      // Object.seal() 虽然改变了 configurable 的值，但是 writable 未变，所以可以修改该属性的 value 值
+      obj.p = 'world';
+      console.log(obj.p); */
+
+      /* var obj = { p: 1 };
+      console.log(Object.isExtensible(obj)); // true
+      console.log(Object.isSealed(obj)); // false
+
+      Object.seal(obj);
+      console.log(Object.isExtensible(obj)); // false
+      console.log(Object.isSealed(obj)); // true */
+
+      /* var obj = { p: 'hello' };
+      Object.freeze(obj);
+      obj.p = 'world';
+      console.log(obj.p);
+      obj.t = 'hello';
+      console.log(obj.t);
+      delete obj.p;
+      console.log(obj.p); */
+
+      /* var obj = { p: 1 };
+      console.log(Object.isExtensible(obj));
+      console.log(Object.isSealed(obj));
+      console.log(Object.isFrozen(obj));
+
+      Object.freeze(obj);
+      console.log(Object.isExtensible(obj));
+      console.log(Object.isSealed(obj));
+      console.log(Object.isFrozen(obj)); */
+
+      // Object.isFrozen() 的一个用途是，确认某个对象没有被冻结后，再对它的属性赋值。
+      /* var obj = {
+        p: 'hello'
+      };
+      Object.freeze(obj);
+      if (!Object.isFrozen(obj)) {
+        obj.p = 'world';
+      }
+      console.log(obj.p); */
+
+      const obj = {
+        colors: ['red', 'blue']
+      };
+      obj.colors.push('green');
+      console.log(obj);
+      obj.p = 'hello';
+      console.log(obj);
+      obj.p = 'world';
+      console.log(obj);
+    </script>
+  </body>
+</html>

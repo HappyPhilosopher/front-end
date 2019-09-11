@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* const obj = {};
+      Object.assign(obj, {
+        get p() {
+          return 'hello';
+        }
+      });
+      console.log(obj); */
+
+      // 这种方式只能获取到对象的属性值，无法获取描述对象
+      /* var extend = function(to, from) {
+        for (var property in from) {
+          to[property] = from[property];
+        }
+        return to;
+      };
+
+      var target = { p: 1 };
+      var obj = extend({}, target);
+      console.log(target === obj); */
+
+      var extend = function(to, from) {
+        for (var property in from) {
+          if (!from.hasOwnProperty(property)) continue;
+          Object.defineProperty(
+            to,
+            property,
+            Object.getOwnPropertyDescriptor(from, property)
+          );
+        }
+        return to;
+      };
+
+      console.dir(
+        extend(
+          {},
+          {
+            get p() {
+              return 'hello';
+            }
+          }
+        )
+      );
+    </script>
+  </body>
+</html>

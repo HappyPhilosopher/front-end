@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>获取对象的全部属性</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      var obj = {
+        p1: 'foo',
+        p2: 'bar'
+      };
+
+      // 正常情况下，即不修改所创建对象的属性时，Object.getOwnPropertyNames() 与 Object.Keys() 效果一样，返回对象自身的所有属性
+      console.log(Object.getOwnPropertyNames(obj));
+      console.log(Object.keys(obj));
+
+      var obj2 = Object.defineProperties(
+        {},
+        {
+          p1: { value: 'foo', enumerable: true },
+          p2: { value: 'bar', enumerable: false }
+        }
+      );
+
+      // 当修改对象属性的描述信息后，Object.keys() 只能获取到可遍历的属性，而 Object.getOwnPropertyNames() 则依然可以获取到所有自身属性
+      console.log(Object.keys(obj2));
+      console.log(Object.getOwnPropertyNames(obj2));
+
+      console.log(Object.keys([]));
+      console.log(Object.getOwnPropertyNames([]));
+
+      console.log(Object.keys(Object.prototype));
+      console.dir(Object.getOwnPropertyNames(Object.prototype));
+    </script>
+  </body>
+</html>

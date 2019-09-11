@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /* var obj = Object.defineProperty({}, 'p', {
+        get() {
+          return 'getter';
+        },
+        set(value) {
+          console.log(`setter: ${value}`);
+        }
+      }); */
+      var obj = {
+        get p() {
+          return 'getSomething';
+        },
+        set p(value) {
+          console.log(`set: ${value}`);
+        }
+      };
+
+      console.log(obj.p);
+      obj.p = 123;
+      console.log('----------------------------------------');
+
+      // 取值函数 get 不能接受参数，村址函数 set 只能接受一个参数（即属性的值）。
+      // 存取器往往用于，属性的值依赖对象内部数据的场合。
+      var json = {
+        n: 5,
+        get next() {
+          return this.n++;
+        },
+        set next(n) {
+          if (n >= this.n) {
+            this.n = n;
+          } else {
+            throw new Error('新的值必须大于等于当前值');
+          }
+        }
+      };
+
+      console.log(json.next);
+      console.log(json.next);
+      json.next = 7;
+      console.log(json.next);
+      json.next = 10;
+      console.log(json.next);
+      console.log(json.next);
+    </script>
+  </body>
+</html>
