@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /* var d = new Date();
+      console.log(d.getTime());
+
+      var print = d.getTime.bind(d);
+      console.log(print()); */
+
+      /* var counter = {
+        count: 0,
+        inc: function() {
+          this.count++;
+        }
+      };
+
+      var f = counter.inc.bind(counter);
+      f();
+      console.log(counter.count); */
+
+      /* var counter = {
+        count: 0,
+        inc: function() {
+          this.count++;
+        }
+      };
+
+      var obj = {
+        count: 100
+      };
+
+      var f = counter.inc.bind(obj);
+      f();
+      console.log(obj.count); */
+
+      /* var add = function(x, y) {
+        return x * this.m + y * this.n;
+      };
+
+      var obj = {
+        m: 2,
+        n: 2
+      };
+
+      // var newAdd = add.bind(obj, 2, 5);
+      var newAdd = add.bind(obj, 5);
+      console.log(newAdd(4)); */
+
+      /* function add(x, y) {
+        return x + y;
+      }
+
+      var plus5 = add.bind(null, 5);
+      console.log(plus5(10)); */
+
+      /* var counter = {
+        count: 0,
+        inc: function() {
+          this.count++;
+        }
+      };
+
+      function callIt(callback) {
+        callback();
+      }
+
+      callIt(counter.inc.bind(counter));
+      console.log(counter.count); */
+
+      var obj = {
+        name: '张三',
+        times: [1, 2, 3],
+        print: function() {
+          /* this.times.forEach(
+            function(n) {
+              console.log(this.name + n);
+            }.bind(this)
+          ); */
+          this.times.forEach(n => {
+            console.log(`${this.name} --- ${n}`);
+          });
+        }
+      };
+      obj.print();
+    </script>
+  </body>
+</html>

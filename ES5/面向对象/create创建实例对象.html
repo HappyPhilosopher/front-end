@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: 'Mike',
+        sayHi: function() {
+          console.log('Hello');
+        }
+      };
+
+      // p 继承了 obj 的属性和方法
+      var p = Object.create(obj);
+      console.log(p.name);
+      p.sayHi();
+    </script>
+  </body>
+</html>

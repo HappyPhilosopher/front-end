@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /* var obj = {};
+
+      function f() {
+        return this;
+      }
+
+      console.log(f() === window); // false，严格模式下，函数内部的 this 为 undefined
+      console.log(f() === undefined); // true
+      console.log(f.call(obj) === obj); // true */
+
+      /* var n = 123;
+
+      var obj = {
+        n: 456
+      };
+
+      function a() {
+        console.log(this.n);
+      }
+
+      function b() {
+        return this;
+      }
+
+      a.call(window);
+      a.call(obj);
+      console.log(b.call(n)); */
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      console.log(add.call(this, 1, 2));
+    </script>
+  </body>
+</html>

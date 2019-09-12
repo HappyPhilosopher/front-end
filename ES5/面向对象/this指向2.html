@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      // 'use strict'; // 严格模式下函数内部的 this 指向 undefined
+      // this 的设计目的就是在函数体内部，指代函数当前的运行环境
+      /* var f = function() {
+        console.log(this.x);
+      };
+
+      var x = 1;
+      var obj = {
+        f: f,
+        x: 2
+      };
+
+      // 运行环境为 window，所以打印 1
+      f();
+      // 运行环境为 obj，所以打印 obj.x 的值
+      obj.f();
+      // true
+      console.log(this === window); */
+
+      'use strict';
+      /* var obj = {
+        foo: function() {
+          console.log(this);
+        }
+      };
+
+      obj.foo();
+      (obj.foo = obj.foo)();
+      (false || obj.foo)();
+      (1, obj.foo)(); */
+
+      /* var a = {
+        b: {
+          m: function() {
+            console.log(this.p);
+          },
+          p: 'Hello'
+        }
+      };
+
+      var { b } = a;
+      b.m(); */
+
+      /* var o = {
+        f1: function() {
+          console.log(this);
+          var f2 = function() {
+            console.log(this);
+          }.bind(this)();
+        }
+      };
+
+      o.f1(); */
+
+      var counter = {
+        count: 0
+      };
+
+      counter.inc = function() {
+        this.count++;
+      };
+
+      counter.inc();
+      console.log(counter.count);
+      counter.inc();
+      console.log(counter.count);
+    </script>
+  </body>
+</html>

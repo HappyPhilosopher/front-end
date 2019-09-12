@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /* class Animal {}
+
+      const cat = new Animal();
+
+      console.dir(Object.getPrototypeOf(cat));
+      console.log(Animal.prototype.constructor === Animal);
+      console.log(cat.constructor === Animal); */
+
+      // 从一个实例对象的 constructor 属性新建另一个实例对象
+      /* function Constr() {}
+      Constr.prototype.createCopy = function() {
+        return new this.constructor();
+      };
+
+      var x = new Constr();
+      var y = new x.constructor();
+      var z = x.createCopy();
+      console.log(y instanceof Constr);
+      console.log(z instanceof Constr);
+      console.log(Constr.prototype.isPrototypeOf(z)); */
+
+      /* class Dog {
+        constructor(name, color) {
+          this.name = name;
+          this.color = color;
+        }
+        walk() {
+          return `${this.name} is walking.`;
+        }
+      }
+
+      class Cat extends Dog {
+        constructor(name, age, color) {
+          super(name, color);
+          this.age = age;
+        }
+      } */
+
+      /* function Dog(name, color) {
+        this.name = name;
+        this.color = color;
+      }
+
+      Dog.prototype.walk = function() {
+        return this.name + ' is walking.';
+      };
+
+      function Cat(name, age, color) {
+        Dog.call(this, name, color);
+        this.age = age;
+      }
+
+      // Cat.prototype = new Dog();
+      Cat.prototype = Object.create(Dog.prototype);
+      Cat.prototype.constructor = Cat;
+
+      const cat = new Cat('Hello Kitty', 1, 'white');
+      console.log(cat.walk());
+      console.log(cat.color);
+      console.log(cat instanceof Cat);
+      console.log(cat instanceof Dog); */
+
+      // 多重继承
+      function M1() {
+        this.hello = 'hello';
+      }
+
+      function M2() {
+        this.world = 'world';
+      }
+
+      function S() {
+        M1.call(this);
+        M2.call(this);
+      }
+
+      S.prototype = Object.create(M1.prototype);
+      // 继承链上加入 M2
+      Object.assign(S.prototype, M2.prototype);
+      S.prototype.constructor = S;
+
+      var s = new S();
+      console.log(s.hello);
+      console.log(s.world);
+    </script>
+  </body>
+</html>
