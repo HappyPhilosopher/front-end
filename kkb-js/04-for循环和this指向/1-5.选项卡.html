@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>模拟单选框</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 500px;
+        border: 1px solid #ccc;
+      }
+      .controllers {
+        display: flex;
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #ccc;
+      }
+      .controllers > div {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #ccc;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+      }
+      .controllers > div:nth-last-child(1) {
+        border-right: 0;
+      }
+      .controllers > .active {
+        background-color: lightblue;
+      }
+      .content {
+        width: 100%;
+      }
+      .content > div {
+        display: none;
+        width: 100%;
+        font-size: 30px;
+        line-height: 100px;
+        text-align: center;
+        color: #333;
+        transition: all 0.5s ease-in-out;
+      }
+      .content > .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="controllers">
+        <div class="active">旅游</div>
+        <div>学习</div>
+        <div>游戏</div>
+      </div>
+      <div class="content">
+        <div class="show">今天旅游</div>
+        <div>今天要开始学习了</div>
+        <div>打了一天游戏</div>
+      </div>
+    </div>
+
+    <script>
+      'use strict';
+      const controllers = document.querySelectorAll('.controllers > div');
+      const content = document.querySelectorAll('.content > div');
+      let prev = 0;
+
+      // 方法一
+      /* Array.from(controllers).forEach((el, index) => {
+        el.addEventListener('mouseenter', function() {
+          Array.from(controllers).forEach((el, index) => {
+            el.classList.remove('active');
+            content[index].classList.remove('show');
+          });
+          this.classList.add('active');
+          content[index].classList.add('show');
+        });
+      }); */
+
+      // 方法二
+      Array.from(controllers).forEach((el, index) => {
+        el.addEventListener('mouseenter', function() {
+          controllers[prev].classList.remove('active');
+          content[prev].classList.remove('show');
+          controllers[index].classList.add('active');
+          content[index].classList.add('show');
+
+          prev = index;
+        });
+      });
+    </script>
+  </body>
+</html>

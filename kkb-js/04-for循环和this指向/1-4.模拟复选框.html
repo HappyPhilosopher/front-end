@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>模拟复选框</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        width: 300px;
+        height: 100px;
+      }
+      .container > div {
+        width: 50px;
+        height: 30px;
+        border-radius: 3px;
+        background-color: pink;
+        margin-right: 10px;
+        line-height: 30px;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+      }
+      .checked {
+        position: relative;
+      }
+      .checked::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>旅游</div>
+      <div>学习</div>
+      <div>运动</div>
+    </div>
+
+    <script>
+      'use strict';
+      const container = document.querySelector('.container');
+      const divElements = container.querySelectorAll('div');
+
+      Array.prototype.slice.call(divElements).forEach(el => {
+        el.addEventListener('click', function() {
+          this.classList.toggle('checked');
+        });
+      });
+    </script>
+  </body>
+</html>

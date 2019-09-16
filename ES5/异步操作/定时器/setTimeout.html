@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <input type="text" />
+
+    <script>
+      'use strict';
+      /* function add(a, b) {
+        console.log(a + b);
+      }
+      // setTimeout 可以为回调函数传递参数
+      setTimeout(add, 1000, 1, 2);
+      setTimeout(
+        (a, b) => {
+          console.log(a / b);
+        },
+        2000,
+        10,
+        2
+      ); */
+
+      /* var x = 1;
+      var obj = {
+        x: 2,
+        y: function() {
+          console.log(this.x);
+        }
+      };
+
+      // setTimeout(obj.y.bind(obj), 1000);
+      setTimeout(function() {
+        obj.y();
+      }, 1000); */
+
+      /* setTimeout(function f() {
+        console.log('done');
+
+        setTimeout(f, 1000);
+      }, 1000); */
+
+      // const input = document.querySelector('input');
+
+      // function print() {
+      //   console.log('正在输入...');
+      // }
+
+      // /*
+      //  * 防抖函数
+      //  * @param {Function} fn 业务函数
+      //  * @param {Number} delay 定时器延迟时间
+      //  */
+      // function debounce(fn, delay) {
+      //   let timer = null;
+
+      //   return function() {
+      //     // const context = this;
+      //     const args = arguments;
+      //     clearTimeout(timer);
+      //     timer = setTimeout(() => {
+      //       fn.apply(this, args);
+      //     }, delay);
+      //   };
+      // }
+
+      // input.addEventListener('input', debounce(print, 1000));
+
+      /* setInterval(() => {
+        console.log(2);
+      }, 1000);
+
+      sleep(3000);
+
+      function sleep(ms) {
+        var start = Date.now();
+
+        while (Date.now() - start < ms) {}
+      } */
+
+      const input = document.querySelector('input');
+      input.addEventListener('keypress', function() {
+        // 用户自定义的回调函数，会在浏览器的默认事件之前发生，比如输入框的输入事件
+        setTimeout(() => {
+          this.value = this.value.toLowerCase();
+        }, 0);
+      });
+    </script>
+  </body>
+</html>

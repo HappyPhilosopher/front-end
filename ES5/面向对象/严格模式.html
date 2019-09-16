@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>严格模式</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      // 严格模式下，只读属性不可再赋值，不可配置属性也无法删除
+      /* const obj = {};
+
+      Object.defineProperty(obj, 'a', {
+        value: 10,
+        writable: false,
+        configurable: false
+      });
+
+      obj.a = 20;
+      delete obj.a;
+      console.log(obj); */
+
+      // 只设置取值器的属性不可写
+      /* var obj = {
+        get p() {
+          return 'hello';
+        }
+      };
+
+      obj.p = 'world';
+      console.log(obj); */
+
+      // 对禁止扩展的对象添加新属性会报错
+      /* const obj = {};
+      Object.preventExtensions(obj);
+      obj.p = 'hello'; */
+
+      a = 1;
+    </script>
+  </body>
+</html>
