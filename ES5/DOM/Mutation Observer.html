@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mutation Observer API</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script>
+      const container = document.querySelector('.container');
+      const insertedNodes = [];
+
+      const observer = new MutationObserver(mutations =>
+        mutations.forEach(mutation => {
+          // insertedNodes.push(...mutation.addedNodes);
+          for (var i = 0; i < mutation.addedNodes.length; i++) {
+            insertedNodes.push(mutation.addedNodes[i]);
+          }
+          console.log(insertedNodes);
+        })
+      );
+      observer.observe(container, { childList: true, subtree: true });
+
+      const ele_p = document.createElement('p');
+      ele_p.innerHTML = 'hello world';
+      container.appendChild(ele_p);
+
+      const ele_div = document.createElement('div');
+      ele_div.innerHTML = 'This is a test text';
+      container.appendChild(ele_div);
+
+      for (let i = 0; i < 3; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = 'test';
+        container.appendChild(div);
+      }
+    </script>
+  </body>
+</html>

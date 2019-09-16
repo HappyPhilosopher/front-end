@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>node接口</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div class="container">
+      <p>Hello world!</p>
+      <div>This is my first program.</div>
+    </div>
+
+    <div class="test"><p>test</p></div>
+
+    <script>
+      /* const node = document.documentElement.firstChild;
+      console.log(node);
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        console.log('该节点是元素节点');
+      }
+      console.log(node.nodeType);
+      console.log(document.nodeType); */
+
+      let ele_p = document.querySelector('p');
+      let container = document.querySelector('.container');
+      let ele_div = container.querySelector('div');
+      let test = document.querySelector('.test');
+
+      // console.log(ele_p.nextElementSibling);
+
+      /* console.log(ele_p.nodeName);
+      console.log(ele_p.parentNode.nodeName);
+      console.log(ele_p.nodeValue);
+      console.log(ele_p.firstChild.nodeValue);
+      console.log(container.textContent);
+      console.log(document.baseURI);
+      console.log(ele_p.nextSibling); */
+
+      /* while (ele_p !== null) {
+        console.log(ele_p);
+        ele_p = ele_p.nextElementSibling;
+      } */
+
+      // console.log(Array.from(container.children));
+      /* console.log(ele_p.parentElement);
+      console.log(ele_p.parentNode);
+      console.log(container.firstElementChild);
+      console.log(document.querySelector('.test').firstChild); */
+
+      const cloneNode = ele_p.cloneNode(true);
+      const cloneNode2 = ele_p.cloneNode(true);
+      document.querySelector('.test').appendChild(cloneNode);
+      test.insertBefore(cloneNode2, test.querySelector('p'));
+      test.removeChild(cloneNode);
+    </script>
+  </body>
+</html>
