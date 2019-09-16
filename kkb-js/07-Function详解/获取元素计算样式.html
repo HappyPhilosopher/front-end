@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>获取元素计算后样式</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        margin-left: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box"></div>
+
+    <script>
+      var box = document.getElementById('box');
+      /* console.log(
+        getComputedStyle(box)['marginLeft'] || box.currentStyle['marginLeft']
+      ); */
+
+      function getStyle(el, style) {
+        return el.currentStyle
+          ? el.currentStyle[style]
+          : window.getComputedStyle(el)[style];
+      }
+
+      console.log(getStyle(box, 'margin-left'));
+    </script>
+  </body>
+</html>
