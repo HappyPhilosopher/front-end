@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div
+      class="box"
+      style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; background-color: #f00; transition: all 0.5s ease-in-out;"
+    ></div>
+
+    <script>
+      'use strict';
+      const box = document.querySelector('.box');
+      box.addEventListener('click', function() {
+        this.style.left = parseInt(this.style.left) + 100 + 'px';
+      });
+    </script>
+  </body>
+</html>
