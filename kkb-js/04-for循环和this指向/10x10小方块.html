@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>10*10小方块</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        margin-left: 20px;
+      }
+      .container > div {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script>
+      const container = document.querySelector('.container');
+      let x = 20;
+      let y = 20;
+
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+          container.innerHTML += `<div style="top: ${j * (y + 5)}px; left: ${i *
+            (x + 5)}px"><div>`;
+        }
+      }
+    </script>
+  </body>
+</html>
