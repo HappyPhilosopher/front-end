@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://s1.pstatp.com/cdn/expire-1-M/twitter-bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      const arr = [
+        '100px',
+        'abc' - 6,
+        [],
+        -98765,
+        34,
+        -2,
+        0,
+        '300',
+        ,
+        function() {
+          alert(1);
+        },
+        null,
+        [],
+        true,
+        '200px' - 30,
+        '23.45元',
+        5,
+        Number('abc'),
+        function() {
+          alert(3);
+        },
+        'xyz' - 90
+      ];
+
+      function checkDataType(val) {
+        const result = Object.prototype.toString.call(val);
+        return result.match(/\[object (.*?)\]/)[1].toLowerCase();
+      }
+
+      const isNumber = arr.filter(
+        num => checkDataType(num) === 'number' && !isNaN(num)
+      );
+      console.log(isNumber);
+
+      const canTransferToNumber = arr.filter(
+        num => typeof num !== 'number' && !isNaN(parseFloat(num))
+      );
+      console.log(canTransferToNumber);
+
+      const bigerThan300 = canTransferToNumber.filter(num => num >= 300);
+      console.log(bigerThan300);
+
+      const biggest = Math.max(...isNumber);
+      console.log(biggest);
+
+      const NaNIndex = [];
+      arr.forEach((num, index) => {
+        if (typeof num === 'number' && isNaN(num)) {
+          NaNIndex.push(index);
+        }
+      });
+      console.log(NaNIndex);
+    </script>
+  </body>
+</html>

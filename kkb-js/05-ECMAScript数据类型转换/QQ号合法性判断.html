@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://s1.pstatp.com/cdn/expire-1-M/twitter-bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-group">
+        <label for="qqNum">请输入QQ号</label>
+        <input type="text" name="qqNum" id="qqNum" class="form-control" />
+        <p></p>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">校验</button>
+      </div>
+    </div>
+
+    <script>
+      'use strict';
+      const input = document.querySelector('input');
+      const btn = document.querySelector('.btn');
+      const p = document.querySelector('p');
+      const reg = /^\d{5,10}$/;
+
+      function verifyQQNumber(val) {
+        if (input.value === '') {
+          p.innerHTML = '请输入QQ号';
+        } else if (!reg.test(input.value)) {
+          p.innerHTML = '请输入正确的QQ号';
+        } else {
+          p.innerHTML = '校验成功';
+        }
+      }
+
+      btn.addEventListener('click', verifyQQNumber);
+      input.addEventListener('keypress', function(e) {
+        if (e.keyCode === 13) {
+          verifyQQNumber(input.value);
+        }
+      });
+    </script>
+  </body>
+</html>
