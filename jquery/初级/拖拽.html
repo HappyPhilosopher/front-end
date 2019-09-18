@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>拖拽</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      var disX = 0;
+      var disY = 0;
+
+      $('.box').on('mousedown', function(e) {
+        disX = e.pageX - $(this).offset().left;
+        disY = e.pageY - $(this).offset().top;
+
+        $(document).on('mousemove', function(e) {
+          $('.box').css({
+            left: e.pageX - disX,
+            top: e.pageY - disY
+          });
+        });
+
+        $(document).on('mouseup', function() {
+          $(this).off();
+        });
+
+        return false;
+      });
+    </script>
+  </body>
+</html>
