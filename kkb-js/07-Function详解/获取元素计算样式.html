@@ -19,16 +19,18 @@
     <div class="box" id="box"></div>
 
     <script>
-      var box = document.getElementById('box');
-      /* console.log(
-        getComputedStyle(box)['marginLeft'] || box.currentStyle['marginLeft']
-      ); */
-
+      /*
+       * 获取元素计算后的样式
+       * @param {Object} el DOM 元素
+       * @param {String} style 元素样式
+       */
       function getStyle(el, style) {
         return el.currentStyle
           ? el.currentStyle[style]
-          : window.getComputedStyle(el)[style];
+          : getComputedStyle(el)[style];
       }
+
+      var box = document.getElementById('box');
 
       console.log(getStyle(box, 'margin-left'));
     </script>

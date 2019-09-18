@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      body {
+        height: 10000px;
+      }
+      .popup {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">click me</button>
+
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      $('.btn').on('click', createPopup);
+
+      function createPopup() {
+        $('.btn').off('click');
+        var $div = $('<div class="popup"></div>').html('<p>hello world</p>');
+        $div.css({
+          left: ($(window).width() - $('.popup').outerWidth()) / 2,
+          top: ($(window).height() - $('.popup').outerHeight()) / 2
+        });
+        $div.insertAfter('.btn');
+
+        $(window).on('scroll resize', function() {
+          $div.css({
+            left: ($(window).width() - $('.popup').outerWidth()) / 2,
+            top:
+              ($(window).height() - $('.popup').outerHeight()) / 2 +
+              $(window).scrollTop()
+          });
+        });
+
+        $('.popup').on('click', function() {
+          $(this).remove();
+          $('.btn').on('click', createPopup);
+        });
+      }
+    </script>
+  </body>
+</html>

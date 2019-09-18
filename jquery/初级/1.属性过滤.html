@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <ul>
+      <li>
+        <span>span</span>
+      </li>
+      <li title="hello"></li>
+      <li></li>
+      <li title="hello"></li>
+      <li class="hello"></li>
+    </ul>
+
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      // filter, not 方法用法想法，一个是过滤，一个是排除
+      // has 方法是判断选择元素内部是否有某个元素
+
+      /* $('li')
+        .filter('[title="hello"]')
+        .css('background-color', 'lightblue');
+
+      $('li:even').css({ background: '#f00' }); */
+
+      /* $('ul')
+        .children()
+        .filter('[title="hello"]')
+        .css('background', 'red'); */
+
+      /* $('li')
+        .not('[title="hello"]')
+        .css('background', 'red'); */
+
+      /* $('li')
+        .has('span')
+        .css('background', 'red'); */
+
+      /* $('li')
+        .has('span')
+        .next()
+        .css('background', 'red'); */
+
+      /* $('li:last')
+        .prev()
+        .css('background', 'red'); */
+
+      console.log(typeof $('.hello').index());
+    </script>
+  </body>
+</html>

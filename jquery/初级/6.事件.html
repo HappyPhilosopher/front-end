@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style></style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">div</div>
+      <p>hello</p>
+    </div>
+
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      // on 方法可以指定多个事件名称，既可以直接声明，如：$().on('click mouseenter', function() {})，也可以通过对象形式声明，如下代码所示。
+      // off 方法可以取消 on 方法注册的事件。如果不显式声明具体事件，则取消所有事件。以下为取消 mouseenter 事件。
+      $('.container').on({
+        click: function() {
+          alert('hello');
+        },
+        mouseenter: function() {
+          alert('world');
+          $(this).off('mouseenter');
+        }
+      });
+    </script>
+  </body>
+</html>
