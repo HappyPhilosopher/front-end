@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>防抖函数</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      // 函数调用 bind 方法后会创建一个新的函数，如果在 bind 中传递了除 this 指向的其他参数后，新函数中的参数即为这些参数。如下 anotherAddFn
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      // bind 中传递了参数 10，则 anotherAddFn 的第一个参数就是 10
+      const anotherAddFn = add.bind(null, 10);
+
+      // anotherAddFn 已有第一个参数 10， 再传递多余参数（10）就会被忽略
+      console.log(anotherAddFn(5, 10));
+    </script>
+  </body>
+</html>

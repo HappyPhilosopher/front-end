@@ -4,13 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>防抖函数</title>
     <link rel="icon" href="#" />
   </head>
   <body>
     <input type="text" />
 
     <script>
+      /*
+       * 防抖函数，节省性能
+       * @param {Function} fn 主体函数
+       * @param {Number} delay 延迟时间
+       * @return {Function} 返回一个匿名函数，用以承载主体函数的参数
+       */
       function debounce(fn, delay) {
         let timer = null;
         return function() {
@@ -21,12 +27,19 @@
         };
       }
 
-      function print() {
-        console.log('hello');
+      /*
+       * 主体函数
+       * @param {*} param 任意参数
+       */
+      function print(param) {
+        console.log(param);
       }
 
       const input = document.querySelector('input');
-      input.addEventListener('input', debounce(print, 300));
+      const temporary = debounce(print, 300);
+      input.addEventListener('input', function() {
+        temporary('hello world');
+      });
     </script>
   </body>
 </html>
