@@ -52,7 +52,7 @@
 
     plusBtn.addEventListener('click', function() {
       cart[index].num += 1;
-      handler(index);
+      render(index);
     });
 
     minusBtn.addEventListener('click', function() {
@@ -60,14 +60,12 @@
       if (cart[index].num <= 0) {
         cart[index].num = 0;
       }
-      handler();
+      render();
     });
 
-    function handler() {
+    function render() {
       const filterCart = cart.filter(item => item.num > 0);
 
-      el_span.innerHTML = cart[index].num;
-      el_count[index].innerHTML = `${cart[index].count()}元`;
       totalNum = cart.map(item => item.num).reduce((acc, cur) => acc + cur);
       totalPrice = cart
         .map(item => item.count())
@@ -76,6 +74,9 @@
         filterCart.length > 0
           ? Math.max(...filterCart.map(item => item.price))
           : 0;
+
+      el_span.innerHTML = cart[index].num;
+      el_count[index].innerHTML = `${cart[index].count()}元`;
       strongArr[0].innerHTML = totalNum;
       strongArr[1].innerHTML = totalPrice;
       strongArr[2].innerHTML = mostExpensive;

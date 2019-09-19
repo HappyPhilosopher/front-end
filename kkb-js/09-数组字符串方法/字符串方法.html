@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /* const str = 'hello world';
+      console.log(str.substring(2, 4));
+      console.log(str.substr(2, 6)); // 第二个参数代表截取字符串长度 */
+
+      function newStr(str) {
+        return str
+          .split('-')
+          .map((word, index) => {
+            if (index > 0) {
+              return word.charAt(0).toUpperCase() + word.substring(1);
+            } else {
+              return word;
+            }
+          })
+          .join('');
+      }
+
+      const str1 = 'kai-ke-ba';
+      const str2 = 'miao-wei-ke-tang';
+      console.log(newStr(str1));
+      console.log(newStr(str2));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 600px;
+        height: 400px;
+        margin: 100px auto;
+      }
+      .box {
+        display: flex;
+        width: 400px;
+        height: 100px;
+      }
+      .box > .item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="btn btn-prev"><</button>
+      <div class="box">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+        <div class="item">D</div>
+      </div>
+      <button class="btn btn-next">></button>
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+        const itemArr = Array.from(document.querySelectorAll('.item'));
+        const btnPrev = document.querySelector('.btn-prev');
+        const btnNext = document.querySelector('.btn-next');
+        const box = document.querySelector('.box');
+
+        btnPrev.addEventListener('click', function() {
+          itemArr.push(itemArr.shift());
+          itemArr.forEach(item => {
+            box.appendChild(item);
+          });
+        });
+
+        btnNext.addEventListener('click', function() {
+          itemArr.unshift(itemArr.pop());
+          itemArr.forEach(item => {
+            box.appendChild(item);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
