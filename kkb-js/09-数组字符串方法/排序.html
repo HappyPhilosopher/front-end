@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      (function() {
+        'use strict';
+        /* const arr = [1, 10, 11, 3, 56546];
+        console.log(arr.sort((a, b) => a - b)); */
+
+        // 自定义排序
+        const arr = ['一', '五', '四', '二', '三'];
+        const obj = {
+          一: 1,
+          二: 2,
+          三: 3,
+          四: 4,
+          五: 5
+        };
+        const newArr = arr.sort((a, b) => obj[a] - obj[b]);
+        console.log(newArr);
+      })();
+    </script>
+  </body>
+</html>
