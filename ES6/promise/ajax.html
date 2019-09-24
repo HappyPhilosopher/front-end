@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promise</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      const getJson = url =>
+        new Promise((resolve, reject) => {
+          const handler = function() {
+            if (this.readyState !== 4) {
+              return;
+            }
+            if (this.status === 200) {
+              resolve(this.response);
+            } else {
+              reject(new Error(this.statusText));
+            }
+          };
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', url);
+          xhr.onreadystatechange = handler;
+          xhr.responseType = 'json';
+          xhr.setRequestHeader('Accept', 'application/json');
+          xhr.send();
+        });
+
+      getJson('http://localhost:8888/users')
+        .then(json => {
+          console.log(json);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+      // fetch 方法
+      /* fetch('http://localhost:8888/users')
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+        }); */
+
+      // 常规方法
+      /* function ajax(url) {
+        function handler() {
+          if (this.readyState !== 4) {
+            return;
+          }
+          if (this.status === 200) {
+            console.log(this.response);
+          } else {
+            console.log(this.statusText);
+          }
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.onreadystatechange = handler;
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.send();
+      }
+
+      ajax('http://localhost:8888/users'); */
+    </script>
+  </body>
+</html>

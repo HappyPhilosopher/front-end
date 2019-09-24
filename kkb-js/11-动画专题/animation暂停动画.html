@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        animation: move 4s linear infinite paused;
+      }
+      @keyframes move {
+        25% {
+          transform: translate(400px, 0);
+        }
+        50% {
+          transform: translate(400px, 400px);
+        }
+        75% {
+          transform: translate(0, 400px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">start</button>
+    <button class="btn">stop</button>
+    <div class="box" id="box"></div>
+
+    <script>
+      (function() {
+        'use strict';
+        const btn = document.querySelectorAll('.btn');
+        const box = document.querySelector('.box');
+
+        btn[0].addEventListener('click', function() {
+          box.style.animationPlayState = 'running';
+        });
+
+        btn[1].addEventListener('click', function() {
+          box.style.animationPlayState = 'paused';
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        transition: 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">动画</button>
+    <div class="box" id="box"></div>
+
+    <script>
+      /*
+       * transitionend 监测 transition 动画执行完毕的事件
+       */
+      var btn = document.querySelector('#btn');
+      var box = document.querySelector('#box');
+
+      btn.addEventListener('click', function() {
+        box.style.width = '300px';
+      });
+
+      box.addEventListener('transitionend', function() {
+        this.style.height = '200px';
+      });
+    </script>
+  </body>
+</html>

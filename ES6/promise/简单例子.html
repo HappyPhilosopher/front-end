@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promise</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      function print() {
+        return 'hello world';
+      }
+
+      function timeout(ms) {
+        return new Promise(resolve => {
+          setTimeout(resolve, ms, print);
+        });
+      }
+
+      timeout(1000).then(fn => {
+        console.log(fn());
+      });
+    </script>
+  </body>
+</html>

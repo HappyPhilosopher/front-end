@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        transition: 1s cubic-bezier(0.79, 0.19, 0.13, 0.8);
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">动画</button>
+    <div class="box" id="box"></div>
+    <script>
+      /*
+       * transition:
+       * transition 元素的样式发生改变，给元素添加一个过渡动画
+       * - transition-delay 延迟时间，动画延迟多长时间执行(s|ms)，默认值 0s
+       * - transition-duration 动画时长，动画用多长时间完成(s|ms)，默认值 0s
+       * - transition-property 要动画的样式，默认值 all
+       * - transition-timing-function 动画形式
+       *   - linear 匀速
+       *   - ease 缓冲（默认值）
+       *   - ease-in 加速
+       *   - ease-in-out 先加速再减速
+       *   - cubic-bezier() 贝塞尔曲线
+       */
+      btn.addEventListener('click', function() {
+        // 程序执行比页面渲染要快得多，所以显示一个 DOM 元素并执行一段代码，需要把要执行的代码异步操作，否则就无法显示动画效果。
+        box.style.display = 'block';
+        setTimeout(() => {
+          box.style.width = '700px';
+        }, 0);
+      });
+    </script>
+  </body>
+</html>

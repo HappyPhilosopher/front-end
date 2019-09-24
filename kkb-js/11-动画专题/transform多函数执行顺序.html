@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .box {
+        width: 400px;
+        height: 400px;
+        border: 1px solid #ccc;
+      }
+      .box > div {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        margin-top: 100px;
+        transition: 1s;
+      }
+      .box:hover div {
+        /* transform: scale(0.5) translateX(650px); */
+        /* transform: translateX(325px) scale(0.5); */
+        transform: scale(0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box">
+      <div></div>
+    </div>
+
+    <script>
+      'use strict';
+      var length = 10;
+
+      function fn() {
+        console.log(this.length);
+      }
+
+      var obj = {
+        length: 5,
+        method: function(fn) {
+          // fn();
+          arguments[0]();
+        }
+      };
+
+      obj.method(fn, 1, 2);
+    </script>
+  </body>
+</html>

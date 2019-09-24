@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      (function() {
+        'use strict';
+        // 用 100 减去数组中的所有数字
+        const arr = [1, 2, 3, 4, 5];
+        const result = arr.reduce((acc, cur) => acc - cur, 100);
+        console.log(result);
+      })();
+    </script>
+  </body>
+</html>
