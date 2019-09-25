@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 3000px;
+      }
+      p {
+        height: 100px;
+        background-color: #ff0;
+      }
+      .box {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Hello world</p>
+    <div class="box"></div>
+
+    <script>
+      const box = document.querySelector('.box');
+      const el_p = document.querySelector('p');
+
+      box.addEventListener('click', function() {
+        el_p.scrollIntoView({
+          // 定义动画过渡效果， 'smooth' 常用，表示平滑过渡
+          behavior: 'smooth'
+        });
+      });
+    </script>
+  </body>
+</html>
