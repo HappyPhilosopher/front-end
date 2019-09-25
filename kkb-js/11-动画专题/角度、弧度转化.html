@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>时钟</title>
+    <link rel="icon" href="#" />
+    <style></style>
+  </head>
+  <body>
+    <script>
+      (function() {
+        'use strict';
+
+        function deg2rad(deg) {
+          return (deg / 180) * Math.PI;
+        }
+
+        function rad2deg(rad) {
+          return (rad * 180) / Math.PI;
+        }
+
+        // console.log(deg2rad(30));
+        // console.log(deg2rad(180));
+        // console.log(rad2deg(3.1415));
+
+        // 已知边 a = 10, 对角为 30 度，求其邻边 b 和 斜边 c
+        const a = 10;
+        const c = a / Math.sin(deg2rad(30));
+        const b = a / Math.tan(deg2rad(30));
+        console.log(a, b.toFixed(2), c.toFixed(2));
+        console.log(+(c * Math.cos(deg2rad(30))).toFixed(2));
+      })();
+    </script>
+  </body>
+</html>

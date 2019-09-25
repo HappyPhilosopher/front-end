@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>时钟</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .clock {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        border: 1px solid #333;
+        border-radius: 50%;
+      }
+      .graduations > div {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 5px;
+        background-color: #000;
+        transform-origin: 0 100px;
+      }
+      .graduations > div:nth-child(5n) {
+        height: 10px;
+      }
+      .hour {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 40px;
+        background-color: #cc1919;
+        animation: clock 43200s linear infinite;
+        transform-origin: center bottom;
+      }
+      .minute {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 60px;
+        background-color: #193cd8;
+        animation: clock 3600s linear infinite;
+        transform-origin: center bottom;
+      }
+      .second {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 80px;
+        background-color: #555;
+        animation: clock 60s linear infinite;
+        transform-origin: center bottom;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="graduations"></div>
+      <div class="hand">
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+
+        // 创建指针
+        document.querySelector('.hand').innerHTML = `
+          <div class="hour"></div>
+          <div class="minute"></div>
+          <div class="second"></div>
+        `;
+
+        const graduations = document.querySelector('.graduations');
+        const hourHand = document.querySelector('.hour');
+        const minuteHand = document.querySelector('.minute');
+        const secondHand = document.querySelector('.second');
+
+        // 创建刻度
+        for (let i = 0; i < 60; i++) {
+          const graduation = document.createElement('div');
+          graduation.style.transform = `rotate(${(i + 1) * 6}deg)`;
+          graduations.appendChild(graduation);
+        }
+
+        function init() {
+          let now = new Date();
+          let hour = now.getHours();
+          let minute = now.getMinutes();
+          let second = now.getSeconds();
+
+          secondHand.style.transform = `rotate(${second * 6}deg)`;
+          minuteHand.style.transform = `rotate(${minute * 6}deg)`;
+          hourHand.style.transform = `rotate(${hour * 30}deg)`;
+        }
+
+        init();
+        setInterval(init, 1000);
+      })();
+    </script>
+  </body>
+</html>

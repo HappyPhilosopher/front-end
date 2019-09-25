@@ -38,20 +38,66 @@
     </div>
 
     <script>
-      const openBtn = document.querySelector('#open');
-      const text = document.querySelector('#content');
-      const fun = document.querySelector('#fun');
-      const btns = fun.querySelector('.btns').children;
+      (function() {
+        'use strict';
 
-      openBtn.addEventListener('click', function() {
-        this.lastElementChild.style.display = 'block';
-      });
+        /**
+         * 遍历元素对象，点击后打开/隐藏操作界面
+         * @param {Object} el DOM 元素
+         * @param {Number} index DOM 元素的索引
+         */
+        function handler(el, index) {
+          el.addEventListener('click', function() {
+            function showControlArea() {
+              if (index === 0) {
+                search.style.display = 'block';
+                replace.style.display = 'none';
+              } else {
+                search.style.display = 'none';
+                replace.style.display = 'block';
+              }
+            }
 
-      Array.from(openBtn.querySelectorAll('ul a')).forEach((el, index) => {
-        el.addEventListener('click', function() {
-          fun.style.display = 'block';
+            fun.style.display = 'block';
+            showControlArea();
+          });
+        }
+
+        const openBtn = document.querySelector('#open');
+        const content = document.querySelector('#content');
+        const text = content.innerHTML;
+        const fun = document.querySelector('#fun');
+        const search = document.querySelector('#search');
+        const replace = document.querySelector('#replace');
+        const btns = fun.querySelector('.btns').children;
+        const searchInputs = search.children;
+        const replaceInputs = replace.children;
+
+        openBtn.addEventListener('click', function() {
+          this.lastElementChild.style.display = 'block';
         });
-      });
+
+        Array.from(openBtn.querySelectorAll('ul a')).forEach(handler);
+        Array.from(btns).forEach(handler);
+
+        // 查找内容
+        searchInputs[1].addEventListener('click', function() {
+          const searchContent = searchInputs[0].value;
+          const reg = new RegExp(searchContent, 'g');
+          content.innerHTML = text.replace(
+            reg,
+            `<mark>${searchContent}</mark>`
+          );
+        });
+
+        // 替换内容
+        replaceInputs[2].addEventListener('click', function() {
+          const originValue = replaceInputs[0].value;
+          const replacedValue = replaceInputs[1].value;
+          const reg = new RegExp(originValue, 'g');
+          content.innerHTML = text.replace(reg, replacedValue);
+        });
+      })();
     </script>
   </body>
 </html>
