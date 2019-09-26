@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>3D 盒子</title>
+    <link rel="icon" href="#" />
+    <style>
+      .container {
+        width: 200px;
+        height: 200px;
+        padding: 200px;
+        border: 1px solid #000;
+        perspective: 400px;
+      }
+      .box {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        transform-style: preserve-3d;
+        transition: 3s linear;
+        transform-origin: center center -100px;
+        transform: rotateX(50deg) rotateY(45deg);
+      }
+      .container:hover .box {
+        transform: rotateX(50deg) rotateY(45deg) rotateY(360deg);
+        /* transform: rotateY(360deg) rotateX(360deg); */
+        /* transform: rotateX(50deg) rotateY(45deg) rotateZ(360deg); */
+      }
+      .box > div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        font-size: 100px;
+        line-height: 200px;
+        text-align: center;
+        color: #fff;
+        opacity: 0.8;
+      }
+      .box > div:nth-child(1) {
+        top: -200px;
+        left: 0;
+        background-color: red;
+        transform-origin: bottom;
+        transform: rotateX(90deg);
+      }
+      .box > div:nth-child(2) {
+        top: 0;
+        left: -200px;
+        background-color: yellow;
+        transform-origin: right;
+        transform: rotateY(-90deg);
+      }
+      .box > div:nth-child(3) {
+        top: 200px;
+        left: 0;
+        background-color: yellowgreen;
+        transform-origin: top;
+        transform: rotateX(-90deg);
+      }
+      .box > div:nth-child(4) {
+        top: 0;
+        left: 200px;
+        background-color: pink;
+        transform-origin: left;
+        transform: rotateY(90deg);
+      }
+      .box > div:nth-child(5) {
+        top: 0;
+        left: 0;
+        background-color: blue;
+        transform: translateZ(-200px) rotateY(180deg);
+      }
+      .box > div:nth-child(6) {
+        top: 0;
+        left: 0;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+      </div>
+    </div>
+  </body>
+</html>
