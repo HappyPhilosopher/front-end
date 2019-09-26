@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 2000px;
+      }
+      .container {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ccc;
+        margin: 500px auto 0;
+        overflow: scroll;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        margin: 500px auto 0;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+
+    <script>
+      const container = document.querySelector('.container');
+      const box = document.querySelector('.box');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          console.log(entry.rootBounds);
+        });
+      });
+
+      [box, container].forEach(el => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
