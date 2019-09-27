@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn-run">跑</button>
+    <button class="btn-stop">停</button>
+    <div class="box"></div>
+
+    <script>
+      const btnRun = document.querySelector('.btn-run');
+      const btnStop = document.querySelector('.btn-stop');
+      const box = document.querySelector('.box');
+      const speed = 2;
+      let timer = 0;
+      let startPoint = 0;
+
+      btnRun.addEventListener('click', function() {
+        function move() {
+          startPoint += speed;
+          box.style.transform = `translateX(${startPoint}px)`;
+          timer = requestAnimationFrame(move);
+        }
+
+        cancelAnimationFrame(timer);
+        timer = requestAnimationFrame(move);
+      });
+
+      btnStop.addEventListener('click', function() {
+        cancelAnimationFrame(timer);
+      });
+    </script>
+  </body>
+</html>

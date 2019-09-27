@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn-start">run</button>
+    <button class="btn-stop">stop</button>
+    <div class="box"></div>
+
+    <script src="mTween.js"></script>
+    <script>
+      (function() {
+        const btnStart = document.querySelector('.btn-start');
+        const btnStop = document.querySelector('.btn-stop');
+        const box = document.querySelector('.box');
+        let timer = 0;
+        let t = 0;
+        let b = 0;
+        let c = 400;
+        let d = 60;
+
+        btnStart.addEventListener('click', function() {
+          function move() {
+            t++;
+            const val = Tween['linear'](t, b, c, d);
+            box.style.transform = `translateX(${val}px)`;
+            if (t < d) {
+              timer = requestAnimationFrame(move);
+            }
+          }
+
+          cancelAnimationFrame(timer);
+          timer = requestAnimationFrame(move);
+        });
+
+        btnStop.addEventListener('click', function() {
+          cancelAnimationFrame(timer);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -4,33 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>3D导航</title>
     <link rel="icon" href="#" />
     <style>
       * {
         padding: 0;
         margin: 0;
       }
+      nav {
+        padding: 100px;
+      }
       a {
-        display: block;
-        margin: 100px 100px;
+        transform-style: preserve-3d;
+        float: left;
+        height: 30px;
+        margin: 0 10px;
+        font: 16px/30px '宋体';
         text-decoration: none;
-        perspective: 50px;
+        color: #555;
       }
       span {
-        transform-style: preserve-3d;
+        float: left;
+        height: 30px;
+        transform-origin: center center -15px;
         transition: 0.5s;
+        transform-style: preserve-3d;
       }
       em {
         display: block;
         font-style: normal;
-        color: red;
-        font-size: 16px;
-        line-height: 30px;
+        backface-visibility: hidden;
       }
-      em:nth-last-child(1) {
-        transform: rotateX(-20deg);
+      em:nth-child(2) {
         transform-origin: top;
+        transform: rotateX(-90deg);
+        color: red;
+      }
+      a:hover span {
+        transform: rotateX(90deg);
       }
     </style>
   </head>
@@ -40,6 +51,18 @@
         <span>
           <em>首页</em>
           <em>首页</em>
+        </span>
+      </a>
+      <a href="#">
+        <span>
+          <em>导航</em>
+          <em>导航</em>
+        </span>
+      </a>
+      <a href="#">
+        <span>
+          <em>关于</em>
+          <em>关于</em>
         </span>
       </a>
     </nav>
