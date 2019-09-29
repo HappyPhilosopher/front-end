@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 
+img {
+    vertical-align: top;
+}
+#wrap {
+    margin: 40px auto;
+    position: relative;
+    width: 600px;
+    height: 400px;
+    border: 2px solid #000;
+    overflow: hidden;
+}    
+#pics {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    height: 400px;
+    z-index: 1;
+}
+#pics li{
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+}
+#pics img {
+    width: 600px;
+    height: 400px;
+}
+.btn {
+    position: absolute;
+    top: 170px;
+    z-index: 2;
+    width: 60px;
+    font: 40px/60px "宋体";
+    text-align: center;
+    background: rgba(255, 255, 255, .6);
+    text-decoration: none;
+    color: #000;
+}
+.btn:hover {
+    background: #fff;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}
+#navs {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    z-index: 3;
+    width: 100%;
+    text-align: center;
+}
+#navs a {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+#navs .active {
+    background: #f60;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="pics">
+        <li>
+            <img src="img2/img (1).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (2).jpg" />
+        </li>
+    </ul>
+    <a href="javascript:;" class="btn prev"><</a>
+    <a href="javascript:;" class="btn next">></a>
+    <nav id="navs">
+        <a class="active"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </nav>
+</div>
+<script src="../mTween.js"></script>
+<script>
+(function(){
+    var navs = document.querySelectorAll("#navs a");
+    var pics = document.querySelector("#pics");
+    var picAll = pics.querySelectorAll("li");
+    var picW = css(picAll[0],"width");
+    var nowIndex = 0; // 当前显示的图片的索引
+    var nextIndex= 0; // 下一张要显示的图片的索引
+    var prev = document.querySelector(".prev");
+    var next = document.querySelector(".next");
+    var imgs = [
+        "img2/img (1).jpg",
+        "img2/img (2).jpg",
+        "img2/img (3).jpg",
+        "img2/img (4).jpg",
+        "img2/img (5).jpg"
+    ];
+    css(pics,"translateX",0);
+    navs.forEach(function(item,index){
+        item.onclick = function(){
+            nextIndex = index;
+            if(nextIndex > nowIndex){
+                //console.log("执行 next 动画");
+                toNext();
+            } else if(nowIndex > nextIndex){
+                //console.log("执行 prev 动画");
+                toPrev();
+            }
+        };
+    });
+    prev.onclick = function(){
+        nextIndex = nowIndex - 1;
+        nextIndex = nextIndex< 0? navs.length-1:nextIndex;
+        toPrev();
+    };
+    function toPrev(){
+        picAll[1].innerHTML = '<img src="'+imgs[nowIndex]+'" />';
+        picAll[0].innerHTML = '<img src="'+imgs[nextIndex]+'" />';
+        css(pics,"translateX",-picW);
+        mTween({
+            el: pics,
+            attr: {
+                translateX: 0
+            }
+        });
+        nowIndex = nextIndex;
+        navs.forEach(function(item,index){
+            item.classList.remove("active");
+        });
+        navs[nowIndex].classList.add("active");
+    }
+    next.onclick = function(){
+        nextIndex = nowIndex + 1;
+        nextIndex = nextIndex>navs.length-1?0:nextIndex;
+        toNext();
+    };
+    function toNext(){
+        picAll[0].innerHTML = '<img src="'+imgs[nowIndex]+'" />';
+        picAll[1].innerHTML = '<img src="'+imgs[nextIndex]+'" />';
+        css(pics,"translateX",0);
+        mTween({
+            el: pics,
+            attr: {
+                translateX: -picW 
+            }
+        });
+        nowIndex = nextIndex;
+        navs.forEach(function(item,index){
+            item.classList.remove("active");
+        });
+        navs[nowIndex].classList.add("active");
+    }
+})();    
+</script>
+</body>
+</html>

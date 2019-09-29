@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn-start">run</button>
+    <button class="btn-stop">stop</button>
+    <div class="box"></div>
+
+    <script src="mTween.js"></script>
+    <script>
+      const box = document.querySelector('.box');
+      const btnStart = document.querySelector('.btn-start');
+      const btnStop = document.querySelector('.btn-stop');
+
+      btnStart.addEventListener('click', function() {
+        css(box, { rotate: 0 });
+        mTween({
+          el: box,
+          attr: {
+            width: 200
+          },
+          duration: 1000,
+          fx: 'bounceOut',
+          cb: function() {
+            mTween({
+              el: box,
+              attr: {
+                height: 200
+              },
+              duration: 500,
+              fx: 'backOut'
+            });
+          }
+        });
+      });
+
+      btnStop.addEventListener('click', function() {
+        mTween.stop(box);
+      });
+    </script>
+  </body>
+</html>

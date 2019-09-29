@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 
+img {
+    vertical-align: top;
+}
+#wrap {
+    margin: 40px auto;
+    position: relative;
+    width: 600px;
+    height: 400px;
+    border: 2px solid #000;
+    overflow: hidden;
+}    
+#pics {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    height: 400px;
+    z-index: 1;
+}
+#pics li{
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+}
+#pics img {
+    width: 600px;
+    height: 400px;
+}
+.btn {
+    position: absolute;
+    top: 170px;
+    z-index: 2;
+    width: 60px;
+    font: 40px/60px "宋体";
+    text-align: center;
+    background: rgba(255, 255, 255, .6);
+    text-decoration: none;
+    color: #000;
+}
+.btn:hover {
+    background: #fff;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}
+#navs {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    z-index: 3;
+    width: 100%;
+    text-align: center;
+}
+#navs a {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+#navs .active {
+    background: #f60;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="pics">
+        <li>
+            <img src="img2/img (1).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (2).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (3).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (4).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (5).jpg" />
+        </li>
+        <li>
+            <img src="img2/img (1).jpg" />
+        </li>
+    </ul>
+    <a href="javascript:;" class="btn prev"><</a>
+    <a href="javascript:;" class="btn next">></a>
+    <nav id="navs">
+        <a class="active"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </nav>
+</div>
+<script src="../mTween.js"></script>
+<script>
+(function(){
+    var navs = document.querySelectorAll("#navs a");
+    var pics = document.querySelector("#pics");
+    var pic = pics.querySelector("li");
+    var picW = css(pic,"width");
+    var now = 0;
+    var prev = document.querySelector(".prev");
+    var next = document.querySelector(".next");
+    css(pics,"translateX",0);
+    navs.forEach(function(item,index){
+        item.onclick = function(){
+            now = index;
+            tab();
+        };
+    });
+    prev.onclick = function(){
+        if(now == 0 ){ //如果是在第0个进行操作,在往前移动前边就空了
+            now = navs.length; //把位置拉倒 第二个第0张，执行向前操作
+            css(pics,"translateX",-now*picW);
+        }
+        now--;
+        tab();
+    };
+    next.onclick = function(){
+       
+        now++;
+        // if(now > navs.length - 1 ){
+        //     now = 0;
+        // }
+        tab();
+    }
+    function tab(){
+        navs.forEach(function(item,index){
+            item.classList.remove("active");
+        });
+        navs[now%navs.length].classList.add("active");
+        mTween({
+            el: pics,
+            attr:{
+                translateX: -now*picW
+            },
+            cb(){
+                if(now >= navs.length){ //如果现在已经是 第二个第0张了,后边就空了
+                    now = 0; // 这时回到第一个第0张，然后，继续往下走
+                    css(pics,"translateX",0);
+                }   
+            }
+        });
+    }
+})();    
+</script>
+</body>
+</html>
