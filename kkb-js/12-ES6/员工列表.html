@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+      }
+      td,
+      th {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="btns">
+        <button>年龄从小到大</button>
+        <button>年龄从大到小</button>
+        <button>默认排序</button>
+        <button>只显示男性</button>
+        <button>只显示女性</button>
+        <button>默认</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>小明</td>
+            <td>24</td>
+            <td>男</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>小芳</td>
+            <td>30</td>
+            <td>女</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>小美</td>
+            <td>31</td>
+            <td>女</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>小刚</td>
+            <td>21</td>
+            <td>男</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>小琪</td>
+            <td>18</td>
+            <td>女</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const data = [
+        {
+          id: 0,
+          name: '小明',
+          age: 24,
+          gender: '男'
+        },
+        {
+          id: 1,
+          name: '小芳',
+          age: 30,
+          gender: '女'
+        },
+        {
+          id: 2,
+          name: '小美',
+          age: 31,
+          gender: '女'
+        },
+        {
+          id: 3,
+          name: '小刚',
+          age: 21,
+          gender: '男'
+        },
+        {
+          id: 4,
+          name: '小琪',
+          age: 18,
+          gender: '女'
+        }
+      ];
+      const btns = document.querySelectorAll('button');
+      const tbody = document.querySelector('tbody');
+
+      function render(arr) {
+        let html = '';
+        arr.forEach(item => {
+          html += `
+            <tr>
+              <td>${item.id}</td>
+              <td>${item.name}</td>
+              <td>${item.age}</td>
+              <td>${item.gender}</td>
+            </tr>
+          `;
+        });
+        tbody.innerHTML = html;
+      }
+
+      btns[0].addEventListener('click', () => {
+        const newData = data.sort((o1, o2) => o1.age - o2.age);
+        render(newData);
+      });
+
+      btns[1].addEventListener('click', () => {
+        const newData = data.sort((o1, o2) => o2.age - o1.age);
+        render(newData);
+      });
+
+      btns[2].addEventListener('click', () => {
+        render(data);
+      });
+    </script>
+  </body>
+</html>

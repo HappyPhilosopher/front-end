@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        transition: 1s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <button>run</button>
+    <div class="box"></div>
+
+    <script src="mTween.js"></script>
+    <script>
+      const box = document.querySelector('.box');
+      const button = document.querySelector('button');
+
+      button.addEventListener('click', function() {
+        css(box, { translateX: 200 });
+      });
+    </script>
+  </body>
+</html>

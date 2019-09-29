@@ -33,11 +33,13 @@
 
         btnStart.addEventListener('click', function() {
           function move() {
-            t++;
-            const val = Tween['linear'](t, b, c, d);
-            box.style.transform = `translateX(${val}px)`;
             if (t < d) {
+              t++;
+              const val = Tween['bounceOut'](t, b, c, d);
+              box.style.transform = `translateX(${val}px)`;
               timer = requestAnimationFrame(move);
+            } else {
+              return;
             }
           }
 
