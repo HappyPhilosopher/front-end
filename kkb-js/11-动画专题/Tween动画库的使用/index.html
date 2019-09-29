@@ -15,40 +15,40 @@
     </style>
   </head>
   <body>
-    <button class="btn-start">run</button>
+    <button class="btn-start">start</button>
     <button class="btn-stop">stop</button>
     <div class="box"></div>
 
     <script src="mTween.js"></script>
     <script>
-      (function() {
-        const btnStart = document.querySelector('.btn-start');
-        const btnStop = document.querySelector('.btn-stop');
-        const box = document.querySelector('.box');
-        let timer = 0;
-        let t = 0;
-        let b = 0;
-        let c = 400;
-        let d = 60;
+      const btnStart = document.querySelector('.btn-start');
+      const btnStop = document.querySelector('.btn-stop');
+      const box = document.querySelector('.box');
+      let timer = 0;
+      let t = 0;
+      let b = 0;
+      let c = 400;
+      let d = 60;
 
-        btnStart.addEventListener('click', function() {
-          function move() {
+      btnStart.addEventListener('click', function() {
+        function move() {
+          if (t < d) {
             t++;
-            const val = Tween['linear'](t, b, c, d);
+            let val = Tween['bounceOut'](t, b, c, d);
             box.style.transform = `translateX(${val}px)`;
-            if (t < d) {
-              timer = requestAnimationFrame(move);
-            }
+            timer = requestAnimationFrame(move);
+          } else {
+            return;
           }
+        }
 
-          cancelAnimationFrame(timer);
-          timer = requestAnimationFrame(move);
-        });
+        cancelAnimationFrame(timer);
+        timer = requestAnimationFrame(move);
+      });
 
-        btnStop.addEventListener('click', function() {
-          cancelAnimationFrame(timer);
-        });
-      })();
+      btnStop.addEventListener('click', function() {
+        cancelAnimationFrame(timer);
+      });
     </script>
   </body>
 </html>
