@@ -23,12 +23,16 @@
   <body>
     <div class="container">
       <div class="btns">
-        <button>年龄从小到大</button>
-        <button>年龄从大到小</button>
-        <button>默认排序</button>
-        <button>只显示男性</button>
-        <button>只显示女性</button>
-        <button>默认</button>
+        <div class="btn-sort">
+          <button>年龄从小到大</button>
+          <button>年龄从大到小</button>
+          <button>默认排序</button>
+        </div>
+        <div class="btn-filter">
+          <button>只显示男性</button>
+          <button>只显示女性</button>
+          <button>默认</button>
+        </div>
       </div>
       <table>
         <thead>
@@ -107,8 +111,14 @@
           gender: '女'
         }
       ];
-      const btns = document.querySelectorAll('button');
+      const sortBtns = document.querySelectorAll('.btn-sort button');
+      const filterBtns = document.querySelectorAll('.btn-filter button');
       const tbody = document.querySelector('tbody');
+      const sortControl = [
+        () => data.sort((o1, o2) => o1.age - o2.age),
+        () => data.sort((o1, o2) => o2.age - o1.age),
+        () => data.sort((o1, o2) => o1.id - o2.id)
+      ];
 
       function render(arr) {
         let html = '';
@@ -125,19 +135,10 @@
         tbody.innerHTML = html;
       }
 
-      btns[0].addEventListener('click', () => {
-        const newData = data.sort((o1, o2) => o1.age - o2.age);
-        render(newData);
-      });
-
-      btns[1].addEventListener('click', () => {
-        const newData = data.sort((o1, o2) => o2.age - o1.age);
-        render(newData);
-      });
-
-      btns[2].addEventListener('click', () => {
-        const newData = data.sort((o1, o2) => o1.id - o2.id);
-        render(data);
+      Array.from(sortBtns).forEach((el, index) => {
+        el.addEventListener('click', function() {
+          render(sortControl[index]());
+        });
       });
     </script>
   </body>
