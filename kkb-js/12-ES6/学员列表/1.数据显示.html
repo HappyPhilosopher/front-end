@@ -150,6 +150,27 @@
         ];
         // DOM
         const tbody = document.querySelector('#table tbody');
+        const sortBtns = document.querySelectorAll('.age_sort a');
+        const filterBtns = document.querySelectorAll('.gender_show a');
+        const sortControl = [
+          () => {
+            data.sort((o1, o2) => o1.age - o2.age);
+          },
+          () => {
+            data.sort((o1, o2) => o2.age - o1.age);
+          },
+          () => {
+            data.sort((o1, o2) => o1.id - o2.id);
+          }
+        ];
+        const filterControl = [
+          () => data.filter(item => item.gender === '男'),
+          () => data.filter(item => item.gender === '女'),
+          () => [...data]
+        ];
+        let sortState = 2;
+        let filterState = 2;
+
         /**
          * 渲染数据到 DOM
          * @param {Array} arr 数据
@@ -169,7 +190,37 @@
           tbody.innerHTML = html;
         };
 
+        const reRender = () => {
+          sortControl[sortState]();
+          const newData = filterControl[filterState]();
+          render(newData);
+        };
+
         render(data);
+
+        Array.from(sortBtns).forEach((el, index) => {
+          el.addEventListener('click', function() {
+            Array.from(sortBtns).forEach(el => {
+              el.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            sortState = index;
+            reRender();
+          });
+        });
+
+        Array.from(filterBtns).forEach((el, index) => {
+          el.addEventListener('click', function() {
+            Array.from(filterBtns).forEach(el => {
+              el.classList.remove('active');
+            });
+            this.classList.add('active');
+
+            filterState = index;
+            reRender();
+          });
+        });
       })();
     </script>
   </body>
