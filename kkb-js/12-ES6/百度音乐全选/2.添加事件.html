@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <section id="wrap">
+      <h2 class="title">百度音乐榜单</h2>
+      <ul id="list">
+        <!-- <li>
+          <input type="checkbox" />
+          <span>第一条信息</span>
+          <a href="javascript:;" class="collect">收藏</a>
+          <a href="javascript:;" class="cancelCollect">取消收藏</a>
+          <a href="javascript:;" class="remove">删除</a>
+        </li> -->
+      </ul>
+      <footer class="footer">
+        <label><input type="checkbox" id="checkAll" />全选/全不选</label>
+        <a href="javascript:;" id="remove">删除</a>
+        <input type="text" id="newInfo" />
+        <a href="javascript:;" id="add">添加</a>
+      </footer>
+    </section>
+    <script>
+      
+        let data = [
+            {
+              id: 0,
+              title: "残酷月光 - 费启鸣", 
+              checked: true,
+              collect: true
+            },{
+              id: 1,
+              title: "兄弟 - 艾热", 
+              checked: false,
+              collect: false
+            },{
+              id: 2,
+              title: "毕生 - 夏增祥", 
+              checked: false,
+              collect: false
+            },{
+              id: 3,
+              title: "公子向北去 - 李春花", 
+              checked: false,
+              collect: false
+            },{
+              id: 4,
+              title: "战场 - 沙漠五子", 
+              checked: false,
+              collect: false //是否收藏 true 收藏 false 没有收藏
+            }
+        ];
+
+      
+      let list=document.querySelector('#list');
+
+      //  渲染页面
+      let render=()=>{
+         let inner='';
+
+         data.forEach((item,index)=>{
+           inner+=`
+            <li>
+              <input type="checkbox" ${item.checked?'checked':''} />
+              <span>${item.title}</span>
+              ${
+                item.collect?
+                '<a href="javascript:;" class="cancelCollect">取消收藏</a>':
+                '<a href="javascript:;" class="collect">收藏</a>'
+              }
+              <a href="javascript:;" class="remove">删除</a>
+            </li>
+           `
+         })
+
+         list.innerHTML=inner;
+
+        // 添加事件
+        addEv();
+      }
+      render();
+
+      function addEv(){
+        //  获取所有的li
+        let listLis=list.querySelectorAll('li');
+        // 循环li
+        listLis.forEach((item,index)=>{
+           let checkBox=item.querySelector('input');
+           let collectBtn=item.querySelector('.collect');
+           let cancelCollectBtn=item.querySelector('.cancelCollect');
+           let removeBtn=item.querySelector('.remove');
+
+          //  onchange 当表单状态发生改变时触发
+           checkBox.onchange=()=>{
+             //  改变其中 checked的状态
+             data[index].checked = checkBox.checked;
+             console.log(data[index]);
+             render();
+           }
+
+          //  收藏事件
+
+          // 判断元素是否存在
+          collectBtn&&(collectBtn.onclick=()=>{
+            //  改变其中 collect的状态
+            data[index].collect = true;
+            console.log(data[index]);
+
+            // 更新视图
+            render();
+          })
+
+
+           // 判断元素是否存在
+           cancelCollectBtn&&(cancelCollectBtn.onclick=()=>{
+            //  改变其中 collect的状态
+            data[index].collect = false;
+            console.log(data[index]);
+
+            // 更新视图
+            render();
+          })
+
+          // 添加删除事件
+          removeBtn.onclick=()=>{
+            // 删除数组中的某一天数据
+            data.splice(index,1);
+            // 更新视图
+            render();
+          }
+
+
+        })
+
+      }
+      
+
+    </script>
+  </body>
+</html>
