@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <h1>日期推算</h1>
+    <input type="text" />年 <input type="text" />月 <input type="text" />日
+    <p>相差的天数<input type="text" value="100" /></p>
+    <button>计算</button>
+    <hr />
+    计算结果 <span></span>
+
+    <script>
+      (function() {
+        'use strict';
+
+        // DOM 元素
+        const el_inputs = document.querySelectorAll('input');
+        const el_btn = document.querySelector('button');
+        const el_span = document.querySelector('span');
+        // 获取当前时间
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1;
+        const currentDate = now.getDate();
+
+        function toDouble(n) {
+          return n < 10 ? '0' + n : n;
+        }
+
+        // 设置当前时间
+        el_inputs[0].value = currentYear;
+        el_inputs[1].value = currentMonth;
+        el_inputs[2].value = currentDate;
+
+        // 计算未来的时间
+        el_btn.addEventListener('click', function() {
+          // 获取输入的相差的天数
+          const diffDays = parseInt(el_inputs[3].value);
+          // 相差的天数转换成毫秒
+          const diffDays2millisecond = 1000 * 60 * 60 * 24 * diffDays;
+          // 未来的总毫秒数
+          const future = now.getTime() + diffDays2millisecond;
+          // 日期对象
+          const date = new Date(future);
+          // 未来的时间
+          const futureYear = date.getFullYear();
+          const futureMonth = date.getMonth() + 1;
+          const futureDate = date.getDate();
+
+          el_span.innerHTML = `
+            ${futureYear} 年
+            ${toDouble(futureMonth)} 月
+            ${toDouble(futureDate)} 日
+          `;
+        });
+      })();
+    </script>
+  </body>
+</html>

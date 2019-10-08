@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="./index.css" />
+<<<<<<< HEAD
+=======
+    <link rel="icon" href="#" />
+>>>>>>> 66e81afaa375b1c4f2c615c5707d85b8285b02da
   </head>
   <body>
     <section id="wrap">
@@ -27,6 +31,7 @@
       </footer>
     </section>
     <script>
+<<<<<<< HEAD
       
         let data = [
             {
@@ -191,6 +196,158 @@
 
 
 
+=======
+      (function() {
+        'use strict';
+
+        // 数据
+        let data = [
+          {
+            id: 0,
+            title: '残酷月光 - 费启鸣',
+            checked: true,
+            collect: true
+          },
+          {
+            id: 1,
+            title: '兄弟 - 艾热',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 2,
+            title: '毕生 - 夏增祥',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 3,
+            title: '公子向北去 - 李春花',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 4,
+            title: '战场 - 沙漠五子',
+            checked: false,
+            collect: false //是否收藏 true 收藏 false 没有收藏
+          }
+        ];
+        // DOM 元素
+        const el_list = document.querySelector('#list');
+        const el_checkAll = document.querySelector('#checkAll');
+        const el_remove = document.querySelector('#remove');
+        const el_newInfo = document.querySelector('#newInfo');
+        const el_add = document.querySelector('#add');
+
+        /**
+         * 渲染数据
+         */
+        function render() {
+          let html = '';
+          data.forEach(item => {
+            html += `
+              <li>
+                <input type="checkbox" ${item.checked ? 'checked' : ''} />
+                <span>${item.title}</span>
+                ${
+                  item.collect
+                    ? '<a href="javascript:;" class="cancelCollect">取消收藏</a>'
+                    : '<a href="javascript:;" class="collect">收藏</a>'
+                }
+                <a href="javascript:;" class="remove">删除</a>
+              </li>
+            `;
+          });
+          el_list.innerHTML = html;
+
+          // 渲染数据的同时为列表项添加事件
+          handler();
+        }
+
+        /**
+         * 为列表项添加事件
+         */
+        function handler() {
+          const el_lis = el_list.children;
+
+          Array.from(el_lis).forEach((el, index) => {
+            const el_checkbox = el.querySelector('input');
+            const el_collect = el.querySelector('.collect');
+            const el_cancelCollect = el.querySelector('.cancelCollect');
+            const el_removeCurrent = el.querySelector('.remove');
+
+            // 选中操作
+            el_checkbox.addEventListener('click', function() {
+              data[index].checked = this.checked;
+              render();
+            });
+
+            // 收藏操作
+            el_collect &&
+              el_collect.addEventListener('click', function() {
+                data[index].collect = true;
+                render();
+              });
+
+            // 取消收藏操作
+            el_cancelCollect &&
+              el_cancelCollect.addEventListener('click', function() {
+                data[index].collect = false;
+                render();
+              });
+
+            // 删除操作
+            el_removeCurrent.addEventListener('click', function() {
+              data.splice(index, 1);
+              render();
+            });
+          });
+
+          // 监测列表数据是否都被选中，如果全部选中且存在数据，“全选”按钮被选中，否则不选
+          let isAllSelected = data.every(item => item.checked) && data.length;
+          el_checkAll.checked = isAllSelected;
+        }
+
+        // 页面加载后渲染数据
+        render();
+
+        // 点击“全选”按钮，更改列表项数据的选中状态
+        el_checkAll.addEventListener('click', function() {
+          data.forEach(item => {
+            item.checked = el_checkAll.checked;
+          });
+          render();
+        });
+
+        // 点击底部的“删除”按钮，删除选中的所有数据
+        el_remove.addEventListener('click', function() {
+          data = data.filter(item => !item.checked);
+          render();
+        });
+
+        /**
+         * 添加数据
+         */
+        function addNewData() {
+          const newData = {
+            id: data.length,
+            title: el_newInfo.value,
+            checked: false,
+            collect: false
+          };
+          data.push(newData);
+          el_newInfo.value = '';
+          render();
+        }
+
+        // 添加数据
+        el_add.addEventListener('click', addNewData);
+        el_newInfo.addEventListener('keyup', function(e) {
+          e.keyCode === 13 && addNewData();
+        });
+      })();
+>>>>>>> 66e81afaa375b1c4f2c615c5707d85b8285b02da
     </script>
   </body>
 </html>

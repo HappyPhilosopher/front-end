@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <section id="wrap">
+      <h2 class="title">百度音乐榜单</h2>
+      <ul id="list">
+        <!-- <li>
+          <input type="checkbox" />
+          <span>第一条信息</span>
+          <a href="javascript:;" class="collect">收藏</a>
+          <a href="javascript:;" class="cancelCollect">取消收藏</a>
+          <a href="javascript:;" class="remove">删除</a>
+        </li> -->
+      </ul>
+      <footer class="footer">
+        <label><input type="checkbox" id="checkAll" />全选/全不选</label>
+        <a href="javascript:;" id="remove">删除</a>
+        <input type="text" id="newInfo" />
+        <a href="javascript:;" id="add">添加</a>
+      </footer>
+    </section>
+
+    <script>
+      'use strict';
+      (function() {
+        // 数据
+        let data = [
+          {
+            id: 0,
+            title: '残酷月光 - 费启鸣',
+            checked: true,
+            collect: true
+          },
+          {
+            id: 1,
+            title: '兄弟 - 艾热',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 2,
+            title: '毕生 - 夏增祥',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 3,
+            title: '公子向北去 - 李春花',
+            checked: false,
+            collect: false
+          },
+          {
+            id: 4,
+            title: '战场 - 沙漠五子',
+            checked: false,
+            collect: false //是否收藏 true 收藏 false 没有收藏
+          }
+        ];
+        // DOM 元素
+        const el_ul = document.querySelector('#list');
+        const el_selectAll = document.querySelector('#checkAll');
+        const el_removeSelect = document.querySelector('#remove');
+        const el_newInfo = document.querySelector('#newInfo');
+        const el_add = document.querySelector('#add');
+
+        /**
+         * 渲染数据
+         */
+        const render = () => {
+          let html = '';
+          data.forEach(item => {
+            html += `
+            <li>
+              <input type="checkbox" ${item.checked ? 'checked' : ''} />
+              <span>${item.title}</span>
+              ${
+                item.collect
+                  ? '<a href="javascript:;" class="cancelCollect">取消收藏</a>'
+                  : '<a href="javascript:;" class="collect">收藏</a>'
+              }
+              <a href="javascript:;" class="remove">删除</a>
+            </li>
+          `;
+          });
+          el_ul.innerHTML = html;
+          // 列表全部选中后，“全选”按钮变更为选中状态；反之则取消选中
+          let isAllChecked = data.every(item => item.checked) && data.length;
+          el_selectAll.checked = isAllChecked;
+          // 列表事件处理
+          handler();
+        };
+
+        /**
+         * 列表事件处理
+         */
+        function handler() {
+          const el_lis = el_ul.querySelectorAll('li');
+
+          Array.from(el_lis).forEach((el, index) => {
+            const el_checkbox = el.querySelector('input');
+            const el_collect = el.querySelector('.collect');
+            const el_cancelCollect = el.querySelector('.cancelCollect');
+            const el_remove = el.querySelector('.remove');
+
+            el_checkbox.addEventListener('click', function() {
+              data[index].checked = this.checked;
+              render();
+            });
+
+            el_collect &&
+              el_collect.addEventListener('click', function() {
+                data[index].collect = true;
+                render();
+              });
+
+            el_cancelCollect &&
+              el_cancelCollect.addEventListener('click', function() {
+                data[index].collect = false;
+                render();
+              });
+
+            el_remove.addEventListener('click', function() {
+              data.splice(index, 1);
+              render();
+            });
+          });
+        }
+
+        render();
+
+        // 全选/全不选
+        el_selectAll.addEventListener('click', function() {
+          Array.from(el_ul.children).forEach((el, index) => {
+            data[index].checked = el_selectAll.checked;
+          });
+          render();
+        });
+
+        // 批量删除
+        // 数据驱动的结构，只需操作数据即可完成对 DOM 的操作
+        // 删除选中的数据，换种思路即为过滤掉以选中的数据，保留未选中
+        el_removeSelect.addEventListener('click', function() {
+          data = data.filter(item => !item.checked);
+          render();
+        });
+
+        /**
+         * 添加新数据
+         */
+        function addNewItem() {
+          const newItem = {
+            id: data.length,
+            title: el_newInfo.value,
+            checked: false,
+            collect: false
+          };
+          data.push(newItem);
+          el_newInfo.value = '';
+          render();
+        }
+
+        // 添加新数据
+        el_add.addEventListener('click', addNewItem);
+        el_newInfo.addEventListener('keydown', function(e) {
+          e.keyCode === 13 && addNewItem();
+        });
+      })();
+    </script>
+  </body>
+</html>

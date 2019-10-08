@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>全选操作</title>
+    <title>Document</title>
     <link rel="stylesheet" href="./index.css" />
-    <link rel="icon" href="#" />
   </head>
   <body>
     <section id="wrap">
@@ -27,106 +26,127 @@
         <a href="javascript:;" id="add">添加</a>
       </footer>
     </section>
-
     <script>
-      'use strict';
-      (function() {
-        // 数据
-        const data = [
-          {
-            id: 0,
-            title: '残酷月光 - 费启鸣',
-            checked: true,
-            collect: true
-          },
-          {
-            id: 1,
-            title: '兄弟 - 艾热',
-            checked: false,
-            collect: false
-          },
-          {
-            id: 2,
-            title: '毕生 - 夏增祥',
-            checked: false,
-            collect: false
-          },
-          {
-            id: 3,
-            title: '公子向北去 - 李春花',
-            checked: false,
-            collect: false
-          },
-          {
-            id: 4,
-            title: '战场 - 沙漠五子',
-            checked: false,
-            collect: false //是否收藏 true 收藏 false 没有收藏
-          }
-        ];
-
-        // DOM 元素
-        const list = document.querySelector('#list');
-
-        /**
-         * 渲染页面
-         */
-        const render = () => {
-          let html = '';
-          data.forEach(item => {
-            html += `
-              <li>
-                <input type="checkbox" ${item.checked ? 'checked' : ''} />
-                <span>${item.title}</span>
-                ${
-                  item.collect
-                    ? '<a href="javascript:;" class="cancelCollect">取消收藏</a>'
-                    : '<a href="javascript:;" class="collect">收藏</a>'
-                }
-                <a href="javascript:;" class="remove">删除</a>
-              </li>
-            `;
-          });
-          list.innerHTML = html;
-
-          // 添加事件
-          addEvt();
-        };
-
-        function addEvt() {
-          const el_lis = list.querySelectorAll('li');
-          Array.from(el_lis).forEach((el, index) => {
-            const checkbox = el.querySelector('input');
-            const collectBtn = el.querySelector('.collect');
-            const cancelCollectBtn = el.querySelector('.cancelCollect');
-            const removeBtn = el.querySelector('.remove');
-
-            checkbox.addEventListener('change', function() {
-              data[index].checked = this.checked;
-              render();
-            });
-
-            collectBtn &&
-              collectBtn.addEventListener('click', function() {
-                data[index].collect = true;
-                render();
-              });
-
-            cancelCollectBtn &&
-              cancelCollectBtn.addEventListener('click', function() {
-                data[index].collect = false;
-                render();
-              });
-
-            removeBtn.addEventListener('click', function() {
-              data.splice(index, 1);
-              render();
-            });
-          });
+      let data = [
+        {
+          id: 0,
+          title: '残酷月光 - 费启鸣',
+          checked: true,
+          collect: true
+        },
+        {
+          id: 1,
+          title: '兄弟 - 艾热',
+          checked: false,
+          collect: false
+        },
+        {
+          id: 2,
+          title: '毕生 - 夏增祥',
+          checked: false,
+          collect: true
+        },
+        {
+          id: 3,
+          title: '公子向北去 - 李春花',
+          checked: false,
+          collect: false
+        },
+        {
+          id: 4,
+          title: '战场 - 沙漠五子',
+          checked: true,
+          collect: false //是否收藏 true 收藏 false 没有收藏
         }
+      ];
+
+      let list = document.querySelector('#list');
+      let checkAll = document.querySelector('#checkAll');
+      let removeBtn = document.querySelector('#remove');
+      let addBtn = document.querySelector('#add');
+      let newInfo = document.querySelector('#newInfo');
+
+      let render = () => {
+        let html = '';
+        data.forEach(item => {
+          html += `
+                <li>
+                    <input type="checkbox" ${item.checked ? 'checked' : ''} />
+                    <span>${item.title}</span>
+                    ${
+                      !item.collect
+                        ? '<a href="javascript:;" class="collect">收藏</a>'
+                        : '<a href="javascript:;" class="cancelCollect">取消收藏</a>'
+                    }
+                    <a href="javascript:;" class="remove">删除</a>
+                </li>`;
+        });
+        list.innerHTML = html;
+
+        checkAll.checked = data.every(item => item.checked) && data.length > 0;
+
+        addEv();
+      };
+      let addEv = () => {
+        let aLi = list.querySelectorAll('li');
+
+        aLi.forEach((item, index) => {
+          let collect = item.querySelector('.collect');
+          let cancelCollect = item.querySelector('.cancelCollect');
+          let remove = item.querySelector('.remove');
+          let input = item.querySelector('input');
+
+          collect &&
+            (collect.onclick = () => {
+              data[index].collect = !data[index].collect;
+              render();
+            });
+
+          cancelCollect &&
+            (cancelCollect.onclick = () => {
+              data[index].collect = !data[index].collect;
+              render();
+            });
+
+          remove.onclick = () => {
+            data.splice(index, 1);
+            render();
+          };
+
+          input.onchange = () => {
+            data[index].checked = !data[index].checked;
+            console.log(data[index].checked);
+
+            render();
+          };
+        });
+      };
+
+      checkAll.onchange = function() {
+        console.log(this.checked);
+        data.forEach(item => {
+          item.checked = this.checked;
+        });
+        render();
+      };
+
+      removeBtn.onclick = () => {
+        data = data.filter(item => !item.checked);
+        render();
+      };
+
+      addBtn.onclick = () => {
+        let obj = {};
+        obj.id = data.length;
+        obj.title = newInfo.value;
+        obj.checked = false;
+        obj.collect = false;
+
+        data.push(obj);
 
         render();
-      })();
+      };
+      render();
     </script>
   </body>
 </html>
