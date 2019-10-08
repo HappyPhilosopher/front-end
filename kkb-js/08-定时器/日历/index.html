@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>miaov-日历</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <section id="wrap">
+      <div id="date">
+        <div id="clock-wrap">
+          <div id="clock">
+            <ul id="lattice-list"></ul>
+            <div id="box">
+              <div class="dot"></div>
+              <div class="hour"></div>
+              <div class="min"></div>
+              <div class="sec"></div>
+            </div>
+          </div>
+        </div>
+        <div id="now">
+          <p>2019年3月18日</p>
+          <p>星期一</p>
+        </div>
+      </div>
+      <div id="ctrls">
+        <a href="javascript:;" id="option">2019年3月</a>
+        <div id="arrows">
+          <a href="javscript:;" id="prev"></a>
+          <a href="javascript:;" id="next"></a>
+        </div>
+      </div>
+      <div id="main">
+        <div class="board"></div>
+      </div>
+    </section>
+
+    <script src="js/mTween.js"></script>
+    <script>
+      (function() {
+        'use strict';
+
+        /**
+         * 获取 DOM 元素
+         * @param {String} el DOM 节点
+         * @return {Object} 返回 DOM 对象
+         */
+        function getDom(el) {
+          return document.querySelector(el);
+        }
+
+        /**
+         * 补零
+         * @param {Number} n 需要补零的数字
+         * @return {String} 返回补零后的字符串
+         */
+        function toDouble(n) {
+          return n < 10 ? '0' + n : n;
+        }
+
+        /**
+         * 绘制刻度
+         */
+        function createLattice() {
+          const el_latticeList = getDom('#lattice-list');
+          let html = '';
+          const degree = 360 / 12;
+
+          for (let i = 0; i < 12; i++) {
+            html += `
+              <li class="lattice" style="transform: rotate(${degree *
+                i}deg)"></li>
+            `;
+          }
+
+          el_latticeList.innerHTML = html;
+        }
+
+        /**
+         * 设置表盘
+         */
+        function setClock() {
+          // DOM
+          const el_hour = getDom('.hour');
+          const el_min = getDom('.min');
+          const el_sec = getDom('.sec');
+          // time
+          const date = new Date();
+          const sec = date.getSeconds();
+          const min = date.getMinutes() + sec / 60;
+          const hour = date.getHours() + min / 60;
+          // degree
+          const hourDegree = (360 / 12) * hour;
+          const minDegree = (360 / 60) * min;
+          const secDegree = (360 / 60) * sec;
+
+          css(el_hour, 'rotate', hourDegree);
+          css(el_min, 'rotate', minDegree);
+          css(el_sec, 'rotate', secDegree);
+        }
+
+        /**
+         * 设置日期
+         */
+        function setDate() {
+          const date = new Date();
+          const currentYear = date.getFullYear();
+          const currentMonth = date.getMonth() + 1;
+          const currentDate = date.getDate();
+          const currentDay = date.getDay();
+          const weeks = ['日', '一', '二', '三', '四', '五', '六'];
+          const el_now = getDom('#now');
+
+          el_now.innerHTML = `
+            <p>${currentYear}年${toDouble(currentMonth)}月${toDouble(
+            currentDate
+          )}日</p>
+            <p>星期${weeks[currentDay]}</p>
+          `;
+        }
+
+        // 绘制刻度
+        createLattice();
+        // 页面加载后设置表盘
+        setClock();
+        // 设置日期
+        setDate();
+        // 让日期动起来
+        setInterval(function() {
+          setClock();
+          setDate();
+        }, 1000);
+      })();
+    </script>
+  </body>
+</html>
