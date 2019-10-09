@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>日历</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 400px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        padding: 25px;
+        margin: 100px auto;
+      }
+      ul,
+      ol {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        list-style: none;
+      }
+      ul > li,
+      ol > li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        color: #555;
+      }
+      .other-date {
+        color: silver;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calendar">
+        <ul class="weeks"></ul>
+        <ol class="dates"></ol>
+      </div>
+    </div>
+
+    <script>
+      function getDom(el) {
+        return document.querySelector(el);
+      }
+
+      const el_weeks = getDom('.weeks');
+      const el_dates = getDom('.dates');
+      const weeks = ['日', '一', '二', '三', '四', '五', '六'];
+
+      function createWeeks() {
+        let html = '';
+        weeks.forEach(item => {
+          html += `
+            <li>${item}</li>
+          `;
+        });
+        el_weeks.innerHTML = html;
+      }
+
+      function createDates(
+        year = new Date().getFullYear(),
+        month = new Date().getMonth() + 1
+      ) {
+        let html = '';
+        const lastDateOfLastMonth = new Date(year, month - 1, 0).getDate();
+        const firstDayOfThisMonth = new Date(year, month - 1, 1).getDay();
+        const lastDateOfThisMonth = new Date(year, month, 0).getDate();
+
+        for (let i = 0; i < 42; i++) {
+          if (i < firstDayOfThisMonth) {
+            html += `
+              <li class="other-date">
+                ${lastDateOfLastMonth - (firstDayOfThisMonth - i - 1)}
+              </li>
+            `;
+          } else if (i - firstDayOfThisMonth < lastDateOfThisMonth) {
+            html += `
+              <li class="date">
+                ${i - firstDayOfThisMonth + 1}
+              </li>
+            `;
+          } else {
+            html += `
+              <li class="other-date">
+                ${i - (firstDayOfThisMonth + lastDateOfThisMonth) + 1}
+              </li>
+            `;
+          }
+        }
+        el_dates.innerHTML = html;
+      }
+
+      createWeeks();
+      createDates();
+    </script>
+  </body>
+</html>
