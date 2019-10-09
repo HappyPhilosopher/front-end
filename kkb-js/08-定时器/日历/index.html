@@ -104,7 +104,7 @@
         }
 
         /**
-         * 设置日期
+         * 绘制星期
          */
         function setDate() {
           const date = new Date();
@@ -123,6 +123,122 @@
           `;
         }
 
+        /**
+         * 绘制日历面板
+         */
+        function createDateView(
+          el_board,
+          year = new Date().getFullYear(),
+          month = new Date().getMonth() + 1
+        ) {
+          /**
+           * 绘制星期
+           */
+          function createWeeks() {
+            let html = '';
+            weeks.forEach(item => {
+              html += `
+                <li class="date-cell">${item}</li>
+              `;
+            });
+            return html;
+          }
+
+          /**
+           * 绘制日期
+           */
+          function createDates() {
+            let html = '';
+            const lastDateOfLastMonth = new Date(year, month - 1, 0).getDate();
+            const firstDayOfThisMonth = new Date(year, month - 1, 1).getDay();
+            const lastDateOfThisMonth = new Date(year, month, 0).getDate();
+
+            for (let i = 0; i < 42; i++) {
+              if (i < firstDayOfThisMonth) {
+                html += `
+                  <li class="date-cell other-date">
+                    ${lastDateOfLastMonth - (firstDayOfThisMonth - i - 1)}
+                  </li>
+                `;
+              } else if (i - firstDayOfThisMonth < lastDateOfThisMonth) {
+                html += `
+                  <li class="date-cell">
+                    ${i - firstDayOfThisMonth + 1}
+                  </li>
+                `;
+              } else {
+                html += `
+                  <li class="date-cell other-date">
+                    ${i - (firstDayOfThisMonth + lastDateOfThisMonth) + 1}
+                  </li>
+                `;
+              }
+            }
+            return html;
+          }
+
+          const el_weeks = document.createElement('ul');
+          const el_dates = document.createElement('ul');
+          const weeks = ['日', '一', '二', '三', '四', '五', '六'];
+          el_weeks.classList.add('week');
+          el_dates.classList.add('date');
+          el_weeks.innerHTML = createWeeks();
+          el_dates.innerHTML = createDates();
+          el_board.appendChild(el_weeks);
+          el_board.appendChild(el_dates);
+        }
+
+        /**
+         * 绘制月份
+         */
+        function createMonthView(el_board) {
+          let el_month = document.createElement('ul');
+          el_month.classList.add('month');
+
+          for (let i = 1; i <= 12; i++) {
+            el_month.innerHTML += `
+              <li class="month-cell">${i}月</li>
+            `;
+          }
+
+          el_board.appendChild(el_month);
+        }
+
+        /**
+         * 绘制年份
+         */
+        function createYearView(el_board, year = new Date().getFullYear()) {
+          const startYear = Math.floor(year / 10) * 10;
+          let el_year = document.createElement('ul');
+          el_year.classList.add('year');
+
+          for (let i = 0; i < 16; i++) {
+            if (i < 4) {
+              el_year.innerHTML += `
+                <li class="year-cell other-year">
+                  ${startYear - (4 - i)}
+                </li>
+              `;
+            } else if (i < 14) {
+              el_year.innerHTML += `
+                <li class="year-cell">
+                  ${startYear - (4 - i)}
+                </li>
+              `;
+            } else {
+              el_year.innerHTML += `
+                <li class="year-cell other-year">
+                  ${startYear - (4 - i)}
+                </li>
+              `;
+            }
+          }
+
+          el_board.appendChild(el_year);
+        }
+
+        const el_board = getDom('.board');
+
         // 绘制刻度
         createLattice();
         // 页面加载后设置表盘
@@ -134,6 +250,12 @@
           setClock();
           setDate();
         }, 1000);
+        // 绘制日历面板
+        // createDateView(el_board);
+        // 绘制月份
+        // createMonthView(el_board);
+        // 绘制年份
+        createYearView(el_board);
       })();
     </script>
   </body>
