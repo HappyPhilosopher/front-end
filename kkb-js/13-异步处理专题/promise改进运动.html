@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>回调地狱</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+      .div {
+        display: flex;
+        width: 300px;
+        height: 300px;
+        margin-top: 200px;
+        transform: skewX(-15deg);
+      }
+      .div > .line {
+        width: 5px;
+        height: 100px;
+        margin-right: 5px;
+        margin-left: 50px;
+        background-color: #f00;
+      }
+      .div > div:nth-last-child(1) {
+        width: 200px;
+        height: 100px;
+        background-color: #f00;
+        font-size: 20px;
+        line-height: 100px;
+        text-align: center;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">运动</button>
+    <br />
+    <br />
+    <div class="box"></div>
+
+    <script>
+      'use strict';
+
+      const box = document.querySelector('.box');
+      const btn = document.querySelector('.btn');
+      let timer = 0;
+
+      function move(el, attr, target, callback) {
+        const start = parseFloat(getComputedStyle(el)[attr]);
+        const direction = (target - start) / Math.abs(target - start);
+        const speed = 5 * direction;
+
+        return new Promise(res => {
+          cancelAnimationFrame(timer);
+          timer = requestAnimationFrame(fn);
+
+          function fn() {
+            const end = parseFloat(getComputedStyle(el)[attr]);
+
+            if (end === target) {
+              res();
+            } else {
+              el.style[attr] = end + speed + 'px';
+              timer = requestAnimationFrame(fn);
+            }
+          }
+        });
+      }
+
+      btn.addEventListener('click', function() {
+        move(box, 'left', 300)
+          .then(res => move(box, 'top', 200))
+          .then(res => move(box, 'left', 0))
+          .then(res => {
+            move(box, 'top', 50);
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      const p1 = new Promise(res => {
+        setTimeout(() => {
+          res(1);
+        }, 1000);
+      });
+
+      const p2 = new Promise(res => {
+        setTimeout(() => {
+          res(2);
+        }, 2000);
+      });
+
+      const p3 = new Promise(res => {
+        setTimeout(() => {
+          res(3);
+        }, 1500);
+      });
+
+      /* (async function() {
+        try {
+          const arr = await Promise.all([p1, p2, p3]);
+          const result = arr.reduce((acc, cur) => acc + cur);
+          console.log(result);
+        } catch (e) {
+          console.log(e);
+        }
+      })(); */
+
+      (async function() {
+        const result = await Promise.race([p1, p2, p3]);
+        console.log(result);
+      })();
+    </script>
+  </body>
+</html>
