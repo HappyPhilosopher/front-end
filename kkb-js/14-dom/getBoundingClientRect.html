@@ -16,15 +16,39 @@
         background-color: #f00;
         margin-top: 100px;
       }
+      .banner {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #ff0;
+      }
     </style>
   </head>
   <body>
     <div class="box"></div>
+    <div class="banner"></div>
 
     <script>
       {
         const el_box = document.querySelector('.box');
-        console.log(el_box.getBoundingClientRect());
+        const el_banner = document.querySelector('.banner');
+
+        window.addEventListener('scroll', function() {
+          let boxBottom = el_box.getBoundingClientRect().bottom;
+          let scrollTop =
+            document.body.scrollTop || document.documentElement.scrollTop;
+
+          if (boxBottom < 0) {
+            el_banner.style.display = 'block';
+          } else {
+            el_banner.style.display = 'none';
+          }
+
+          console.log(scrollTop);
+        });
       }
     </script>
   </body>
