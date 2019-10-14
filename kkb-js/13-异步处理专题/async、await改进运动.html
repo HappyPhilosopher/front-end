@@ -75,13 +75,11 @@
         });
       }
 
-      btn.addEventListener('click', function() {
-        move(box, 'left', 300)
-          .then(res => move(box, 'top', 200))
-          .then(res => move(box, 'left', 0))
-          .then(res => {
-            move(box, 'top', 50);
-          });
+      btn.addEventListener('click', async function() {
+        await move(box, 'left', 300);
+        await move(box, 'top', 300);
+        await move(box, 'left', 0);
+        await move(box, 'top', 50);
       });
     </script>
   </body>
