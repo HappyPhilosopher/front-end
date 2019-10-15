@@ -13,6 +13,8 @@
       .box {
         width: 100px;
         height: 100px;
+        border: 3px solid #333;
+        padding: 3px;
         background-color: #f00;
         margin-top: 100px;
       }
@@ -35,6 +37,8 @@
       {
         const el_box = document.querySelector('.box');
         const el_banner = document.querySelector('.banner');
+        console.log(el_box.getBoundingClientRect().width);
+        console.log(el_box.offsetWidth);
 
         window.addEventListener('scroll', function() {
           let boxBottom = el_box.getBoundingClientRect().bottom;
@@ -46,8 +50,6 @@
           } else {
             el_banner.style.display = 'none';
           }
-
-          console.log(scrollTop);
         });
       }
     </script>

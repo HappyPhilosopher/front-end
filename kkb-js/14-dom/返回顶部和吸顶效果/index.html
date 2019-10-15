@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      body {
+        margin: 0;
+        min-width: 1200px;
+        background: #f5f5f5;
+      }
+      img {
+        display: block;
+      }
+      #main {
+        display: block;
+        margin: 0 auto;
+      }
+      #banner {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        min-width: 1190px;
+        background: #fff;
+        display: none;
+      }
+      #banner img {
+        margin: 0 auto;
+      }
+      #float {
+        position: absolute;
+        right: 50%;
+        margin-right: -655px;
+        width: 50px;
+        top: 50%;
+        padding-top: 18px;
+      }
+      #floatInner {
+        float: left;
+        background: #fff;
+        border-radius: 7px;
+      }
+      #float img {
+        margin-top: -18px;
+      }
+      #backTop {
+        margin: 0 auto;
+        border-top: 1px solid #efefef;
+        width: 34px;
+        display: none;
+      }
+      #backTop a {
+        display: block;
+        margin: 0 -7px;
+        padding: 7px;
+        width: 34px;
+        font: 12px/17px '宋体';
+        text-align: center;
+        text-decoration: none;
+        color: #000;
+      }
+      #search {
+        position: absolute;
+        left: 50%;
+        margin-left: -260px;
+        top: 82px;
+        width: 520px;
+        height: 40px;
+        border: 2px solid #000;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="view.jpg" id="main" />
+    <input type="search" id="search" />
+    <div id="banner">
+      <img src="banner.jpg" />
+    </div>
+    <div id="float">
+      <div id="floatInner">
+        <img src="float.png" />
+        <div id="backTop">
+          <a href="javascript:;">返回顶部</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+
+        class Handler {
+          constructor() {
+            this.el_main = this.getDom('#main');
+            this.el_search = this.getDom('#search');
+            this.el_banner = this.getDom('#banner');
+            this.el_float = this.getDom('#float');
+            this.el_backTop = this.getDom('#backTop');
+            this.floatT = this.el_float.getBoundingClientRect().top;
+            this.clientH = document.documentElement.clientHeight;
+          }
+          getDom(el) {
+            return document.querySelector(el);
+          }
+          bannerShow() {
+            let searchT = this.el_search.getBoundingClientRect().top;
+            let scrollT =
+              document.body.scrollTop || document.documentElement.scrollTop;
+
+            if (scrollT > searchT) {
+              this.el_banner.style.display = 'block';
+            } else {
+              this.el_banner.style.display = 'none';
+            }
+          }
+          fixFloat() {
+            let bannerH = this.el_banner.getBoundingClientRect().height;
+            let scrollT =
+              document.body.scrollTop || document.documentElement.scrollTop;
+
+            if (bannerH + scrollT > this.floatT) {
+              this.el_float.style.position = 'fixed';
+              this.el_float.style.top = bannerH + 'px';
+            } else {
+              this.el_float.style.position = 'absolute';
+              this.el_float.style.top = '50%';
+            }
+          }
+          backTopShow() {
+            let scrollT =
+              document.body.scrollTop || document.documentElement.scrollTop;
+
+            if (scrollT > this.clientH) {
+              this.el_backTop.style.display = 'block';
+            } else {
+              this.el_backTop.style.display = 'none';
+            }
+          }
+          backTop() {
+            this.el_backTop.addEventListener(
+              'click',
+              function() {
+                this.el_main.scrollIntoView({
+                  behavior: 'smooth'
+                });
+                // document.body.scrollTop = document.documentElement.scrollTop = 0;
+              }.bind(this)
+            );
+          }
+        }
+
+        const handler = new Handler();
+
+        handler.backTop();
+
+        window.addEventListener('scroll', function() {
+          handler.bannerShow();
+          handler.fixFloat();
+          handler.backTopShow();
+        });
+      })();
+    </script>
+  </body>
+</html>
