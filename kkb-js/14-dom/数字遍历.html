@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="icon" href="#">
+</head>
+<body>
+  <ul></ul>
+  
+  <script>
+    'use strict';
+    {
+      const el_ul = document.querySelector('ul');
+      // let start = 1;
+      let num = 5;
+      let html = '';
+
+      /* while (start <= num) {
+        html += `
+          <li>${start}</li>
+        `;
+        start ++;
+      }
+      el_ul.innerHTML = html; */
+
+      /* let arr = [...'h'.repeat(num)];
+      arr.forEach((item, index) => {
+        html += `
+          <li>${index + 1}</li>
+        `;
+      });
+      el_ul.innerHTML = html; */
+
+      for (let i = 1; i <= num; i++) {
+        html += `
+          <li>${i}</li>
+        `;
+      }
+      el_ul.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
