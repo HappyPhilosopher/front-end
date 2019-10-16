@@ -39,7 +39,9 @@
 
     for (let i = 0; i < totalPage; i++) {
       html += `
-        <li class="${page === i && 'active'}"><a href="#/${data[type][0].type}/${i}">${i + 1}</a></li>
+        <li class="${page === i && 'active'}"><a href="#/${
+        data[type][0].type
+      }/${i}">${i + 1}</a></li>
       `;
     }
 
@@ -75,6 +77,22 @@
     renderPagination(props);
   };
 
+  const renderDetail = props => {
+    const { type, id } = props;
+    const newData = data[type].find(item => item.id == id);
+    listGroup.innerHTML = `
+      <div class="panel panel-default">
+        <div class="panel-heading">招聘岗位：${newData.job}</div>
+        <div class="panel-body">
+            <p>${newData.ask}</p>
+            <p>招聘人数：${newData.nub}人</p>
+            <p>发布时间：${newData.date}</p>
+        </div>
+      </div>
+    `;
+    pagination.innerHTML = '';
+  };
+
   // 初始化页面
   renderList({
     type: 'society',
@@ -98,22 +116,40 @@
         // 为当前按钮添加 active
         navLinks[0].parentNode.classList.add('active');
 
-        // 渲染数据列表
-        renderList({
-          type: 'society',
-          page: 0
-        });
+        if (hashValue[1] === 'details') {
+          renderDetail({
+            type: 'society',
+            id: parseInt(hashValue[2])
+          });
+        } else {
+          const page = parseInt(hashValue[1]) || 0;
+
+          // 渲染数据列表
+          renderList({
+            type: 'society',
+            page: page
+          });
+        }
         break;
 
       case 'xy':
         // 为当前按钮添加 active
         navLinks[1].parentNode.classList.add('active');
 
-        // 渲染数据列表
-        renderList({
-          type: 'campus',
-          page: 0
-        });
+        if (hashValue[1] === 'details') {
+          renderDetail({
+            type: 'campus',
+            id: parseInt(hashValue[2])
+          });
+        } else {
+          const page = parseInt(hashValue[1]) || 0;
+
+          // 渲染数据列表
+          renderList({
+            type: 'campus',
+            page: page
+          });
+        }
         break;
     }
   });
