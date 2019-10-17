@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      #view ul ul {
+        display: none;
+      }
+      .show {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="view">
+      <!-- <ul>
+      <li>
+        <p></p>
+        <ul>
+          <li>
+            <p></p>
+          </li>
+        </ul>
+      </li>
+    </ul> -->
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+      {
+        'use strict';
+
+        const view = document.querySelector('#view');
+
+        const getChild = id => {
+          return data.filter(item => item.pid === id);
+        };
+
+        const render = data => {
+          let html = '<ul>';
+          data.forEach(item => {
+            html += `
+              <li>
+                <p>${item.title}</p>
+                ${
+                  render(getChild(item.id)) && render(getChild(item.id))
+                }
+              </li>
+            `;
+          });
+          html += '</ul>';
+          return html;
+        };
+
+        view.innerHTML = render(getChild(-1));
+
+        const el_p_arr = document.querySelectorAll('p');
+        Array.from(el_p_arr).forEach(item => {
+          item.addEventListener('click', function() {
+            this.nextElementSibling.classList.toggle('show');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

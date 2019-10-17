@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="icon" href="#">
+</head>
+<body>
+  <div class="one">1</div>
+  <div class="two">2</div>
+  <div class="three">3</div>
+
+  <script>
+    const two = document.querySelector('.two');
+    const three = document.querySelector('.three');
+    const divAll = document.querySelectorAll('div');
+
+    // document.addEventListener('click', function() {
+    //   document.body.insertBefore(three, two);
+    // });
+
+    Array.from(divAll).forEach(item => {
+      item.addEventListener('click', function() {
+        item.remove();
+      });
+    });
+  </script>
+</body>
+</html>
