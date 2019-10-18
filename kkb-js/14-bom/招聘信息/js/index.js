@@ -14,6 +14,7 @@
         type: 'society',
         page: 0
       });
+      this.hashrender();
       this.listenHash();
     }
     renderList(props) {
@@ -70,44 +71,49 @@
       `;
       this.pagination.innerHTML = '';
     }
+    hashrender() {
+      const hash = window.location.hash.substring(2).split('/');
+      const page = parseInt(hash[1]) || 0;
+
+      Array.from(this.navLi).forEach(item => {
+        item.classList.remove('active');
+      });
+
+      if (hash[0] === 'sh') {
+        this.navLi[0].classList.add('active');
+
+        if (hash[1] === 'details') {
+          this.renderDetails({
+            type: 'society',
+            id: parseInt(hash[2])
+          });
+        } else {
+          this.renderList({
+            type: 'society',
+            page: page
+          });
+        }
+      } else if (hash[0] === 'xy') {
+        this.navLi[1].classList.add('active');
+
+        if (hash[1] === 'details') {
+          this.renderDetails({
+            type: 'campus',
+            id: parseInt(hash[2])
+          });
+        } else {
+          this.renderList({
+            type: 'campus',
+            page: page
+          });
+        }
+      } else {
+        this.navLi[0].classList.add('active');
+      }
+    }
     listenHash() {
       window.addEventListener('hashchange', () => {
-        const hash = window.location.hash.substring(2).split('/');
-        const page = parseInt(hash[1]) || 0;
-
-        Array.from(this.navLi).forEach(item => {
-          item.classList.remove('active');
-        });
-
-        if (hash[0] === 'sh') {
-          this.navLi[0].classList.add('active');
-
-          if (hash[1] === 'details') {
-            this.renderDetails({
-              type: 'society',
-              id: parseInt(hash[2])
-            });
-          } else {
-            this.renderList({
-              type: 'society',
-              page: page
-            });
-          }
-        } else if (hash[0] === 'xy') {
-          this.navLi[1].classList.add('active');
-
-          if (hash[1] === 'details') {
-            this.renderDetails({
-              type: 'campus',
-              id: parseInt(hash[2])
-            });
-          } else {
-            this.renderList({
-              type: 'campus',
-              page: page
-            });
-          }
-        }
+        this.hashrender();
       });
     }
   }
