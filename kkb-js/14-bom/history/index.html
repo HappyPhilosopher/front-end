@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="/index">首页</a>
+      </li>
+      <li>
+        <a href="/about">关于</a>
+      </li>
+      <li>
+        <a href="/lesson">课程</a>
+      </li>
+    </ul>
+
+    <div id="view"></div>
+
+    <script>
+      const btns = document.querySelectorAll('a');
+      const view = document.querySelector('#view');
+      const indexView = () => {
+        return `
+          <h1>首页</h1>
+        `;
+      };
+      const aboutView = () => {
+        return `
+          <h1>关于</h1>
+        `;
+      };
+      const lessonView = () => {
+        return `
+          <h1>课程</h1>
+        `;
+      };
+
+      // 阻止默认行为
+      // history 路由必须与后端配合，判断当前路由是否存在，再进行后续配置
+      Array.from(btns).forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          history.pushState({}, '', this.href);
+          let path = location.pathname;
+          switch (path) {
+            case '/index':
+              view.innerHTML = indexView();
+              break;
+
+            case '/about':
+              view.innerHTML = aboutView();
+              break;
+
+            case '/lesson':
+              view.innerHTML = lessonView();
+              break;
+          }
+        });
+        /* item.onclick = function() {
+          console.log(this.href);
+          return false;
+        }; */
+      });
+    </script>
+  </body>
+</html>
