@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <a href="http://www.baidu.com">百度</a>
+
+    <script>
+      'use strict';
+
+      {
+        /**
+         * element.addEventListener(type, listener[, options | useCapture])
+         * 事件监听其实有三个参数，第三个参数平时很少用到
+         * options 有三个属性：
+         * ① capture 与 useCapture 功能一样，表示是否启用捕获模式
+         * ② once 表示是否只监听一次
+         * ③ passive 表示是否取消阻止默认事件，即 event.preventDefault() 失效
+         */
+        const box = document.querySelector('.box');
+        const link = document.querySelector('a');
+        
+        document.addEventListener('click', function() {
+          console.log('document');
+        }, {
+          // capture: true
+          // once: true  // 只能点击一次了
+        });
+
+        box.addEventListener('click', function(e) {
+          console.log('box');
+        }, {
+          // capture: true
+        });
+
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log('link');
+        }, {
+          passive: true  // 取消默认事件无效了
+        });
+      }
+    </script>
+  </body>
+</html>
