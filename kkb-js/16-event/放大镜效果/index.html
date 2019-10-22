@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="box">
+      <div id="left">
+        <img src="images/img.png" id="img1" />
+        <div id="mask"></div>
+      </div>
+      <div id="right">
+        <div id="border">
+          <img src="images/img.png" id="img2" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        'use strict';
+
+        const img1 = document.querySelector('#img1');
+        const img2 = document.querySelector('#img2');
+        const left = document.querySelector('#left');
+        const right = document.querySelector('#right');
+        const mask = document.querySelector('#mask');
+        const border = document.querySelector('#border');
+
+        left.addEventListener('mouseenter', function() {
+          right.style.display = 'block';
+          mask.style.display = 'block';
+          // 设置 mask 的大小，mask / img1 = border / img2
+          const maskW =
+            (border.getBoundingClientRect().width *
+              img1.getBoundingClientRect().width) /
+            img2.getBoundingClientRect().width;
+          const maskH =
+            (border.getBoundingClientRect().height *
+              img1.getBoundingClientRect().height) /
+            img2.getBoundingClientRect().height;
+          mask.style.width = maskW + 'px';
+          mask.style.height = maskW + 'px';
+        });
+
+        left.addEventListener('mousemove', function(e) {
+          let posX =
+            e.clientX -
+            left.getBoundingClientRect().left -
+            mask.getBoundingClientRect().width / 2;
+          let posY =
+            e.clientY -
+            left.getBoundingClientRect().top -
+            mask.getBoundingClientRect().height / 2;
+          mask.style.left = posX + 'px';
+          mask.style.top = posY + 'px';
+
+          // mask / left = border / img2
+          const scale =
+            img2.getBoundingClientRect().width /
+            img1.getBoundingClientRect().width;
+          img2.style.left = -scale * posX + 'px';
+          img2.style.top = -scale * posY + 'px';
+        });
+
+        left.addEventListener('mouseleave', function() {
+          right.style.display = 'none';
+          mask.style.display = 'none';
+        });
+      })();
+    </script>
+  </body>
+</html>

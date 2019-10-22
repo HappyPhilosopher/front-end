@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /**
+       * js 提供了 alt、shift、ctrl 三个按键的默认方法
+       * 通过 e.altKey/e.shiftKey/e.ctrlKey 来检测用户是否点击了这三个按键，它们会返回一个布尔值
+       */
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey) {
+          console.log('按了 ctrl 键');
+        } else if (e.altKey) {
+          console.log('按了 alt 键');
+        } else if (e.shiftKey) {
+          console.log('按了 shift 键');
+        }
+      });
+    </script>
+  </body>
+</html>

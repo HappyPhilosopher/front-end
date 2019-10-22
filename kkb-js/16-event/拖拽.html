@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      const box = document.querySelector('.box');
+
+      box.addEventListener('mousedown', function(e) {
+        const firstClickX = e.clientX;
+        const firstClickY = e.clientY;
+        const initX = box.getBoundingClientRect().left;
+        const initY = box.getBoundingClientRect().top;
+
+        function move(e) {
+          const secondClickX = e.clientX;
+          const secondClickY = e.clientY;
+          let posX = secondClickX - firstClickX + initX;
+          let posY = secondClickY - firstClickY + initY;
+          const clientX = document.documentElement.clientWidth;
+          const clientY = document.documentElement.clientHeight;
+
+          posX < 0 && (posX = 0);
+          posX > clientX - box.getBoundingClientRect().width &&
+            (posX = clientX - box.getBoundingClientRect().width);
+          posY < 0 && (posY = 0);
+          posY > clientY - box.getBoundingClientRect().height &&
+            (posY = clientY - box.getBoundingClientRect().height);
+
+          box.style.left = posX + 'px';
+          box.style.top = posY + 'px';
+        }
+
+        document.addEventListener('mousemove', move);
+
+        document.addEventListener(
+          'mouseup',
+          function() {
+            document.removeEventListener('mousemove', move);
+          },
+          { once: true }
+        );
+      });
+    </script>
+  </body>
+</html>

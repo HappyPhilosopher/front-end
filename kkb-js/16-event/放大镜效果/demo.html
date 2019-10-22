@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="box">
+      <div id="left">
+        <img src="images/img.png" id="img1" />
+        <div id="mask"></div>
+      </div>
+      <div id="right">
+        <div id="border">
+          <img src="images/img.png" id="img2" />
+        </div>
+      </div>
+    </div>
+    <script>
+        {
+          let left = document.querySelector('#left');
+          let right = document.querySelector('#right');
+          let img1 = document.querySelector('#img1');
+          let img2 = document.querySelector('#img2');
+          let border = document.querySelector('#border');
+          let mask = document.querySelector('#mask');
+
+          left.addEventListener('mouseenter',function(){
+             mask.style.display = right.style.display = 'block';
+             let w = left.offsetWidth*border.offsetWidth / img2.offsetWidth;
+             let h = left.offsetHeight*border.offsetHeight / img2.offsetHeight;
+
+              mask.style.width =  w+'px';
+              mask.style.height =  h+'px';
+              console.log(w,h);
+          })
+
+          left.addEventListener('mouseleave',function(){
+             mask.style.display = right.style.display = 'none';
+          })
+
+          left.addEventListener('mousemove',function(e){
+            let leftR = left.getBoundingClientRect();
+            let l = e.clientX - leftR.left - mask.offsetWidth/2;
+            let t = e.clientY - leftR.top - mask.offsetWidth/2;
+
+            if(l>left.offsetWidth-mask.offsetWidth){
+              l = left.offsetWidth-mask.offsetWidth
+            }
+            if(t>left.offsetHeight-mask.offsetHeight){
+              t = left.offsetHeight-mask.offsetHeight
+            }
+            if(l<0){
+              l = 0;
+            }
+            if(t<0){
+              t = 0;
+            }
+
+            mask.style.left = l +'px';
+            mask.style.top = t +'px';
+
+            // 计算比例
+            let scale = img2.offsetWidth/img1.offsetWidth;
+
+            img2.style.left = -l*scale+'px';
+            img2.style.top = -t*scale+'px';
+
+          })
+        }
+    </script>
+  </body>
+</html>

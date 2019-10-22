@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      'use strict';
+
+      {
+        /**
+         * 键盘事件除了复合键，一般同一时间只能监听一个按键
+         * 可以使用定时器模拟监听多个按键
+         */
+        const box = document.querySelector('.box');
+        const offOn = {
+          toL: false,
+          toT: false,
+          toR: false,
+          toB: false
+        };
+
+        setInterval(() => {
+          if (offOn.toL) {
+            box.style.left = box.getBoundingClientRect().left - 5 + 'px';
+          }
+          if (offOn.toT) {
+            box.style.top = box.getBoundingClientRect().top - 5 + 'px';
+          }
+          if (offOn.toR) {
+            box.style.left = box.getBoundingClientRect().left + 5 + 'px';
+          }
+          if (offOn.toB) {
+            box.style.top = box.getBoundingClientRect().top + 5 + 'px';
+          }
+        }, 17);
+
+        document.addEventListener('keydown', function(e) {
+          const keyCode = e.keyCode;
+
+          switch (keyCode) {
+            case 37:
+              offOn.toL = true;
+              break;
+
+            case 38:
+              offOn.toT = true;
+              break;
+
+            case 39:
+              offOn.toR = true;
+              break;
+
+            case 40:
+              offOn.toB = true;
+              break;
+          }
+        });
+
+        document.addEventListener('keyup', function(e) {
+          const keyCode = e.keyCode;
+
+          switch (keyCode) {
+            case 37:
+              offOn.toL = false;
+              break;
+
+            case 38:
+              offOn.toT = false;
+              break;
+
+            case 39:
+              offOn.toR = false;
+              break;
+
+            case 40:
+              offOn.toB = false;
+              break;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

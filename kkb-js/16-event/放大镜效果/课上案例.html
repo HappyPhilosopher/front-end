@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="box">
+      <div id="left">
+        <img src="images/img.png" id="img1" />
+        <div id="mask"></div>
+      </div>
+      <div id="right">
+        <div id="border">
+          <img src="images/img.png" id="img2" />
+        </div>
+      </div>
+    </div>
+    <script>
+      let left = document.querySelector('#left');
+      let mask = document.querySelector('#mask');
+      let right = document.querySelector('#right');
+      let img1 = document.querySelector('#img1');
+      let img2 = document.querySelector('#img2');
+      let border = document.querySelector('#border');
+
+      //mask的大小/左侧的图  = 右侧显示区/右侧图
+
+      // 设置mask的大小 - 相等比例 左右俩侧 大小块相除的结果值 相等
+      // mask.offsetWidth / img1.offsetWidth = border.offsetWidth/img2.offsetWidth;
+
+      left.addEventListener('mousemove', function(e) {
+        mask.style.display = right.style.display = 'block';
+
+        // 让黄色的块跟着鼠标走 (相对页面可视区的坐标)
+        let l =
+          e.clientX - left.getBoundingClientRect().left - mask.offsetWidth / 2;
+        let t =
+          e.clientY - left.getBoundingClientRect().top - mask.offsetHeight / 2;
+
+        // 设置mask的大小
+        let w = (border.offsetWidth / img2.offsetWidth) * img1.offsetWidth;
+        let h = (border.offsetHeight / img2.offsetHeight) * img1.offsetHeight;
+
+        mask.style.width = w + 'px';
+        mask.style.height = h + 'px';
+
+        mask.style.left = l + 'px';
+        mask.style.top = t + 'px';
+
+        // 图片大小比例
+        let imgScale = img2.offsetWidth / img1.offsetWidth;
+
+        img2.style.left = -l * imgScale + 'px';
+        img2.style.top = -t * imgScale + 'px';
+
+        // console.log(l,t)
+        // 等比例 - 比例相等
+
+        // 小任务 ： 大家讲边界超出限制的功能添加完成~
+      });
+    </script>
+  </body>
+</html>

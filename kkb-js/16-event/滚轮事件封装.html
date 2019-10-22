@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 300px;
+        height: 500px;
+        background-color: #f00;
+        margin: 20px auto;
+        color: #fff;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">Hello world</div>
+
+    <script>
+      function mouseScroll(el, upFn, downFn) {
+        // Chrome
+        el.addEventListener('mousewheel', function(e) {
+          if (e.wheelDelta > 0) {
+            upFn && upFn();
+          } else {
+            downFn && downFn();
+          }
+        });
+
+        // Firefox
+        el.addEventListener('DOMMouseScroll', function(e) {
+          if (e.detail < 0) {
+            upFn && upFn();
+          } else {
+            downFn && downFn();
+          }
+        });
+      }
+
+      function upFn() {
+        this.style.height =
+          parseInt(getComputedStyle(this)['height']) - 5 + 'px';
+      }
+
+      function downFn() {
+        this.style.height =
+          parseInt(getComputedStyle(this)['height']) + 5 + 'px';
+      }
+
+      const box = document.querySelector('.box');
+
+      mouseScroll(box, upFn.bind(box), downFn.bind(box));
+    </script>
+  </body>
+</html>

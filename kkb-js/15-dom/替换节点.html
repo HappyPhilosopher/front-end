@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <button class="btn">replace</button>
+    <div class="container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+
+    <script>
+      'use strict';
+
+      {
+        const container = document.querySelector('.container');
+        const divs = container.querySelectorAll('div');
+        const btn = document.querySelector('.btn');
+
+        btn.addEventListener(
+          'click',
+          function() {
+            const p = document.createElement('p');
+            p.innerHTML = 'Hello';
+            container.replaceChild(p, divs[1]);
+          },
+          { once: true }
+        );
+      }
+    </script>
+  </body>
+</html>
