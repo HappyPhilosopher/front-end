@@ -37,12 +37,11 @@
           const clientX = document.documentElement.clientWidth;
           const clientY = document.documentElement.clientHeight;
 
-          posX < 0 && (posX = 0);
-          posX > clientX - box.getBoundingClientRect().width &&
-            (posX = clientX - box.getBoundingClientRect().width);
-          posY < 0 && (posY = 0);
-          posY > clientY - box.getBoundingClientRect().height &&
-            (posY = clientY - box.getBoundingClientRect().height);
+          // 限制边界
+          posX = Math.max(0, posX);
+          posX = Math.min(posX, clientX - box.getBoundingClientRect().width);
+          posY = Math.max(0, posY);
+          posY = Math.min(posY, clientY - box.getBoundingClientRect().height);
 
           box.style.left = posX + 'px';
           box.style.top = posY + 'px';

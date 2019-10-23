@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义滚动条</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url(./imgs/bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+        }
+
+        .wrap {
+            width: 100px;
+            height: 360px;
+            background-color: #fdfdfd;
+            position: relative;
+            border-radius: 10px;
+            margin: 200px auto;
+            padding-top: 11px;
+            padding-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .scroll-wrap {
+            width: 13px;
+            height: 363px;
+            background-color: #dedede;
+            position: absolute;
+            border: 1px solid #dedede;
+            top: 11px;
+            right: 7px;
+            border-radius: 10px;
+        }
+
+        .scroll {
+            width: 13px;
+            height: 30px;
+            background-color: #fcfcfc;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        li {
+            line-height: 36px;
+            text-indent: 21px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="list"></ul>
+        <div class="scroll-wrap">
+            <div class="scroll"></div>
+        </div>
+    </div>
+    <script src="mTween.js"></script>
+    <script>
+        let arr = ['河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西','山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '台湾',
+            '北京', '天津', '上海', '重庆'
+        ];
+
+        function css(obj,attr,val){
+            if(arguments.length == 3){
+                obj.style[attr] = val +'px';
+            }else{
+                return parseInt(getComputedStyle(obj)[attr]);
+            }
+        }
+       
+        let list = document.querySelector('.list');
+        let wrap = document.querySelector('.wrap');
+        let scrollWrap = document.querySelector('.scroll-wrap');
+        let scroll = document.querySelector('.scroll');
+
+        let inner = '';
+        arr.forEach(item=>{
+            inner += `<li>
+                ${item}    
+            </li>`
+        })
+        list.innerHTML = inner;
+
+        // 计算可视区高度与内容区高度比例
+        let scale =css(wrap,'height')/css(list,'height');
+        console.log(scale)
+
+        //计算滚动条高度
+        css(scroll,'height',css(scrollWrap,'height')*scale);
+
+        // 最大拖拽高度 = 
+        let maxT = css(scrollWrap,'height') - css(scroll,'height');
+
+        // 显示内容区最大滚动高度
+        let maxScreenT = css(list,'height') - css(wrap,'height');
+        // console.log(maxScreenT)
+
+
+        // 添加拖拽事件
+        scroll.addEventListener('mousedown',function(e){
+            // console.log(e.clientX);
+            let startY = e.clientY;
+            let posY = css(scroll,'top');
+            // console.log(posY)
+
+            function move(e){
+                let disY = e.clientY - startY;
+
+                let y = disY+posY;
+                y = Math.max(y,0);
+                y = Math.min(maxT,y);
+                
+                // 拖拽改变滚动条位置
+                css(scroll,'top',y);
+
+                // 改变显示区内容高度
+                let scrollScale = y / maxT;
+                // console.log(scrollScale)
+
+                css(list,'top',-maxScreenT*scrollScale)
+
+                e.preventDefault();
+            }
+
+            document.addEventListener('mousemove',move)
+            document.addEventListener('mouseup',function(){
+                document.removeEventListener('mousemove',move)
+            },{
+                once:true
+            })
+
+            e.preventDefault();
+        })
+
+
+        mouseScroll(wrap,function(){
+            let y = css(scroll,'top');
+            y+=10;
+            y = Math.min(y,maxT);
+            let scale = y / maxT;
+            screenY = maxScreenT * scale;
+            css(list,'top',-screenY)
+            css(scroll,'top',y);
+        },function(){
+            let y = css(scroll,'top');
+            y-=10;
+            y = Math.max(y,0);
+            let scale = y / maxT;
+            screenY = maxScreenT * scale;
+            css(list,'top',-screenY)
+            css(scroll,'top',y);
+        })
+
+
+       function mouseScroll(el,downFn,upFn){
+            el.addEventListener('mousewheel',function(e){
+                // console.log(e)
+                if(e.wheelDelta > 0){
+                    // console.log('向上')
+                    upFn&&upFn.call(el);
+                }else{
+                    // console.log('向下')
+                    downFn&&downFn.call(el);
+                }
+                e.preventDefault();
+            })
+
+            el.addEventListener('DOMMouseScroll',function(e){
+                console.log(e)
+                if(e.detail > 0){
+                    downFn&&downFn.call(el);     
+                }else{
+                    upFn&&upFn.call(el); 
+                }
+                e.preventDefault();
+            })
+       }
+
+
+
+    </script>
+</body>
+
+</html>

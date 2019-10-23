@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>自定义滚动条</title>
+    <link rel="icon" href="#">
+    <style>
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url(./imgs/bg.png) no-repeat;
+        background-size: 100% 100%;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .wrap {
+        width: 100px;
+        height: 360px;
+        background-color: #fdfdfd;
+        position: relative;
+        border-radius: 10px;
+        margin: 200px auto;
+        padding-top: 11px;
+        padding-bottom: 16px;
+        overflow: hidden;
+      }
+
+      .scroll-wrap {
+        width: 13px;
+        height: 363px;
+        background-color: #dedede;
+        position: absolute;
+        border: 1px solid #dedede;
+        top: 11px;
+        right: 7px;
+        border-radius: 10px;
+      }
+
+      .scroll {
+        width: 13px;
+        height: 30px;
+        background-color: #fcfcfc;
+        border-radius: 10px;
+        position: absolute;
+        cursor: move;
+      }
+
+      li {
+        line-height: 36px;
+        text-indent: 21px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <ul class="list"></ul>
+      <div class="scroll-wrap">
+        <div class="scroll"></div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
