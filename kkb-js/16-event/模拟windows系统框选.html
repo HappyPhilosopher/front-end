@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      'use strict';
+      /**
+       * 技术点分析：
+       * 1、本质上，该需求是拖拽方案的变体
+       * 2、mousedown 时创建选框
+       * 3、mousemove 时为选框定位，并设置其宽高；定位时，left 和 top 值为最小值
+       */
+      {
+        document.addEventListener('mousedown', function(e) {
+          const startPos = {
+            l: e.clientX,
+            t: e.clientY
+          };
+          const box = document.createElement('div');
+          box.classList.add('box');
+          document.body.appendChild(box);
+
+          const moveFn = e => {
+            const endPos = {
+              l: e.clientX,
+              t: e.clientY
+            };
+            box.style.width = Math.abs(endPos.l - startPos.l) + 'px';
+            box.style.height = Math.abs(endPos.t - startPos.t) + 'px';
+            box.style.left = Math.min(startPos.l, endPos.l) + 'px';
+            box.style.top = Math.min(startPos.t, endPos.t) + 'px';
+          };
+
+          document.addEventListener('mousemove', moveFn);
+          document.addEventListener(
+            'mouseup',
+            function() {
+              document.removeEventListener('mousemove', moveFn);
+            },
+            {
+              once: true
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>

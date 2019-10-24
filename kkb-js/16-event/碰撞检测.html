@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box1 {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .box2 {
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box box1">box1</div>
+    <div class="box box2">box2</div>
+
+    <script>
+      'use strict';
+
+      {
+        function drag(el1, el2) {
+          el1.addEventListener('mousedown', function(e) {
+            const startPos = {
+              l: e.clientX,
+              t: e.clientY
+            };
+            const originEl = el1.getBoundingClientRect();
+
+            const moveFn = e => {
+              e.preventDefault();
+
+              const endPos = {
+                l: e.clientX,
+                t: e.clientY
+              };
+              const clientx = window.innerWidth;
+              const clienty = window.innerHeight;
+              let l = endPos.l - startPos.l + originEl.left;
+              let t = endPos.t - startPos.t + originEl.top;
+              l = Math.max(0, l);
+              l = Math.min(l, clientx - originEl.width);
+              t = Math.max(0, t);
+              t = Math.min(t, clienty - originEl.height);
+
+              el1.style.left = l + 'px';
+              el1.style.top = t + 'px';
+
+              if (isContact(el1, el2)) {
+                el2.style.background = 'pink';
+              } else {
+                el2.style.background = 'yellow';
+              }
+            };
+
+            document.addEventListener('mousemove', moveFn);
+            document.addEventListener(
+              'mouseup',
+              function() {
+                document.removeEventListener('mousemove', moveFn);
+              },
+              {
+                once: true
+              }
+            );
+          });
+        }
+
+        function isContact(el1, el2) {
+          const edge1 = el1.getBoundingClientRect();
+          const edge2 = el2.getBoundingClientRect();
+
+          if (
+            edge1.right < edge2.left ||
+            edge1.left > edge2.right ||
+            edge1.bottom < edge2.top ||
+            edge1.top > edge2.bottom
+          ) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+
+        const box1 = document.querySelector('.box1');
+        const box2 = document.querySelector('.box2');
+        drag(box1, box2);
+        drag(box2, box1);
+      }
+    </script>
+  </body>
+</html>
