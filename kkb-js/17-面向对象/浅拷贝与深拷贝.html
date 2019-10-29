@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      'use strict';
+      // 数组的深拷贝
+      {
+        /* 方法一：不包含引用类型数据时，可以使用 concat/slice 进行深拷贝 */
+        const arr = [1, 'test', true];
+        const concatArr = [].concat(arr);
+        const sliceArr = arr.slice(0);
+        arr[1] = 2;
+        console.log(arr, concatArr, sliceArr);
+        // 若数组中存在引用类型数据，则上述方法失效
+        const arr2 = [{ name: 'Jack' }, 20];
+        const concatArr2 = [].concat(arr2);
+        const sliceArr2 = arr2.slice(0);
+        arr[0] = 'Jack';
+        console.log(arr2, concatArr2, sliceArr2);
+        console.log('-------------------------------------------');
+
+        /* 方法二：ES6 的展开运算符实现数组深拷贝 */
+        const arr3 = [{ name: 'juce' }, 1];
+        const newArr3 = [...arr3];
+        arr3[0] = 1;
+        console.log(arr3, newArr3);
+        console.log('-------------------------------------------');
+
+        /* 方法三：遍历数组进行数组的深拷贝 */
+        function deepCopyArr(arr) {
+          const newArr = [];
+
+          for (let i = 0; i < arr.length; i++) {
+            newArr.push(arr[i]);
+          }
+
+          return newArr;
+        }
+        const arr4 = [{ name: 'juce' }, 1];
+        const newArr4 = deepCopyArr(arr4);
+        arr4[0] = 'juce';
+        console.log(arr4, newArr4);
+        console.log('-------------------------------------------');
+      }
+
+      // 对象深拷贝
+      {
+        /* 方法一：ES6 展开符 */
+        const obj = {
+          name: 'Jack',
+          age: 20
+        };
+        const newObj = { ...obj };
+        obj.name = 'Mike';
+        console.log(obj, newObj);
+        console.log('-------------------------------------------');
+
+        /* 方法二：递归方法 */
+        function deepClone(obj) {
+          const newObj = obj.constructor === Array ? [] : {};
+          for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              // 值依旧是引用类型
+              if (obj[key] && typeof obj[key] === 'object') {
+                newObj[key] = deepClone(obj[key]);
+              } else {
+                newObj[key] = obj[key];
+              }
+            }
+          }
+          return newObj;
+        }
+
+        const obj2 = {
+          someData: undefined,
+          anotherData: null,
+          name: 'Jack',
+          hobbies: {
+            color: 'red'
+          }
+        };
+        const newObj2 = deepClone(obj2);
+        obj2.name = 'Mike';
+        obj2.hobbies = 'football';
+        console.dir(obj2, newObj2);
+        console.dir(newObj2);
+      }
+    </script>
+  </body>
+</html>
