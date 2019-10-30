@@ -8,7 +8,6 @@
       "type": "node",
       "request": "launch",
       "name": "启动程序",
-      "program": "${workspaceFolder}\\kkb-js\\17-面向对象\\递归深拷贝.js"
     }
   ]
 }

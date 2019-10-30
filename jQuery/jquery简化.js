@@ -1,7 +1,17 @@
 (function(win) {
   // 21-94行，定义变量和函数
+
   // jquery = function() {}
+
   // 96-277 给 jQuery 添加属性和方法
+  jQuery.fn = jQuery.prototype = {
+    jquery: '版本',
+    constructor: '修正指向问题',
+    init: function() {
+      '初始化和参数管理'
+    }
+  };
+  
   // 282-342 extend: jq 的继承方法
   // 344-798 jQuery.extend: 扩展一些工具方法
   // 857-2714 Sizzle CSS 选择器方法
