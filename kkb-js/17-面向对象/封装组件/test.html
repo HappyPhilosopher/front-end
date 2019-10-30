@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box2 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn">jump</button>
+    <div class="box1">hello</div>
+    <div class="box2">world</div>
+
+    <script>
+      const box1 = document.querySelector('.box1');
+      const box2 = document.querySelector('.box2');
+      const btn = document.querySelector('.btn');
+
+      btn.addEventListener('click', function() {
+        setTimeout(() => {
+          box1.style.display = 'none';
+          window.open('http://www.baidu.com', 'blank');
+          box2.style.display = 'block';
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
