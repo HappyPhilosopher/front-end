@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      document.body.addEventListener('click', function() {
+        alert('body');
+      });
+      document.body.addEventListener('click', function() {
+        alert('body2');
+      });
+      document.body.addEventListener('click', function() {
+        alert('body3');
+      });
+
+      document.querySelector('.box').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.body.click();
+      });
+    </script>
+  </body>
+</html>
