@@ -8,6 +8,24 @@
     <link rel="icon" href="#" />
   </head>
   <body>
+    <div id="app">
+      {{ message }} Bingo
+      <div>
+        <span>test data</span>
+        <span>{{ message }}</span>
+      </div>
+      {{ msg }}
+    </div>
+
     <script src="myVue.js"></script>
+    <script>
+      const vm = new MyVue({
+        el: '#app',
+        data: {
+          message: 'Hello world',
+          msg: 'some value'
+        }
+      });
+    </script>
   </body>
 </html>
