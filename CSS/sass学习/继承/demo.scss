@@ -1,0 +1,53 @@
+/* 简单继承 */
+.div {
+  width: 100px;
+  height: 100px;
+}
+
+.divext {
+  @extend .div;
+  border-radius: 10px;
+}
+
+/* 关联属性继承 */
+.div {
+  width: 100px;
+  height: 100px;
+}
+
+.div.other {
+  border: 1px solid #000;
+}
+
+.divext {
+  @extend .div;
+}
+
+/* 链式继承 */
+.div1 {
+  width: 100px;
+}
+
+.div2 {
+  @extend .div1;
+  color: red;
+}
+
+.div3 {
+  @extend .div2;
+  border: 1px solid #000;
+}
+
+/* 伪类继承 */
+a {
+  color: red;
+}
+
+a:hover {
+  background-color: lightblue;
+}
+
+.hoverlink {
+  @extend a:hover;
+  background-color: #fff;
+}

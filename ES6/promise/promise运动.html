@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <button class="btn">move</button>
+
+    <script>
+      function moveTo(el, x, y) {
+        return new Promise(resolve => {
+          el.style.transform = `translate(${x}px, ${y}px)`;
+          setTimeout(() => {
+            resolve();
+          }, 1000);
+        });
+      }
+
+      const box = document.querySelector('.box');
+      const btn = document.querySelector('.btn');
+      let flag = true;
+
+      /* btn.addEventListener('click', function() {
+        flag &&
+          moveTo(box, 200, 0)
+            .then(res => {
+              return moveTo(box, 200, 200);
+            })
+            .then(res => {
+              return moveTo(box, 0, 200);
+            })
+            .then(res => {
+              return moveTo(box, 0, 0);
+            })
+            .then(res => {
+              flag = true;
+            });
+        flag = false;
+      }); */
+
+      btn.addEventListener('click', async function() {
+        await moveTo(box, 200, 0);
+        await moveTo(box, 200, 200);
+        await moveTo(box, 0, 200);
+        await moveTo(box, 0, 0);
+      });
+    </script>
+  </body>
+</html>

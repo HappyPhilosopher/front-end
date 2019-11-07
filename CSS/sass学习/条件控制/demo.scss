@@ -1,0 +1,41 @@
+/* if 语句 */
+$type: 'tony';
+
+p {
+  @if $type == 'bufy' {
+    color: red;
+  } @else {
+    color: green;
+  }
+}
+
+@if $type == 'bufy' {
+  div {
+    background-color: #f00;
+  }
+} @else {
+  div {
+    background-color: #ff0;
+  }
+}
+
+/* for 语句 */
+@for $i from 1 through 4 {
+  [data-dpr='#{$i}'] p {
+    font-size: $i * 14px;
+  }
+}
+
+/* map 语句 */
+$position: (
+  top: 1px,
+  bottom: 2px,
+  left: 3px,
+  right: 4px
+);
+
+div {
+  @each $key, $value in $position {
+    #{$key}: $value;
+  }
+}

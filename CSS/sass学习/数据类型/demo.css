@@ -1,0 +1,15 @@
+.div {
+  width: 100px;
+  background-color: red;
+  z-index: 2;
+}
+
+.div {
+  top: 1px;
+  bottom: 2px;
+  right: 3px;
+  left: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+}

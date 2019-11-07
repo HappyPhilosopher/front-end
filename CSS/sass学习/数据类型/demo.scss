@@ -1,0 +1,29 @@
+$list: (100px, red);
+
+$map: (
+  top: 1px,
+  bottom: 2px,
+  right: 3px,
+  left: 4px
+);
+
+$border: (
+  border-width: 1px,
+  border-style: solid,
+  border-color: #ccc
+);
+
+.div {
+  width: nth($list, 1);
+  background-color: nth($list, 2);
+  z-index: index($list, red);
+}
+
+.div {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+  @each $key, $value in $border {
+    #{$key}: $value;
+  }
+}

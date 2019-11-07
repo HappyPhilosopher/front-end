@@ -1,0 +1,24 @@
+.div {
+  width: 200px;
+  height: 110px;
+  left: 10px;
+  top: 8.33333px;
+}
+
+.box {
+  border: 1px solid red;
+  content: "hello world";
+}
+
+.div {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+}
+
+.border {
+  border-width: 1px;
+  border-color: red;
+  border-style: dotted;
+}

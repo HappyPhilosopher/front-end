@@ -1,0 +1,1 @@
+.div1{width:300px;height:300px;background-color:red}.div2{width:200px;background:url("./hello.jpg")}.div2::after{content:"hello world"}

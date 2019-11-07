@@ -1,0 +1,27 @@
+$width: 300px;
+$height: 300px;
+$color: red;
+
+$baseWidth: 200px;
+
+$baseWidth: 100px !default;
+
+$str: 'hello.jpg';
+
+$greeter: 'world';
+
+.div1 {
+  width: $width;
+  height: $height;
+  background-color: $color;
+}
+
+.div2 {
+  width: $baseWidth;
+  // 插值语法 #{}
+  background: url('./#{$str}');
+
+  &::after {
+    content: "hello #{$greeter}";
+  }
+}

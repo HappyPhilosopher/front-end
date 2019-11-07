@@ -1,0 +1,44 @@
+$width: 100px;
+$height: 100px;
+
+$str: 'hello';
+
+@mixin border {
+  border: 1px solid red;
+}
+
+@mixin box {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+}
+
+// 带参
+@mixin sexy-border($color, $width) {
+  border: {
+    width: $width;
+    color: $color;
+    style: dotted;
+  }
+}
+
+.div {
+  width: $width + $height;
+  height: 100px + 10;
+  left: (100px / 10);
+  top: (5px + 10px / 3);
+}
+
+.box {
+  @include border();
+  content: '#{$str} world';
+}
+
+.div {
+  position: absolute;
+  @include box();
+}
+
+.border {
+  @include sexy-border(red, 1px);
+}

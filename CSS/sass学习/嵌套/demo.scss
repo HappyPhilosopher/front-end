@@ -1,0 +1,8 @@
+$bgi: 'hello.jpg';
+
+.div {
+  background: {
+    image: './images/#{$bgi}';
+    repeat: no-repeat;
+  }
+}

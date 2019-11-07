@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/* if 语句 */
+p {
+  color: green;
+}
+
+div {
+  background-color: #ff0;
+}
+
+/* for 语句 */
+[data-dpr='1'] p {
+  font-size: 14px;
+}
+
+[data-dpr='2'] p {
+  font-size: 28px;
+}
+
+[data-dpr='3'] p {
+  font-size: 42px;
+}
+
+[data-dpr='4'] p {
+  font-size: 56px;
+}
+
+/* map 语句 */
+div {
+  top: 1px;
+  bottom: 2px;
+  left: 3px;
+  right: 4px;
+}
