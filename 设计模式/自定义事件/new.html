@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <a href="http://www.baidu.com" data-time="2019/11/01">百度</a>
+
+    <script>
+      /* const link = document.querySelector('a');
+      setTimeout(() => {
+        const clickEvent = new Event('build');
+        link.addEventListener('build', function() {
+          alert('jump');
+        });
+        link.dispatchEvent(clickEvent);
+      }, 2000); */
+
+      const link = document.querySelector('a');
+      const event = new CustomEvent('click', { detail: link.dataset.time });
+      link.addEventListener('click', function(e) {
+        console.log(e.detail);
+      });
+      link.dispatchEvent(event);
+    </script>
+  </body>
+</html>
