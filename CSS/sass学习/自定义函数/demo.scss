@@ -1,0 +1,8 @@
+@function px2rem($px) {
+  $rem: 16;
+  @return $px / $rem + rem;
+}
+
+div {
+  font-size: px2rem(20);
+}
