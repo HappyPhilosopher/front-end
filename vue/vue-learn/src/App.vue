@@ -1,16 +1,28 @@
 <template>
   <div id="app">
     <hello-world />
+    <hr />
+    <Countdown />
+    <hr />
+    <Vuexx />
+    <hr />
+    <Todo />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue';
+import Countdown from './components/Countdown';
+import Vuexx from './components/Vuex';
+import Todo from './components/Todo';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    Countdown,
+    Vuexx,
+    Todo
   }
 };
 </script>
