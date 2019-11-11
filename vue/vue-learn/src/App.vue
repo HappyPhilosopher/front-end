@@ -7,6 +7,12 @@
     <Vuexx />
     <hr />
     <Todo />
+    <hr />
+    <fuzzy-query />
+    <hr />
+    <Checkbox />
+    <hr />
+    <Cart />
   </div>
 </template>
 
@@ -15,6 +21,9 @@ import HelloWorld from './components/HelloWorld.vue';
 import Countdown from './components/Countdown';
 import Vuexx from './components/Vuex';
 import Todo from './components/Todo';
+import FuzzyQuery from './components/FuzzyQuery';
+import Checkbox from './components/Checkbox';
+import Cart from './components/Cart';
 
 export default {
   name: 'app',
@@ -22,7 +31,10 @@ export default {
     HelloWorld,
     Countdown,
     Vuexx,
-    Todo
+    Todo,
+    FuzzyQuery,
+    Checkbox,
+    Cart
   }
 };
 </script>

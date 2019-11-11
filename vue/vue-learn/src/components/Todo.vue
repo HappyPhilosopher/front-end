@@ -13,7 +13,6 @@
         </li>
       </ul>
     </div>
-    <a href="javascript:;" @click="checkTest">test</a>
   </div>
 </template>
 
@@ -22,20 +21,13 @@ export default {
   data() {
     return {
       msg: '',
-      list: JSON.parse(localStorage.getItem('todo-list')) || [],
-      test: { test: true }
+      list: JSON.parse(localStorage.getItem('todo-list')) || []
     };
   },
   watch: {
     list: {
       handler(val) {
         localStorage.setItem('todo-list', JSON.stringify(val));
-      },
-      deep: true
-    },
-    test: {
-      handler(val) {
-        window.console.log(val);
       },
       deep: true
     }
@@ -59,7 +51,10 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+span {
+  margin: 0 10px;
+}
 .active {
   text-decoration: line-through;
 }

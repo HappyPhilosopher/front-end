@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 span {
   margin: 0 10px;
 }
