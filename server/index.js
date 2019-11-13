@@ -4,7 +4,7 @@ const app = new Koa();
 const routing = require('./routes');
 
 // 跨域
-app.use(cors());
+// app.use(cors());
 
 // 启用路由
 routing(app);

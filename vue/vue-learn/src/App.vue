@@ -1,22 +1,22 @@
 <template>
   <div id="app">
     <!-- <hello-world />
-    <hr />
-    <Countdown />
-    <hr />
-    <Vuexx />
-    <hr />
-    <Todo />
-    <hr />
-    <fuzzy-query />
-    <hr />
-    <Checkbox />
-    <hr />
-    <Cart />
-    <hr />
-    <Modifier />
-    <hr />
-    <Fetch /> -->
+    <hr /> -->
+    <!-- <Countdown />
+    <hr /> -->
+    <!-- <Vuexx />
+    <hr /> -->
+    <!-- <Todo />
+    <hr /> -->
+    <!-- <fuzzy-query />
+    <hr /> -->
+    <!-- <Checkbox />
+    <hr /> -->
+    <!-- <Cart />
+    <hr /> -->
+    <!-- <Modifier />
+    <hr /> -->
+    <!-- <Fetch /> -->
     <!-- <hr /> -->
     <!-- <Child :title="parentTitle" @changeText="change" />
     <p>{{ text }}</p> -->
@@ -34,7 +34,10 @@
       <button @click="bro = 'Bro1'">bro1</button>
       <button @click="bro = 'Bro2'">bro2</button>
     </div> -->
-    <Animation />
+    <!-- <Animation /> -->
+    <!-- <component-transition /> -->
+    <!-- <Swiper /> -->
+    <Directive />
   </div>
 </template>
 
@@ -54,7 +57,10 @@
 // import Clipboard from './components/Clipboard';
 // import Bro1 from './components/Bro1';
 // import Bro2 from './components/Bro2';
-import Animation from './components/Animation';
+// import Animation from './components/Animation';
+// import ComponentTransition from './components/ComponentTransition';
+// import Swiper from './components/Swiper';
+import Directive from './components/Directive';
 
 export default {
   name: 'app',
@@ -74,11 +80,18 @@ export default {
     //   this.show = !this.show;
     // }
   },
+  mounted() {
+    fetch('/users')
+      .then(res => res.json())
+      .then(res => {
+        window.console.log(res);
+      });
+  },
   components: {
     // HelloWorld,
     // Countdown,
     // Vuexx,
-    // Todo,
+    // Todo
     // FuzzyQuery,
     // Checkbox,
     // Cart,
@@ -90,9 +103,12 @@ export default {
     // Clipboard
     // Bro1,
     // Bro2
-    Animation
+    // Animation
+    // ComponentTransition
+    // Swiper
+    Directive
   }
 };
 </script>
 
-<style></style>
+<style lang="css"></style>

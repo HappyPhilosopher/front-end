@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button class="btn" @click="isShow = !isShow">animate</button>
+  <div style="margin-left: 100px; width: 300px; overflow: hidden;">
+    <!-- <button class="btn" @click="isShow = !isShow">animate</button>
 
     <transition name="k">
       <div v-show="isShow">hello world</div>
@@ -9,10 +9,27 @@
     <transition name="my">
       <div v-show="isShow">hello world</div>
     </transition>
+
+    <transition
+      name="customed"
+      enter-active-class="animated bounceIn"
+      leave-active-class="animated bounceOutRight"
+    >
+      <div v-show="isShow">Hello World</div>
+    </transition>
+    <br /> -->
+
+    <button @click="isShow = !isShow">animate</button>
+    <transition name="k" mode="out-in">
+      <p v-if="isShow" key="1">111</p>
+      <p v-else key="2">222</p>
+    </transition>
   </div>
 </template>
 
 <script>
+import 'animate.css';
+
 export default {
   data() {
     return {
