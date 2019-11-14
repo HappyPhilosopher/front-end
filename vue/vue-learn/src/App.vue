@@ -37,7 +37,8 @@
     <!-- <Animation /> -->
     <!-- <component-transition /> -->
     <!-- <Swiper /> -->
-    <Directive />
+    <!-- <Directive /> -->
+    <Nav />
   </div>
 </template>
 
@@ -60,7 +61,8 @@
 // import Animation from './components/Animation';
 // import ComponentTransition from './components/ComponentTransition';
 // import Swiper from './components/Swiper';
-import Directive from './components/Directive';
+// import Directive from './components/Directive';
+import Nav from './components/Nav';
 
 export default {
   name: 'app',
@@ -81,11 +83,11 @@ export default {
     // }
   },
   mounted() {
-    fetch('/users')
+    /* fetch('/users')
       .then(res => res.json())
       .then(res => {
         window.console.log(res);
-      });
+      }); */
   },
   components: {
     // HelloWorld,
@@ -106,7 +108,8 @@ export default {
     // Animation
     // ComponentTransition
     // Swiper
-    Directive
+    // Directive
+    Nav
   }
 };
 </script>
