@@ -5,6 +5,7 @@ import Film from '../pages/Film.vue';
 import NowPlaying from '../pages/Film/NowPlaying.vue';
 import ComingSoon from '../pages/Film/ComingSoon.vue';
 import Cinema from '../pages/Cinema.vue';
+import Detail from '../pages/Film/Detail.vue';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,7 @@ const routes = [
   },
   {
     path: '/home',
+    name: 'home',
     component: Home
   },
   {
@@ -27,17 +29,25 @@ const routes = [
       },
       {
         path: 'nowPlaying',
+        name: 'nowPlaying',
         component: NowPlaying
       },
       {
         path: 'comingSoon',
+        name: 'comingSoon',
         component: ComingSoon
       }
     ]
   },
   {
     path: '/cinema',
+    name: 'cinema',
     component: Cinema
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: Detail
   }
 ];
 

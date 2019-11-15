@@ -1,9 +1,15 @@
 <template>
   <div>
     <nav>
-      <router-link to="/home" activeClass="active" tag="a">首页</router-link>
-      <router-link to="/film" activeClass="active" tag="a">电影</router-link>
-      <router-link to="/cinema" activeClass="active" tag="a">影院</router-link>
+      <router-link :to="{ name: 'home' }" activeClass="active" tag="a">
+        首页
+      </router-link>
+      <router-link to="/film" activeClass="active" tag="a">
+        电影
+      </router-link>
+      <router-link :to="{ name: 'cinema' }" activeClass="active" tag="a">
+        影院
+      </router-link>
     </nav>
     <router-view></router-view>
   </div>
