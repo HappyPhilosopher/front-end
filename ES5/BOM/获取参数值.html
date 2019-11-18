@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    Hello World.
+
+    <script>
+      function getQuerystring(param) {
+        const reg = new RegExp(`(^|&)${param}=([^&]*)($|&)`);
+        const result = window.location.search.substring(1).match(reg);
+        return result && result[2] ? decodeURIComponent(result[2]) : null;
+      }
+    </script>
+  </body>
+</html>

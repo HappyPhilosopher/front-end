@@ -1,0 +1,12 @@
+{
+  "name": "fs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
