@@ -11,7 +11,10 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    component: App
+    component: App,
+    meta: {
+      title: '路由首页'
+    }
   },
   {
     path: '/components',
@@ -32,5 +35,6 @@ const routes = [
 ];
 
 export default new VueRouter({
+  mode: 'history',
   routes
 });
