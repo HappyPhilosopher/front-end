@@ -2,6 +2,8 @@ import Start from '@/components/Start.vue';
 import App from '@/App.vue';
 import Transition from '@/components/Transition.vue';
 import Layouts from '@/components/Layout.vue';
+import Container from '@/components/Container.vue';
+import Icon from '@/components/Icon.vue';
 
 export default [
   {
@@ -19,5 +21,13 @@ export default [
   {
     path: '/layouts',
     component: Layouts
+  },
+  {
+    path: '/container',
+    component: Container
+  },
+  {
+    path: '/icon',
+    component: Icon
   }
 ];
