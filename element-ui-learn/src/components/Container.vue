@@ -22,11 +22,11 @@
 
     <el-container style="margin-top: 20px;">
       <el-aside width="200px">Aside</el-aside>
-      <el-cotnainer style="width: 100%;">
+      <el-container style="width: 100%;">
         <el-header>Header</el-header>
         <el-main>Main</el-main>
         <el-footer>Footer</el-footer>
-      </el-cotnainer>
+      </el-container>
     </el-container>
   </div>
 </template>
