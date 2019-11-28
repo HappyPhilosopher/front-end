@@ -3,4 +3,11 @@
 // import './Array.of-fill';
 // import './findSomeone';
 // import './class';
-import './default-parameters';
+// import './default-parameters';
+// import './rest-parameters';
+// import './arrow-functions';
+// import './Object';
+// import './Set';
+// import './Map';
+// import './Object.assign';
+import './RegExp';
