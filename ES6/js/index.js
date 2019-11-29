@@ -10,4 +10,9 @@
 // import './Set';
 // import './Map';
 // import './Object.assign';
-import './RegExp';
+// import './RegExp';
+// import './String';
+// import './destructure';
+// import './Promise';
+import './Reflect';
+// import './Proxy';
