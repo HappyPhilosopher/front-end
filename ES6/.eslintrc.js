@@ -20,6 +20,8 @@ module.exports = {
     // 可以使用 console
     'no-console': 'off',
     // vue 中 html 代码自闭合
-    'vue/html-self-closing': 'off'
+    'vue/html-self-closing': 'off',
+    // gengerator 函数的 * 位置
+    'generator-star-spacing': ['error', { before: false, after: true }]
   }
 };

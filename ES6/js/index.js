@@ -14,5 +14,6 @@
 // import './String';
 // import './destructure';
 // import './Promise';
-import './Reflect';
+// import './Reflect';
 // import './Proxy';
+import './Generator';
