@@ -1,4 +1,5 @@
 // 查找某个元素
+// filter 是返回满足条件的所有合集
 const arr = [1, 2, 3, 4, 5];
 // const find = arr.filter(item => item > 3);
 // console.log(find);

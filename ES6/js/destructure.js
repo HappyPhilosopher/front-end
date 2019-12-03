@@ -1,14 +1,4 @@
 /* const obj = {
-  city: {
-    name: 'shanghai'
-  }
-};
-
-const { city } = obj;
-const { name } = city;
-console.log(name); */
-
-/* const obj = {
   name: 'zhangsan',
   age: 18
 };

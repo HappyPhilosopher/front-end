@@ -16,4 +16,8 @@
 // import './Promise';
 // import './Reflect';
 // import './Proxy';
-import './Generator';
+// import './Generator';
+// import './Iterator';
+// import './modules/Modules';
+// import './includes';
+import './async-await';

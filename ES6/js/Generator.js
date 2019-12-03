@@ -130,7 +130,7 @@ console.log(c.next().value);
 console.log(c.next().value); */
 
 // ES5 实现可控斐波那契数列
-function fibonacci() {
+/* function fibonacci() {
   var x = 1;
   var y = 2;
   var temp = x + y;
@@ -149,4 +149,18 @@ fib();
 fib();
 fib();
 fib();
-fib();
+fib(); */
+
+function* fibonacci() {
+  let [x, y] = [1, 1];
+  while (true) {
+    yield x + y;
+    [x, y] = [y, x + y];
+  }
+}
+
+const fib = fibonacci();
+console.log(fib.next().value);
+console.log(fib.next().value);
+console.log(fib.next().value);
+console.log(fib.next().value);

@@ -12,4 +12,4 @@
 // Array.fill(value[, startIndex[, endIndex]])
 let arr = [1, 2, 3, 4, 5];
 arr = arr.fill(8, 2, 3);
-console.log(arr);
+console.log(arr); // [1, 2, 8, 4, 5]

@@ -38,7 +38,7 @@ class Animal {
   }
 }
 
-// const dog =
+// const dog = new Animal('dog');
 // dog.walk();  // 实例无法调用到静态方法
 
 // 继承
