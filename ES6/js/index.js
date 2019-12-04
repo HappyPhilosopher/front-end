@@ -6,7 +6,7 @@
 // import './default-parameters';
 // import './rest-parameters';
 // import './arrow-functions';
-// import './Object';
+import './Object';
 // import './Set';
 // import './Map';
 // import './Object.assign';
@@ -20,4 +20,5 @@
 // import './Iterator';
 // import './modules/Modules';
 // import './includes';
-import './async-await';
+// import './async-await';
+// import './String';
