@@ -22,7 +22,7 @@
     <named-slot tag="div" class="slot-container">
       <header name="header">header</header>
       <main>content</main>
-      <footer name="footer">footer</footer>
+      <footer name="header">footer</footer>
     </named-slot>
 
     <grandson />

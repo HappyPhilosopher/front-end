@@ -13,11 +13,14 @@
     <div>{{ article.title }}</div>
 
     <div>{{ reg }}</div>
+
+    <div>{{ grandparent.value }}</div>
   </div>
 </template>
 
 <script>
 export default {
+  inject: ['grandparent'],
   props: {
     show: {
       required: true,

@@ -2,7 +2,7 @@
   <div class="slot-wrapper">
     <slot name="header" />
     <slot />
-    <slot name="footer" />
+    <slot name="header" />
   </div>
 </template>
 
