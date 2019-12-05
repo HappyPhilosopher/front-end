@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      /* 视频全屏时去掉控件 */
+      video::-webkit-media-controls,
+      video::-moz-media-controls
+      video::-ms-media-controls {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <video width="400" height="300" controls>
+      <source src="./resources/imooc.mp4" />
+    </video>
+    <div class="controllers">
+      <button class="btn-play">play</button>
+      <button class="btn-pause">pause</button>
+      <button class="btn-speedup">speedup</button>
+      <button class="btn-playbackRate">playbackRate</button>
+      <button class="btn-fullscreen">fullscreen</button>
+      <button class="btn-load">load</button>
+      <input type="range" id="range" value="30" min="0" max="100" />
+    </div>
+
+    <script>
+      console.log(`startTime: ${new Date().getTime()}`);
+      
+      const video = document.querySelector('video');
+      const playBtn = document.querySelector('.btn-play');
+      const pauseBtn = document.querySelector('.btn-pause');
+      const speedBtn = document.querySelector('.btn-speedup');
+      const loadBtn = document.querySelector('.btn-load');
+      const fullscreenBtn = document.querySelector('.btn-fullscreen');
+      const playbackRateBtn = document.querySelector('.btn-playbackRate');
+      const range = document.querySelector('#range');
+
+      // 以“秒”的形式获取视频时长
+      // loadedmetadata 事件：在视频/音频的元数据加载后触发
+      video.addEventListener('loadedmetadata', function() {
+        const duration = this.duration;
+        const min = parseInt(duration / 60);
+        const sec = parseInt(duration % 60);
+        // console.log(`${min}分${sec}秒`);
+        // 设置/返回视频来源
+        // console.log(this.currentSrc);
+      });
+
+      // 实时显示视频进度
+      video.addEventListener('timeupdate', function() {
+        // console.log(this.currentTime);
+        if (this.currentTime >= 5) {
+          // this.pause();
+        }
+      });
+
+      // load 重新加载视频播放器，在切换视频资源时使用最佳
+      loadBtn.addEventListener('click', function() {
+        video.src = './resources/imooc.ogv';
+        video.load();
+      });
+
+      // canplay 视频可以开始播放时触发
+      video.addEventListener('canplay', function() {
+        console.log(`endTime: ${new Date().getTime()}`);
+      });
+
+      // requestFullscreen 使元素全屏
+      fullscreenBtn.addEventListener('click', function() {
+        fullscreen(video);
+      });
+
+      function fullscreen(ele) {
+        if (ele.requestFullScreen) {
+          ele.requestFullScreen();
+        } else if (ele.webkitRequestFullScreen) {
+          ele.webkitRequestFullScreen();
+        } else if (ele.mozRequestFullScreen) {
+          ele.mozRequestFullScreen();
+        } else {
+          ele.msRequestFullscreen()
+        }
+      }
+
+      // 当用户已移动/跳跃到视频中的新位置时
+      video.addEventListener('seeked', function() {
+        console.log('seeked...');
+      });
+
+      // 设置视频播放速率
+      playbackRateBtn.addEventListener('click', function() {
+        // 2倍速播放
+        video.playbackRate = 2;
+      });
+
+      // 监听视频是否播放结束
+      video.addEventListener('ended', function() {
+        alert('视频已播放完');
+      });
+
+      // 快进功能
+      speedBtn.addEventListener('click', () => {
+        video.currentTime += 0.5;
+      });
+
+      // 控制音量
+      range.addEventListener('input', function() {
+        video.volume = this.value / 100;
+      });
+
+      // volumechange: 当音量变化时触发
+      video.addEventListener('volumechange', function() {
+        console.log(this.volume);
+      });
+
+      // 控制视频播放/暂停
+      // timeupdate 事件：当 currentTime 更新时会触发，可以用以获取音频/视频实时播放进度
+      document.body.addEventListener('click', function(e) {
+        const target = e.target;
+
+        switch (target.className) {
+          case 'btn-play':
+            video.play();
+            break;
+
+          case 'btn-pause':
+            video.pause();
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
