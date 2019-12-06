@@ -1,0 +1,151 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.video {
+  position: relative;
+  width: 540px;
+  height: 332px;
+  background-color: #000;
+  margin: 100px auto 0;
+  text-align: center;
+}
+
+.video video {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  object-fit: fill;
+}
+
+/* 自定义控制条 */
+.video__controllers {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 27px;
+  background: url(../images/bg-controller-bar.jpg) repeat-x;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* 播放/暂停按钮 */
+.video__control-play {
+  width: 15px;
+  height: 17px;
+  background: url(../images/icon-play.png) no-repeat;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+.video__control-pause {
+  width: 15px;
+  height: 17px;
+  background: url(../images/icon-pause.png) no-repeat;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+/* 播放进度条 */
+.video__process, .video__volume-bar {
+  position: relative;
+  width: 267px;
+  height: 9px;
+  border: 1px solid #1e1e1e;
+  border-radius: 4.5px;
+  background-color: #202020;
+  box-shadow: 0 1px 0 #474747;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+/* 缓冲条 */
+.video__process-buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 7px;
+  border-radius: 3.5px;
+  background-color: #555;
+}
+
+/* 当前播放进度 */
+.video__process-currentTime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 7px;
+  border-radius: 3.5px;
+  background-color: #fff;
+}
+
+/* 拖动块 */
+.video__process-dragger {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  background: url(../images/icon-dragger.png) no-repeat;
+  cursor: pointer;
+}
+
+/* 当前时间-总时间 */
+.video__time {
+  margin-left: 9px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #c3c3c3;
+}
+
+/* 音量控制 */
+.video__volume {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.video__trumpet {
+  width: 19px;
+  height: 18px;
+  background: url(../images/icon-trumpet.png) no-repeat;
+  cursor: pointer;
+}
+
+.video__volume-bar {
+  width: 61px;
+  height: 7px;
+  border: 0;
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+.video__volume-dragger {
+  position: absolute;
+  top: -50%;
+  left: 100%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  background: url(../images/icon-dragger.png) no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+/* 全屏按钮 */
+.video__fullScreen {
+  width: 15px;
+  height: 17px;
+  background: url(../images/icon-fullScreen.png) no-repeat;
+  margin-left: 40px;
+  cursor: pointer;
+}

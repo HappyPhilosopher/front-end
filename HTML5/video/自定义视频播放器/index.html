@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>自定义视频播放器</title>
+    <link rel="stylesheet" href="./css/index.min.css" />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div class="video">
+      <video src="./resources/imooc.mp4" id="player" poster="./images/poster.jpg">
+        您的浏览器不支持 video 标签，请升级浏览器。
+      </video>
+      <!-- 自定义控制条 -->
+      <div class="video__controllers">
+        <!-- 播放/暂停按钮 -->
+        <div class="video__control-play"></div>
+        <!-- 播放进度条 -->
+        <div class="video__process">
+          <!-- 缓冲条 -->
+          <div class="video__process-buffer"></div>
+          <!-- 当前播放进度 -->
+          <div class="video__process-currentTime"></div>
+          <!-- 拖动块 -->
+          <div class="video__process-dragger"></div>
+        </div>
+        <!-- 当前时间-总时间 -->
+        <div class="video__time">
+          <span class="video__time-currentTime">0:00</span>
+          <span>-</span>
+          <span class="video__time-duration">0:00</span>
+        </div>
+        <!-- 音量控制 -->
+        <div class="video__volume">
+          <div class="video__trumpet"></div>
+          <div class="video__volume-bar">
+            <div class="video__volume-dragger"></div>
+          </div>
+        </div>
+        <!-- 全屏按钮 -->
+        <div class="video__fullScreen"></div>
+      </div>
+    </div>
+
+    <!-- 引入 js 文件 -->
+    <script src="./js/drag.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
