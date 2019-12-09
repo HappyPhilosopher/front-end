@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>响应式布局</title>
+    <link
+      rel="stylesheet"
+      href="https://s3.pstatp.com/cdn/expire-1-M/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="row">
+          <!-- logo -->
+          <div class="header__logo-wrapper col-8 col-md-3">
+            <a href="./index.html">
+              <img src="./images/logo.svg" alt="logo" />
+            </a>
+          </div>
+          <!-- 移动端导航按钮 -->
+          <div class="header__btn-wrapper col-4 d-md-none">
+            <button class="btn header__btn--toggle" id="btn-toggle">
+              <span class="header__btn-toggle-bar"></span>
+              <span class="header__btn-toggle-bar"></span>
+              <span class="header__btn-toggle-bar"></span>
+            </button>
+          </div>
+          <!-- 非移动端导航 -->
+          <div class="header__nav-wrapper col-md-9 d-none d-md-block">
+            <ul class="header__nav">
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">手机&amp;平板</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">电影&amp;影音</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">生活家电</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">电脑/办公/存储</a>
+              </li>
+              <li class="header__nav-item">
+                <a href="#" class="header__nav-link">网上商城</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 移动端导航 -->
+    <div class="header__nav--toggle">
+      <div class="container">
+        <ul>
+          <li class="header__nav-item--toggle">
+            <a href="#" class="header__nav-link--toggle">手机&amp;平板</a>
+          </li>
+          <li class="header__nav-item--toggle">
+            <a href="#" class="header__nav-link--toggle">电影&amp;影音</a>
+          </li>
+          <li class="header__nav-item--toggle">
+            <a href="#" class="header__nav-link--toggle">生活家电</a>
+          </li>
+          <li class="header__nav-item--toggle">
+            <a href="#" class="header__nav-link--toggle">电脑/办公/存储</a>
+          </li>
+          <li class="header__nav-item--toggle">
+            <a href="#" class="header__nav-link--toggle">网上商城</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>

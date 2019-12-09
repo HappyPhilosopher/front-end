@@ -1,0 +1,102 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #dadada;
+}
+
+.header__logo-wrapper,
+.header__btn-wrapper,
+.header__nav-wrapper {
+  height: 64px;
+}
+
+/* 移动端导航按钮 */
+.header__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__btn--toggle {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.header__btn--toggle:hover {
+  background-color: #f9f9f9;
+}
+
+.header__btn-toggle-bar {
+  display: block;
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #363636;
+  margin-top: 4px;
+}
+
+.header__btn-toggle-bar:nth-child(1) {
+  margin-top: 0;
+}
+
+.header__btn--toggle:hover .header__btn-toggle-bar {
+  background-color: #1428a0;
+}
+
+/* logo */
+.header__logo-wrapper > a {
+  display: flex;
+  align-items: center;
+  width: 136px;
+  height: 100%;
+}
+
+/* 非移动端导航 */
+.header__nav,
+.header__nav-item,
+.header__nav-link {
+  height: 100%;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+
+.header__nav-item {
+  margin-left: 24px;
+}
+
+.header__nav-item:nth-child(1) {
+  margin-left: 0;
+}
+
+.header__nav-link {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* 移动端导航 */
+.header__nav--toggle {
+  transform: translateY(-1px);
+  overflow: hidden;
+  height: 0;
+  border-bottom: 1px solid #dadada;
+  transition: height 0.5s;
+}
+
+.header__nav--extend {
+  transform: translateY(0);
+  height: 201px;
+}
+
+.header__nav-link--toggle {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+}
