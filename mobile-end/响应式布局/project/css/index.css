@@ -100,3 +100,54 @@
   line-height: 40px;
   font-weight: bold;
 }
+
+/* 幻灯片区 */
+.slider__wrapper {
+  margin: 20px 0;
+}
+
+.slider__wrapper .row {
+  background-color: #f5f5f5;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.slider__text-wrapper {
+  padding: 20px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .slider__wrapper .row {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.slider__title,
+.slider__subtitle,
+.slider__text {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.slider__title {
+  font-size: 30px;
+}
+
+.slider__subtitle {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.sliders__btns {
+  text-align: center;
+}
+
+.sliders__btns .btn {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.sliders__btns .btn:nth-last-child(1) {
+  margin-right: 0;
+}
