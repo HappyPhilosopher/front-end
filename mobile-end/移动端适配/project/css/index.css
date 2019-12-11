@@ -4,6 +4,7 @@ body {
   height: 100%;
 }
 
+/* 头部导航条 */
 .header {
   position: fixed;
   top: 0;
@@ -73,4 +74,154 @@ body {
   font-size: 0.9rem /* 36/40 */;
   color: #ccc;
   font-weight: bold;
+}
+
+/* 主体 */
+.main {
+  padding: 2.5rem /* 100/40 */ 0;
+  background-color: #ccc;
+}
+
+/* 导航栏 */
+.nav__wrapper {
+  background-color: #fff;
+  margin-bottom: 0.5rem /* 20/40 */;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.8rem /* 32/40 */ 0 0.4rem /* 16/40 */;
+}
+
+.nav__item {
+  width: 20%;
+  margin-bottom: 0.4rem /* 16/40 */;
+  text-align: center;
+}
+
+.nav__link {
+  display: block;
+}
+
+.nav__img {
+  width: 2.25rem /* 90/40 */;
+  margin-bottom: 0.2rem /* 8/40 */;
+}
+
+.nav__text {
+  display: block;
+}
+
+/* 商品推荐 */
+.recommend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.recommend__item {
+  width: 49.333333%;
+  background-color: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 0.25rem /* 10/40 */;
+}
+
+.recommend__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.recommend__pic {
+  width: 100%;
+  margin-bottom: 0.4rem /* 16/40 */;
+}
+
+.recommend__img {
+  width: 100%;
+  height: 9.25rem /* 370/40 */;
+}
+
+.recommend__name,
+.recommend__original-price,
+.recommend__info {
+  padding: 0 0.25rem /* 10/40 */;
+  margin-bottom: 0.4rem /* 16/40 */;
+}
+
+.recommend__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recommend__original-price {
+  color: #ccc;
+}
+
+.recommend__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recommend__price {
+  color: #e61414;
+}
+
+.recommend__price--strong {
+  font-size: 20px;
+}
+
+[data-dpr='2'] .recommend__price--strong {
+  font-size: 40px;
+}
+
+[data-dpr='3'] .recommend__price--strong {
+  font-size: 60px;
+}
+
+.recommend__count {
+  color: #999;
+}
+
+/* 底部标签栏 */
+.tabbar__wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5rem /* 100/40 */;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(154, 141, 141, 0.6);
+}
+
+.tabbar__item,
+.tabbar__link,
+.tabbar {
+  height: 100%;
+}
+
+.tabbar {
+  display: flex;
+}
+
+.tabbar__item {
+  width: 25%;
+}
+
+.tabbar__item--active .tabbar__link {
+  color: #de181b;
+}
+
+.tabbar__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabbar__link .iconfont {
+  font-size: 1.2rem /* 48/40 */;
 }
