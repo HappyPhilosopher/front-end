@@ -26,11 +26,14 @@
           return;
         }
 
-        const curPoint = {
+        let curPoint = {
           x: 0,
           y: 0
         };
-        const startPoint = {};
+        let startPoint = {
+          x: 0,
+          y: 0
+        };
         let isTouchMove = false;
 
         el.addEventListener('touchstart', startHandler, false);
@@ -48,41 +51,32 @@
           isTouchMove = true;
 
           const touch = e.changedTouches[0];
-          const diffPoint = {};
-          const movePoint = {
-            x: 0,
-            y: 0
+          const endPoint = {
+            x: touch.pageX,
+            y: touch.pageY
           };
-
-          diffPoint.x = touch.pageX - startPoint.x;
-          diffPoint.y = touch.pageY - startPoint.y;
+          const movePoint = {};
 
           if (options.x) {
-            movePoint.x = diffPoint.x + curPoint.x;
+            movePoint.x = endPoint.x - startPoint.x + curPoint.x;
           }
 
           if (options.y) {
-            movePoint.y = diffPoint.y + curPoint.y;
+            movePoint.y = endPoint.y - startPoint.y + curPoint.y;
           }
 
-          move(el, movePoint.x, movePoint.y);
+          el.style.transform = `translate3d(${movePoint.x}px, ${movePoint.y}px, 0)`;
         }
 
         function endHandler(e) {
           if (!isTouchMove) {
             return;
           }
-
           const touch = e.changedTouches[0];
-
           curPoint.x += touch.pageX - startPoint.x;
           curPoint.y += touch.pageY - startPoint.y;
 
           isTouchMove = false;
-        }
-
-        function move(el, x = 0, y = 0) {
-          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         }
       }
 
