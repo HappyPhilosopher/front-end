@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      class Drag {
+        constructor(el) {
+          this.el = document.querySelector(el);
+          this.down();
+        }
+        down() {
+          this.el.ontouchstart = e => {
+            const startPos = {
+              x: e.clientX,
+              y: e.clientY
+            };
+            const initPos = {
+              x: 0,
+              y: 0
+            };
+
+            this.move(startPos, initPos);
+            this.up();
+          };
+        }
+        move(startPos, initPos) {
+          this.el.ontouchmove = e => {
+            const touch = e.changedTouches[0];
+            const endPos = {
+              x: touch.clientX,
+              y: touch.clientY
+            };
+            console.log(startPos, initPos);
+            const pos = {
+              x: endPos.x - startPos.x + initPos.x,
+              y: endPos.y - startPos.y + initPos.y
+            };
+            this.el.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+          };
+        }
+        up() {
+          this.el.ontouchend = () => {
+            this.el.ontouchmove = null;
+          };
+        }
+      }
+
+      new Drag('.box');
+    </script>
+  </body>
+</html>
