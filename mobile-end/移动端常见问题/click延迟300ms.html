@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <!-- 引入以下代码，即可解决移动端 click 事件延迟 300ms 的问题 -->
+    <script src="./js/fastclick.js"></script>
+    <script>
+      if ('addEventListener' in document) {
+        document.addEventListener(
+          'DOMContentLoaded',
+          function() {
+            FastClick.attach(document.body);
+          },
+          false
+        );
+      }
+    </script>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <script>
+      // click 300ms 延迟是因为移动端 dbclick 事件默认会放大页面
+      // 解决办法可用 fastclick.js
+      const box = document.querySelector('.box');
+      let startTime = 0;
+
+      box.addEventListener('touchstart', function() {
+        startTime = Date.now();
+        console.log('touchstart');
+      });
+
+      box.addEventListener('click', function() {
+        console.log('click');
+        console.log(Date.now() - startTime);
+      });
+    </script>
+  </body>
+</html>

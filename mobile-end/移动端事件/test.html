@@ -22,18 +22,20 @@
 
     <script>
       function drag(el, options = { x: true, y: true }) {
-        if (!options.x && !options.y) {
-          return;
-        }
+        // 横纵坐标都禁用，直接返回
+        if (!options.x && !options.y) return;
 
-        let curPoint = {
+        // 初始坐标
+        const curPoint = {
           x: 0,
           y: 0
         };
-        let startPoint = {
+        // 手指按下时触摸位置
+        const startPoint = {
           x: 0,
           y: 0
         };
+        // 开闭器
         let isTouchMove = false;
 
         el.addEventListener('touchstart', startHandler, false);
@@ -51,32 +53,40 @@
           isTouchMove = true;
 
           const touch = e.changedTouches[0];
+          // 手指移动后触摸位置
           const endPoint = {
             x: touch.pageX,
             y: touch.pageY
           };
+          // 手指滑动距离
           const movePoint = {};
 
+          // 未禁用 x 轴
           if (options.x) {
             movePoint.x = endPoint.x - startPoint.x + curPoint.x;
           }
 
+          // 未禁用 y 轴
           if (options.y) {
             movePoint.y = endPoint.y - startPoint.y + curPoint.y;
           }
 
-          el.style.transform = `translate3d(${movePoint.x}px, ${movePoint.y}px, 0)`;
+          setStyle(el, movePoint.x, movePoint.y);
         }
 
         function endHandler(e) {
-          if (!isTouchMove) {
-            return;
-          }
+          if (!isTouchMove) return;
+
           const touch = e.changedTouches[0];
+          // 重设初始坐标
           curPoint.x += touch.pageX - startPoint.x;
           curPoint.y += touch.pageY - startPoint.y;
 
           isTouchMove = false;
+        }
+
+        function setStyle(el, x = 0, y = 0) {
+          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
         }
       }
 

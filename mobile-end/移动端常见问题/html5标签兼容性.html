@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <!-- 使 HTML5 标签兼容 IE9 以下浏览器 -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- 通过 modernizr 生成，支持 CSS3 属性的浏览器使用 CSS3，不支持的使用兼容性写法 -->
+    <script src="./js/modernizr-custom.js"></script>
+    <link rel="stylesheet" href="./css/html5标签兼容性.css" />
+  </head>
+  <body>
+    <header>header</header>
+    <footer>footer</footer>
+
+    <script>
+      // js 兼容性不应使用浏览器检测，而是使用特性检测
+      // 最终都不支持，可以自己实现该方法，或者提示用户更新浏览器
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(fn) {
+          setTimeout(fn, 16);
+        };
+    </script>
+  </body>
+</html>

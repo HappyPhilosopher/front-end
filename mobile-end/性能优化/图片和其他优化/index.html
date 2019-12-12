@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <!-- 
+      图片大、多
+        HTTP 请求大：
+          图片压缩处理
+          使用更高压缩比格式的图片——webp
+          尽量少用图片
+            使用图片字体代替图片图标
+            CSS 画图
+        HTTP 请求多：
+          合理使用 base64 格式内嵌图片（小图片、小图标）
+          合并静态资源图片
+            雪碧图
+              手动
+     -->
+
+    <!-- 
+      1、<a>、<link>、<script>、<img> 等标签，引入内容最好写上东西，避免浏览器解析空内容
+      2、<table>、<iframe> 等属于慢标签，浏览器会先解析器结构，然后再渲染内容（避免使用 <iframe> 标签）
+      3、DOM 结构切勿嵌套过深，加大浏览器解析压力
+      4、内容过多时，区分主次内容，在 DOM 结构中，主要内容放于次要内容之前，这样浏览器会先解析主要内容，再解析次要内容
+    -->
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      /**
+       * 内联：
+       *     优点：
+       *         减少 HTTP 请求
+       *     缺点：
+       *         1、没办法复用
+       *         2、使得 HTML 文件变大，加载时间变长
+       *         3、代码都写到 HTML 文件中，不利于后期的维护（？）
+       *            ——工程化手段可以解决这个问题
+       *            ——源码 → 上线
+       */
+    </style>
+    <!-- 
+      通过外部文件引入：
+        优点：
+          1、很好的复用性
+            有效利用浏览器的静态资源缓存
+          2、代码分离，利于后期维护
+        缺点：
+          增加了 HTTP 请求
+     -->
+    <link rel="stylesheet" href="./css/base.css" />
+    <!-- 取巧解决方案：首屏必备内容使用内联方法加载 CSS 和 JS 文件 -->
+    <script>
+      // inline flexible
+    </script>
+  </head>
+  <body>
+    <!-- 页面上线前，HTML、CSS、JS 通过工具进行压缩，减小体积，减少 HTTP 请求时间，从而提高页面性能 -->
+
+    <script>
+      // js 文件一般放于最后，如果放于前面，会影响 DOM 结构的加载（首屏必备的代码除外）
+    </script>
+  </body>
+</html>

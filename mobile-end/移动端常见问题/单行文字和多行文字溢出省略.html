@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      /* 单行文字溢出省略不能与 flex 一起使用 */
+      .simpleline-ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .multiline-ellipsis {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 单行文字溢出省略 -->
+    <div class="simpleline-ellipsis">
+      FastClick doesn't attach any listeners on desktop browsers. Chrome 32+ on
+      Android with width=device-width in the viewport meta tag doesn't have a
+      300ms delay, therefore listeners aren't attached.
+    </div>
+    <hr />
+
+    <!-- 多行文字溢出省略 -->
+    <div class="multiline-ellipsis">
+      FastClick doesn't attach any listeners on desktop browsers. Chrome 32+ on
+      Android with width=device-width in the viewport meta tag doesn't have a
+      300ms delay, therefore listeners aren't attached.
+    </div>
+  </body>
+</html>

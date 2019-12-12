@@ -1,0 +1,30 @@
+header,
+footer {
+  height: 100px;
+}
+header {
+  background-color: #f00;
+}
+footer {
+  background-color: #ff0;
+  margin-top: 100px;
+}
+/* 支持 CSS3 属性的浏览器加载该样式 */
+.flexbox header,
+.flexbox footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+/* 不支持 CSS3 属性的浏览器加载该样式 */
+.no-flexbox header,
+.no-flexbox footer {
+  text-align: center;
+  line-height: 100px;
+}
