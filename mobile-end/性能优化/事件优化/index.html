@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      body {
+        height: 2000px;
+      }
+      .goods {
+        display: flex;
+        list-style: none;
+      }
+      .goods__item {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin-right: 5px;
+      }
+      .goods__item:nth-last-child(1) {
+        margin-right: 0;
+      }
+      .active {
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="goods">
+      <li class="goods__item active"></li>
+      <li class="goods__item"></li>
+      <li class="goods__item"></li>
+      <li class="goods__item"></li>
+    </ul>
+
+    <script>
+      /**
+       * js 事件优化：
+       * 1、事件委托
+       * 2、高频触发事件使用节流阀 
+       */
+
+      //  1、事件委托
+      const goods = document.querySelector('.goods');
+
+      goods.addEventListener('click', function(e) {
+        const target = e.target;
+        const goodsItems = this.children;
+        const reg = /(^|\s)goods__item($|\s)/;
+
+        if (target && reg.test(target.className)) {
+          Array.from(goodsItems).forEach(item => {
+            item.classList.remove('active');
+          });
+          target.classList.add('active');
+        }
+      });
+
+      // 2、节流
+      function debounce(fn, delay) {
+        let timer = 0;
+
+        return function(...args) {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(null, args);
+          }, delay);
+        }
+      }
+
+      function print(msg) {
+        console.log(msg);
+      }
+
+      const throttle = debounce(print, 100);
+
+      window.addEventListener('scroll', function() {
+        throttle('hello');
+      });
+    </script>
+  </body>
+</html>

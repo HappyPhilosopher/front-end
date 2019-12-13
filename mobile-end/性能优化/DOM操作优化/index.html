@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+      </div>
+    </div>
+
+    <script>
+      /**
+       * DOM 操作优化：
+       * 1、合理使用 id 选择器
+       * 2、在已获取 DOM 元素中查找，而非 document
+       * 3、缓存 DOM 元素，尽量减少 DOM 的获取，如 var swiperContainer = document.querySelector('.swiper-container');
+       * 4、DOM 增删改查不如字符串快捷，比如在容器内生成 DOM
+              let html = '';
+              for (let i = 0; i < xxx; i++) {
+                html += `
+                  <span>xxx</span>
+                `;
+              }
+              xxx.innerHTML = html;
+       * 5、也可以使用中间 DOM 元素添加元素，最后把中间 DOM 添加到容器中。
+       * 6、循环时，DOM 元素的长度可以缓存起来再使用，如
+              const boxesLength = boxes.length;  
+              for (let i = 0; i < boxesLength; i++) {
+                ...
+              }
+       * 7、循环创建元素时，只使用一次 document.createElement()，循环中使用克隆替代，如
+              const div = document.createElement('div');
+              for (let i = 0; i < 3; i++) {
+                const newDiv = div.cloneNode(true);
+                ...
+              }
+       * 8、通过 className 操作 DOM 样式，而非直接修改
+       * 9、重排、重绘：避免重排，少重绘（使用 className 操作，同第 8 条）
+       */
+    </script>
+  </body>
+</html>
