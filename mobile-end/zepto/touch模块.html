@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">Hello World</div>
+
+    <script src="./node_modules/zepto/dist/zepto.min.js"></script>
+    <script src="./node_modules/zepto/src/touch.js"></script>
+    <script>
+      // $('.box').on('tap', function() {
+      //   console.log($(this).html());
+      // });
+
+      // 使用滑动事件时，需先绑定 'touchmove' 事件
+      $('.box').on('touchmove', function(e) {
+        e.preventDefault();
+      });
+
+      $('.box').swipe(function() {
+        console.log('swipe');
+      });
+
+      $('.box').swipeLeft(function() {
+        console.log('swipeLeft');
+      });
+
+      $('.box').swipeRight(function() {
+        console.log('swipeRight');
+      });
+
+      $('.box').swipeUp(function() {
+        console.log('swipeUp');
+      });
+
+      $('.box').swipeDown(function() {
+        console.log('swipeDown');
+      });
+    </script>
+  </body>
+</html>

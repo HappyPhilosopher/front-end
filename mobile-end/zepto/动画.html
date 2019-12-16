@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #add8e6;
+      }
+    </style>
+  </head>
+  <body>
+    <button>click me</button>
+    <p>hello world</p>
+
+    <div class="box"></div>
+
+    <!-- zepto 仅包含核心文件，动画等扩展功能需要额外引用相应脚本 -->
+    <script src="./node_modules/zepto/dist/zepto.min.js"></script>
+    <script src="./node_modules/zepto/src/fx.js"></script>
+    <script src="./node_modules/zepto/src/fx_methods.js"></script>
+    <script>
+      /* $('button').on('click', function() {
+        $('p').fadeToggle(1000);
+        // $('p').toggle(300);
+      }); */
+
+      $('button').on('click', function() {
+        $('.box').animate({ transform: 'translateX(100px)' }, function() {
+          $(this).animate({ width: '200px' });
+        });
+      });
+    </script>
+  </body>
+</html>

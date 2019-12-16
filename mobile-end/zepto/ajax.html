@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style></style>
+  </head>
+  <body>
+    <script src="./node_modules/zepto/dist/zepto.min.js"></script>
+    <script>
+      // 原生写法
+      /* const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'data.json', true);
+      xhr.send();
+      xhr.onreadystatechange = function() {
+        if (this.readyState !== 4) return;
+        if (this.status === 200) {
+          console.log(JSON.parse(this.response));
+        }
+      }; */
+
+      // zepto
+      $.ajax({
+        type: 'GET',
+        url: 'data.json',
+        dataType: 'json',
+        success: function(response) {
+          console.log(response);
+        }
+      });
+    </script>
+  </body>
+</html>

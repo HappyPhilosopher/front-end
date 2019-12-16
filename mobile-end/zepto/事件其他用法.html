@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div>click me</div>
+
+    <script src="https://s2.pstatp.com/cdn/expire-1-M/zepto/1.2.0/zepto.min.js"></script>
+    <script>
+      // 自定义事件
+      /* $('div').on('custom', function() {
+        console.log('自定义事件');
+      });
+      $('div').trigger('custom'); */
+
+      // 事件命名空间
+      // 方便事件解绑
+      /* $('div').on('click', function() {
+        console.log('click event');
+      });
+      $('div').on('click.test', function() {
+        console.log('click.test event');
+      });
+      $('div').off('click.test'); */
+
+      // 多个事件绑定
+      $('div')
+        .on('click', function() {
+          console.log('clicked');
+        })
+        .on('touchstart', function() {
+          console.log('touched');
+        });
+    </script>
+  </body>
+</html>
