@@ -1,0 +1,29 @@
+<view>
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}">
+    <swiper-item>
+      <image src="/images/wx.png" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/vr.png" />
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/iqiyi.png" />
+    </swiper-item>
+  </swiper>
+
+  <view class="post-container">
+    <view class="post-author-date">
+      <image class="post-author" src="/images/avatar/1.png" />
+      <text class="post-date">{{ date }}</text>
+    </view>
+    <text class="post-title">{{ title }}</text>
+    <image class="post-image" src="/images/post/crab.png" />
+    <text class="post-content">菊黄蟹正肥，品尝秋之味。徐志摩把,“看初花的荻芦”和“到楼外楼吃蟹”,并列为秋天来杭州不能错过的风雅之事；用林妹妹的话讲是“螯封嫩玉双双满”</text>
+    <view class="post-like">
+      <image class="post-like-image" src="/images/icon/chat.png" />
+      <text class="post-like-font">96</text>
+      <image class="post-like-image" src="/images/icon/view.png" />
+      <text class="post-like-font">112</text>
+    </view>
+  </view>
+</view>

@@ -1,5 +1,7 @@
-<view>
-  <text>
-    Hello World
-  </text>
+<view class="container">
+  <image class="user-avatar" src="/images/avatar/1.png" />
+  <text class="user-name">Hello，痛苦的猪</text>
+  <view class="motto-container">
+    <text class="motto">开启小程序之旅</text>
+  </view>
 </view>
