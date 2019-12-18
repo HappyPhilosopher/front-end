@@ -1,0 +1,13 @@
+<template name="swiper">
+	<swiper indicator-dots="{{true}}" autoplay="{{true}}">
+		<swiper-item>
+			<image src="/images/wx.png" />
+		</swiper-item>
+		<swiper-item>
+			<image src="/images/vr.png" />
+		</swiper-item>
+		<swiper-item>
+			<image src="/images/iqiyi.png" />
+		</swiper-item>
+	</swiper>
+</template>
