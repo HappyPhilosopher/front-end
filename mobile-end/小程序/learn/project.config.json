@@ -4,15 +4,23 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false,
 		"coverView": true,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
@@ -50,16 +58,16 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/posts/details/detail",
-					"pathName": "pages/posts/details/detail",
+					"name": "posts",
+					"pathName": "pages/posts/posts",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "posts",
-					"pathName": "pages/posts/posts",
-					"query": "",
+					"name": "pages/posts/details/detail",
+					"pathName": "pages/posts/details/detail",
+					"query": "id=0",
 					"scene": null
 				}
 			]
