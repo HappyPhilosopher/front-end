@@ -27,7 +27,7 @@ Page({
     }); */
     const _this = this;
     wx.showModal({
-      title: '收藏',
+      // title: '收藏',
       content: this.data.detail.isCollected ? '是否取消收藏' : '是否收藏',
       success(res) {
         if (res.confirm) {

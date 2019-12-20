@@ -2,10 +2,27 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/posts/posts",
-    "pages/posts/details/detail"
+    "pages/posts/details/detail",
+    "pages/demo/demo"
   ],
   "window": {
     "navigationBarBackgroundColor": "#b3d4db"
   },
-  "sitemapLocation": "sitemap.json"
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/posts/posts",
+        "text": "新闻",
+        "iconPath": "/images/tab/yuedu.png",
+        "selectedIconPath": "/images/tab/yuedu_hl.png"
+      },
+      {
+        "pagePath": "pages/demo/demo",
+        "text": "demo",
+        "iconPath": "/images/tab/dianying.png",
+        "selectedIconPath": "/images/tab/dianying_hl.png"
+      }
+    ],
+    "borderStyle": "white"
+  }
 }
