@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        border: 1px solid #555;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="400" height="300">
+      您的浏览器不支持canvas.
+    </canvas>
+
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.translate(0.5, 0.5);
+
+      ctx.beginPath();
+      ctx.moveTo(50, 50);
+      ctx.lineTo(300, 200);
+      ctx.stroke();
+
+      // ctx.translate() 改变原点坐标
+      ctx.translate(50, 50);
+      ctx.beginPath();
+      ctx.moveTo(50, 50);
+      ctx.lineTo(300, 200);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, 200);
+      ctx.stroke();
+    </script>
+  </body>
+</html>

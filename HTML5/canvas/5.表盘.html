@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        border: 1px solid #555;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="600" height="400">
+      您的浏览器不支持canvas.
+    </canvas>
+
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.translate(0.5, 0.5);
+
+      ctx.translate(200, 200);
+
+      ctx.save();
+
+      ctx.beginPath();
+      ctx.arc(0, 0, 100, 0, Math.PI * 2, false);
+      ctx.stroke();
+
+      ctx.beginPath();
+      for (let i = 0; i < 60; i++) {
+        ctx.moveTo(100, 0);
+        i % 5 === 0 ? ctx.lineTo(90, 0) : ctx.lineTo(95, 0);
+        ctx.rotate(Math.PI / 30);
+      }
+      ctx.stroke();
+
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -70);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(50, 0);
+      ctx.stroke();
+    </script>
+  </body>
+</html>

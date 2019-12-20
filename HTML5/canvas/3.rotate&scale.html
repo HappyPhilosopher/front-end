@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        border: 1px solid #555;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="600" height="400">
+      您的浏览器不支持canvas.
+    </canvas>
+
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.translate(0.5, 0.5);
+      
+      // canvas 画布环境是叠加的
+      // 将原点移动到原（100， 100）位置
+      ctx.translate(100, 100);
+      // 旋转画布45度
+      ctx.rotate(deg2rad(45));
+      // x 轴缩放为 1/2
+      ctx.scale(0.5, 1);
+      // 绘制正方形
+      ctx.fillRect(0, 0, 200, 100);
+
+      function deg2rad(deg) {
+        return (1 / 180) * Math.PI * deg;
+      }
+    </script>
+  </body>
+</html>
