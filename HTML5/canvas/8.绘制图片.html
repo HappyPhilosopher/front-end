@@ -22,26 +22,23 @@
       const ctx = canvas.getContext('2d');
       ctx.translate(0.5, 0.5);
 
-      ctx.translate(300, 200);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      ctx.strokeStyle = '#fff';
       ctx.beginPath();
-      ctx.arc(0, 0, 100, 0, Math.PI * 2, false);
+      ctx.moveTo(100, 0);
+      ctx.lineTo(100, 400);
+      ctx.moveTo(0, 100);
+      ctx.lineTo(600, 100);
       ctx.stroke();
 
-      ctx.beginPath();
-      for (let i = 0; i < 60; i++) {
-        ctx.moveTo(100, 0);
-        i % 5 === 0 ? ctx.lineTo(90, 0) : ctx.lineTo(95, 0);
-        ctx.rotate(Math.PI / 30);
-      }
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0, -70);
-      ctx.moveTo(0, 0);
-      ctx.lineTo(50, 0);
-      ctx.stroke();
+      const img = new Image();
+      img.src = './images/logo.png';
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0);
+        // 截取从 (0, 0) 到 (40, 40) 坐标点的 40x40 大小的图片，放置于 (100, 100) 坐标处，其大小为 40x40
+        ctx.drawImage(img, 0, 0, 40, 40, 100, 100, 40, 40);
+      };
     </script>
   </body>
 </html>

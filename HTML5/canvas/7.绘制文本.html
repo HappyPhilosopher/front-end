@@ -22,26 +22,12 @@
       const ctx = canvas.getContext('2d');
       ctx.translate(0.5, 0.5);
 
-      ctx.translate(300, 200);
-
-      ctx.beginPath();
-      ctx.arc(0, 0, 100, 0, Math.PI * 2, false);
-      ctx.stroke();
-
-      ctx.beginPath();
-      for (let i = 0; i < 60; i++) {
-        ctx.moveTo(100, 0);
-        i % 5 === 0 ? ctx.lineTo(90, 0) : ctx.lineTo(95, 0);
-        ctx.rotate(Math.PI / 30);
-      }
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0, -70);
-      ctx.moveTo(0, 0);
-      ctx.lineTo(50, 0);
-      ctx.stroke();
+      const str = 'Hello world';
+      ctx.font = '400 50px/50px Microsoft Yahei, sans-serif';
+      // const textWidth = ctx.measureText(str).width;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(str, 300, 100);
     </script>
   </body>
 </html>
