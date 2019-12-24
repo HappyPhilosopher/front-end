@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        border: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="./js/utils.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 800);
+      const H = (canvas.height = 600);
+
+      // 不能直接解构，因为此时 x 和 y 都为 0
+      const pos = C.getOffset(canvas);
+
+      drawSystem();
+
+      canvas.addEventListener('mousemove', function() {
+        ctx.clearRect(0, 0, W, H);
+        drawSystem();
+
+        ctx.beginPath();
+        // ctx.moveTo(W / 2, H / 2);
+        // ctx.lineTo(pos.x, pos.y);
+
+        ctx.lineTo(W / 2, H / 2);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+      });
+
+      function drawSystem() {
+        ctx.save();
+
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(0, H / 2);
+        ctx.lineTo(W, H / 2);
+        ctx.moveTo(W / 2, 0);
+        ctx.lineTo(W / 2, H);
+        ctx.stroke();
+
+        ctx.restore();
+      }
+    </script>
+  </body>
+</html>
