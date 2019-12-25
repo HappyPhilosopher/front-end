@@ -24,5 +24,6 @@
       }
     ],
     "borderStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap5.json"
 }

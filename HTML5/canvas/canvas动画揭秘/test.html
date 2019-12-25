@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script>
+      class Ball {
+        constructor(options) {
+          const acquiescentOptions = {
+            x: 0,
+            y: 0,
+            r: 50,
+            alpha: 1,
+            fillStyle: 'rgb(57, 119, 224)',
+            strokeStyle: 'rgba(0, 0, 0, 0)'
+          };
+          this.options = Object.assign(acquiescentOptions, options);
+        }
+        render(ctx) {
+          const { x, y, r, alpha, fillStyle, strokeStyle } = this.options;
+
+          ctx.save();
+
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = fillStyle;
+          ctx.strokeStyle = strokeStyle;
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.restore();
+        }
+      }
+
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      
+
+      const ball = new Ball({
+        x: W / 2,
+        y: H / 2
+      });
+      ball.render(ctx);
+
+      let angle = 0;
+      const SWING = 160;
+
+      move();
+
+      function move() {
+        window.requestAnimationFrame(move);
+        ctx.clearRect(0, 0, W, H);
+        ball.options.x = W / 2 + Math.sin(angle) * SWING;
+        angle += 0.05;
+        angle %= Math.PI * 2;
+        ball.render(ctx);
+      }
+    </script>
+  </body>
+</html>

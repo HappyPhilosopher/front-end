@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg" style="display: none;"></canvas>
+    <canvas id="main"></canvas>
+
+    <script>
+      // tools
+      const Utils = {
+        getOffset(el) {
+          const mouse = { x: 0, y: 0 };
+
+          el.addEventListener('mousemove', e => {
+            const { x, y } = this.changeSystem(e);
+            mouse.x = x;
+            mouse.y = y;
+          });
+
+          return mouse;
+        },
+        changeSystem(e) {
+          const { pageX, pageY, target } = e;
+          const { left, top } = target.getBoundingClientRect();
+          return { x: pageX - left, y: pageY - top };
+        },
+        toDeg(rad) {
+          return (rad * Math.PI) / 180;
+        },
+        toRad(deg) {
+          return (deg * 180) / Math.PI;
+        }
+      };
+
+      // Arrow
+      class Arrow {
+        constructor(options) {
+          const acquiescentOptions = {
+            x: 0,
+            y: 0,
+            w: 80,
+            h: 30,
+            rotation: 0,
+            fillStyle: '#add8e6',
+            strokeStyle: 'rgba(0, 0, 0, 0)'
+          };
+          this.options = Object.assign(acquiescentOptions, options);
+        }
+        drawPath(ctx) {
+          const { w, h } = this.options;
+
+          ctx.beginPath();
+          ctx.moveTo(-w / 2, -h / 2);
+          ctx.lineTo(w / 10, -h / 2);
+          ctx.lineTo(w / 10, -h);
+          ctx.lineTo(w / 2, 0);
+          ctx.lineTo(w / 10, h);
+          ctx.lineTo(w / 10, h / 2);
+          ctx.lineTo(-w / 2, h / 2);
+          ctx.closePath();
+        }
+        render(ctx) {
+          const { x, y, fillStyle, strokeStyle, rotation } = this.options;
+
+          ctx.save();
+
+          ctx.translate(x, y);
+          ctx.rotate(rotation);
+          this.drawPath(ctx);
+          ctx.fillStyle = fillStyle;
+          ctx.strokeStyle = strokeStyle;
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.restore();
+        }
+      }
+
+      // 离屏canvas
+      const bgCanvas = document.querySelector('#bg');
+      const bgCtx = bgCanvas.getContext('2d');
+      const W = (bgCanvas.width = 600);
+      const H = (bgCanvas.height = 400);
+      bgCtx.translate(0.5, 0.5);
+
+      drawBg();
+
+      function drawBg() {
+        bgCtx.save();
+
+        bgCtx.beginPath();
+        bgCtx.moveTo(W / 2, 0);
+        bgCtx.lineTo(W / 2, H);
+        bgCtx.moveTo(0, H / 2);
+        bgCtx.lineTo(W, H / 2);
+        bgCtx.stroke();
+        
+        bgCtx.restore();
+      }
+
+      // 显示canvas
+      const canvas = document.querySelector('#main');
+      const ctx = canvas.getContext('2d');
+      canvas.width = W;
+      canvas.height = H;
+      const mouse = Utils.getOffset(canvas);
+
+      // 绘制背景
+      ctx.drawImage(bgCanvas, 0, 0);
+
+      // 箭头实例
+      const arrow = new Arrow({
+        x: W / 2,
+        y: H / 2
+      });
+      arrow.render(ctx);
+
+      // 跟随鼠标转动
+      canvas.addEventListener('mousemove', function() {
+        const dx = mouse.x - arrow.options.x;
+        const dy = mouse.y - arrow.options.y;
+        arrow.options.rotation = Math.atan2(dy, dx);
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(bgCanvas, 0, 0);
+        arrow.render(ctx);
+      });
+    </script>
+  </body>
+</html>

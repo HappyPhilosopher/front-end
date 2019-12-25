@@ -15,7 +15,7 @@
   <body>
     <canvas></canvas>
 
-    <script src="./js/utils.js"></script>
+    <script src="./assets/scripts/utils.js"></script>
     <script>
       const canvas = document.querySelector('canvas');
       const ctx = canvas.getContext('2d');
@@ -31,13 +31,18 @@
         ctx.clearRect(0, 0, W, H);
         drawSystem();
 
-        ctx.beginPath();
-        // ctx.moveTo(W / 2, H / 2);
-        // ctx.lineTo(pos.x, pos.y);
+        const x = pos.x - W / 2;
+        const y = pos.y - H / 2;
+        // 角度，顺时针为正，逆时针为负
+        const a = C.toDeg(Math.atan2(y, x));
 
-        ctx.lineTo(W / 2, H / 2);
+        ctx.beginPath();
+        ctx.moveTo(W / 2, H / 2);
         ctx.lineTo(pos.x, pos.y);
+        // ctx.lineTo(W / 2, H / 2);
+        // ctx.lineTo(pos.x, pos.y);
         ctx.stroke();
+        ctx.fillText(a, pos.x, pos.y);
       });
 
       function drawSystem() {
