@@ -7,10 +7,6 @@
     <title>Document</title>
     <link rel="icon" href="#" />
     <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
       canvas {
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
       }
@@ -19,34 +15,9 @@
   <body>
     <canvas></canvas>
 
-    <script src="./1.运动&三角函数/assets/components/Arrow.js"></script>
+    <script src="./assets/scripts/utils.js"></script>
+    <script src="./assets/components/Arrow.js"></script>
     <script>
-      const Utils = {
-        getOffset(el) {
-          const _this = this;
-          let mouse = { x: 0, y: 0 };
-
-          el.addEventListener('mousemove', function(e) {
-            const { x, y } = _this.changeSystem(e);
-            mouse.x = x;
-            mouse.y = y;
-          });
-
-          return mouse;
-        },
-        changeSystem(e) {
-          const { pageX, pageY, target } = e;
-          const { left, top } = target.getBoundingClientRect();
-          return { x: pageX - left, y: pageY - top };
-        },
-        toDeg(rad) {
-          return (rad * Math.PI) / 180;
-        },
-        toRad(deg) {
-          return (deg * 180) / Math.PI;
-        }
-      };
-
       const canvas = document.querySelector('canvas');
       const ctx = canvas.getContext('2d');
       const W = (canvas.width = 600);
@@ -58,22 +29,24 @@
       });
       arrow.render(ctx);
 
-      let mouse = Utils.getOffset(canvas);
+      let mouse = C.getOffset(canvas);
       const speed = 3;
+      let angle = 0;
 
       (function move() {
         window.requestAnimationFrame(move);
 
         const dx = mouse.x - arrow.options.x;
         const dy = mouse.y - arrow.options.y;
-        const angle = Math.atan2(dy, dx);
+        angle = Math.atan2(dy, dx);
+        const vx = speed * Math.cos(angle);
+        const vy = speed * Math.sin(angle);
 
         ctx.clearRect(0, 0, W, H);
-
-        arrow.options.x += speed * Math.cos(angle);
-        arrow.options.y += speed * Math.sin(angle);
+        arrow.options.x += vx;
+        arrow.options.y += vy;
         arrow.options.rotation = angle;
-
+        
         arrow.render(ctx);
       })();
     </script>

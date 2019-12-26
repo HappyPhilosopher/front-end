@@ -8,7 +8,7 @@ class Arrow {
     const acquiescentOpt = {
       x: 0,
       y: 0,
-      w: 60,
+      w: 80,
       h: 30,
       rotation: 0,
       fillStyle: 'rgb(57, 119, 224)',

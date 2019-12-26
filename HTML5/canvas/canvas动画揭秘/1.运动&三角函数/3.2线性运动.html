@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="./assets/components/Ball.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      const ball = new Ball({
+        x: W / 2,
+        y: H / 2
+      });
+      ball.render(ctx);
+
+      let angle = 0;
+      let vx = 2;
+      let direction = 1;
+      const SWING = 100;
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        ball.options.x += vx * direction;
+        ball.options.y = H / 2 + Math.sin(angle) * SWING;
+
+        angle += 0.1;
+        angle %= Math.PI * 2;
+
+        // 碰撞检测
+        if (ball.options.x >= W - ball.options.r) {
+          direction = -1;
+        } else if (ball.options.x <= ball.options.r) {
+          direction = 1;
+        }
+
+        ball.render(ctx);
+      })();
+    </script>
+  </body>
+</html>

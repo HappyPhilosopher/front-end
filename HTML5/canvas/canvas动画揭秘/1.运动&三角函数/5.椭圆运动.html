@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="./assets/components/Ball.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      const ball = new Ball({
+        x: W / 2,
+        y: H / 2,
+        r: 30
+      });
+      ball.render(ctx);
+
+      let angle = 0;
+      const a = 200;
+      const b = 80;
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        // 绘制椭圆
+        ctx.save();
+        ctx.translate(W / 2, H / 2);
+        ctx.scale(1, b / a);
+        ctx.beginPath();
+        ctx.arc(0, 0, a, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // 绘制小球运动轨迹
+        ball.options.x = W / 2 + a * Math.cos(angle);
+        ball.options.y = H / 2 + b * Math.sin(angle);
+
+        angle += 0.02;
+        angle %= Math.PI * 2;
+
+        ball.render(ctx);
+      })();
+    </script>
+  </body>
+</html>
