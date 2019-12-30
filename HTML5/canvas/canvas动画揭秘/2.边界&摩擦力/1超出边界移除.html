@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="../assets/components/Ball.js"></script>
+    <script src="../assets/scripts/utils.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      // 存放小球
+      let balls = [];
+
+      // 创建10个随机小球并添加到 balls 中
+      for (let i = 0; i < 10; i++) {
+        const ball = new Ball({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 20 + 30,
+          vx: (Math.random() - 0.5) * 3,
+          vy: (Math.random() - 0.5) * 3,
+          fillStyle: `rgb(${55 + parseInt(Math.random() * 200)},
+            ${55 + parseInt(Math.random() * 200)}, 
+            ${55 + parseInt(Math.random() * 200)})`,
+          id: `ballId: ${i}`
+        });
+        balls.push(ball);
+      }
+
+      // 单个小球运动轨迹
+      function ballMove(ball, index) {
+        ball.options.x += ball.options.vx;
+        ball.options.y += ball.options.vy;
+
+        if (
+          ball.options.x + ball.options.r <= 0 ||
+          ball.options.x - ball.options.r >= W ||
+          ball.options.y + ball.options.r <= 0 ||
+          ball.options.y - ball.options.r >= H
+        ) {
+          balls.splice(index, 1);
+          console.log(`小球${ball.options.id}被移除了。`);
+          if (!balls.length) {
+            console.log('所有的小球都被移除了。');
+          }
+        }
+
+        ball.render(ctx);
+      }
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        balls.forEach((item, index) => {
+          ballMove(item, index);
+        });
+      })();
+    </script>
+  </body>
+</html>

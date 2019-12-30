@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="../assets/components/Ball.js"></script>
+    <script src="../assets/scripts/utils.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      // 存放小球
+      let balls = [];
+      // 重力加速度
+      const g = 0.02;
+
+      for (let i = 0; i < 100; i++) {
+        balls.push(
+          new Ball({
+            x: W / 2,
+            y: H,
+            // 半径小的球要多余半径大的
+            r:
+              Math.random() > 0.9
+                ? C.generateRandomNum([20, 30])
+                : C.generateRandomNum([10, 20]),
+            vx: C.generateRandomNum([-3, 3]),
+            vy: C.generateRandomNum([-10, 0]),
+            fillStyle: C.generateRandomColor()
+          })
+        );
+      }
+
+      function drawBall(ball) {
+        ball.options.x += ball.options.vx;
+        ball.options.y += ball.options.vy;
+        ball.options.vy += g;
+
+        if (
+          ball.options.x + ball.options.r <= 0 ||
+          ball.options.x - ball.options.r >= W ||
+          ball.options.y + ball.options.r <= 0 ||
+          ball.options.y - ball.options.r >= H
+        ) {
+          ball.options.x = W / 2;
+          ball.options.y = H;
+          ball.options.vx = C.generateRandomNum([-3, 3]);
+          ball.options.vy = C.generateRandomNum([-10, 0]);
+          ball.options.fillStyle = C.generateRandomColor();
+          ball.options.r =
+            Math.random() > 0.9
+              ? C.generateRandomNum([20, 30])
+              : C.generateRandomNum([10, 20]);
+        }
+
+        ball.render(ctx);
+      }
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        balls.forEach(drawBall);
+      })();
+    </script>
+  </body>
+</html>

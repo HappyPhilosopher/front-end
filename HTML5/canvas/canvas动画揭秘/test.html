@@ -7,10 +7,6 @@
     <title>Document</title>
     <link rel="icon" href="#" />
     <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
       canvas {
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
       }
@@ -19,7 +15,7 @@
   <body>
     <canvas></canvas>
 
-    <script src="./1.运动&三角函数/assets/components/Arrow.js"></script>
+    <script src="./assets/components/Ball.js"></script>
     <script>
       const Utils = {
         getOffset(el) {
@@ -44,6 +40,17 @@
         },
         toRad(deg) {
           return (deg * 180) / Math.PI;
+        },
+        generateRandomNum(arr, isInt) {
+          const max = Math.max(...arr);
+          const min = Math.min(...arr);
+          const num = Math.random() * (max - min) + min;
+          return isInt ? Math.round(num) : num;
+        },
+        generateRandomColor() {
+          return `rgb(${this.generateRandomNum([55, 255], true)},
+            ${this.generateRandomNum([55, 255], true)},
+            ${this.generateRandomNum([55, 255], true)})`;
         }
       };
 
@@ -52,29 +59,51 @@
       const W = (canvas.width = 600);
       const H = (canvas.height = 400);
 
-      const arrow = new Arrow({
-        x: W / 2,
-        y: H / 2
-      });
-      arrow.render(ctx);
+      let balls = [];
+      const g = 0.02;
 
-      let mouse = Utils.getOffset(canvas);
-      const speed = 3;
+      for (let i = 0; i < 100; i++) {
+        balls.push(
+          new Ball({
+            x: W / 2,
+            y: H,
+            r:
+              Math.random() > 0.9
+                ? Utils.generateRandomNum([20, 30])
+                : Utils.generateRandomNum([10, 20]),
+            vx: Utils.generateRandomNum([-3, 3]),
+            vy: Utils.generateRandomNum([-10, 0]),
+            fillStyle: Utils.generateRandomColor()
+          })
+        );
+      }
+
+      function drawBall(ball) {
+        ball.options.x += ball.options.vx;
+        ball.options.y += ball.options.vy;
+        ball.options.vy += g;
+
+        if (
+          ball.options.x + ball.options.r <= 0 ||
+          ball.options.x - ball.options.r >= W ||
+          ball.options.y + ball.options.r <= 0 ||
+          ball.options.y - ball.options.r >= H
+        ) {
+          ball.options.x = W / 2;
+          ball.options.y = H;
+          ball.options.vx = Utils.generateRandomNum([-3, 3]);
+          ball.options.vy = Utils.generateRandomNum([-10, 0]);
+        }
+
+        ball.render(ctx);
+      }
 
       (function move() {
         window.requestAnimationFrame(move);
 
-        const dx = mouse.x - arrow.options.x;
-        const dy = mouse.y - arrow.options.y;
-        const angle = Math.atan2(dy, dx);
-
         ctx.clearRect(0, 0, W, H);
 
-        arrow.options.x += speed * Math.cos(angle);
-        arrow.options.y += speed * Math.sin(angle);
-        arrow.options.rotation = angle;
-
-        arrow.render(ctx);
+        balls.forEach(drawBall);
       })();
     </script>
   </body>
