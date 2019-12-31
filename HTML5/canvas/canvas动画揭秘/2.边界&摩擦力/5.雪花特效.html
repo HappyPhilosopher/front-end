@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="../assets/components/Ball.js"></script>
+    <script src="../assets/scripts/utils.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      let snows = [];
+
+      for (let i = 0; i < 200; i++) {
+        snows.push(
+          new Ball({
+            x: C.generateRandomNum([1, W]),
+            y: C.generateRandomNum([1, H]),
+            r: C.generateRandomNum([1, 3]),
+            vx: C.generateRandomNum([-1, 1]),
+            vy: C.generateRandomNum([0, 2]),
+            fillStyle: '#fff'
+          })
+        );
+      }
+
+      function snowFall(snow) {
+        snow.options.x += snow.options.vx;
+        snow.options.y += snow.options.vy;
+
+        if (
+          snow.options.x + snow.options.r <= 0 ||
+          snow.options.x - snow.options.r >= W ||
+          snow.options.y - snow.options.r >= H
+        ) {
+          snow.options.x = C.generateRandomNum([0, W]);
+          snow.options.y = 0;
+          snow.options.r = C.generateRandomNum([1, 2]);
+          snow.options.vx = C.generateRandomNum([-1, 1]);
+          snow.options.vy = C.generateRandomNum([0, 2]);
+          snow.options.fillStyle = '#fff';
+        }
+
+        snow.render(ctx);
+      }
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        snows.forEach(snowFall);
+      })();
+    </script>
+  </body>
+</html>

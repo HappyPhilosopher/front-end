@@ -41,4 +41,8 @@ class Ball {
 
     ctx.restore();
   }
+  isInBall(pos) {
+    const { x, y, r } = this.options;
+    return Math.sqrt((pos.x - x) ** 2 + (pos.y - y) ** 2) <= r ? true : false;
+  }
 }

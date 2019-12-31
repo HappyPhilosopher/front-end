@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="../assets/components/Arrow.js"></script>
+    <script src="../assets/scripts/utils.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      const arrow = new Arrow({
+        x: W / 2,
+        y: H / 2,
+        w: 60,
+        h: 20
+      });
+      arrow.render(ctx);
+
+      let vx = 0;
+      let vy = 0;
+      let vr = 0;
+      let v = 0;
+
+      window.addEventListener('keydown', e => {
+        switch (e.keyCode) {
+          case 37:
+            vr = -5;
+            break;
+
+          case 38:
+            v = 2;
+            break;
+
+          case 39:
+            vr = 5;
+            break;
+        }
+      });
+
+      window.addEventListener('keyup', () => {
+        v = 0;
+        vr = 0;
+      });
+
+      (function move() {
+        window.requestAnimationFrame(move);
+
+        ctx.clearRect(0, 0, W, H);
+
+        arrow.options.rotation += C.toRad(vr);
+        const angle = arrow.options.rotation;
+        vx = Math.cos(angle) * v;
+        vy = Math.sin(angle) * v;
+
+        arrow.options.x += vx;
+        arrow.options.y += vy;
+
+        if (arrow.options.x - arrow.options.w / 2 >= W) {
+          arrow.options.x = -arrow.options.w / 2;
+        } else if (arrow.options.x + arrow.options.w / 2 <= 0) {
+          arrow.options.x = W + arrow.options.w / 2;
+        } else if (arrow.options.y - arrow.options.w / 2 >= H) {
+          arrow.options.y = -arrow.options.w / 2;
+        } else if (arrow.options.y + arrow.options.w / 2 <= 0) {
+          arrow.options.y = H + arrow.options.w / 2;
+        }
+
+        arrow.render(ctx);
+      })();
+    </script>
+  </body>
+</html>

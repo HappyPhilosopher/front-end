@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      canvas {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+    <script src="../assets/scripts/utils.js"></script>
+    <script src="../assets/components/Ball.js"></script>
+    <script>
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
+      const W = (canvas.width = 600);
+      const H = (canvas.height = 400);
+
+      const ball = new Ball({
+        x: W / 2,
+        y: H / 2
+      });
+      ball.render(ctx);
+
+      const mouse = C.getOffset(canvas);
+
+      canvas.addEventListener('click', function() {
+        if (ball.isInBall(mouse)) {
+          console.log('鼠标在小球内');
+        }
+      });
+    </script>
+  </body>
+</html>
