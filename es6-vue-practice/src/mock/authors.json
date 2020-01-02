@@ -1,8 +1,0 @@
-{
-  "code": 0,
-  "allAuthors": {
-    "fiction": ["A", "B", "C", "D"],
-    "scienceFiction": ["E", "F", "G"],
-    "other": ["H", "I"]
-  }
-}
