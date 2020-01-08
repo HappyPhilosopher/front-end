@@ -36,7 +36,7 @@
   function setRemUnit() {
     // ratio = 750 / 40;
     // 750px 为设计稿宽度，40px 为根元素字体大小
-    var ratio = 18.75;
+    var ratio = 7.5;
     var viewWidth = window.innerWidth;
 
     if (maxWidth && viewWidth / dpr > maxWidth) {

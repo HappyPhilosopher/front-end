@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /**
+       * new 的作用：
+       * 1、创建一个空对象
+       * 2、空对象的原型指向所传构造函数的原型对象（创建的对象继承自构造函数的原型对象）
+       * 3、构造函数的this指向该空对象
+       * 4、执行构造函数的功能代码，如果返回值为对象，则返回该对象；否则返回创建的对象
+       */
+      function _new() {
+        var obj = {};
+        var args = Array.prototype.slice.call(arguments);
+        var constructor = args.shift();
+        obj.__proto__ = constructor.prototype;
+        var result = constructor.apply(obj, args);
+        return typeof result === 'object' && result !== null ? result : obj;
+      }
+
+      function P(name) {
+        this.name = name;
+      }
+      var p = _new(P, 'zhangsan');
+      console.log(p);
+    </script>
+  </body>
+</html>

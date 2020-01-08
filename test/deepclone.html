@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /**
+       * 简易版深拷贝
+       */
+      const deepClone = obj => {
+        if (typeof obj !== 'object') return;
+        let newObj = obj instanceof Array ? [] : {};
+        for (let key in obj) {
+          if (typeof obj[key] === 'object') {
+            newObj[key] = deepClone(obj[key]);
+          } else {
+            newObj[key] = obj[key];
+          }
+        }
+        return newObj;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        color: #fff;
+        animation-name: changeFontSize, move;
+        animation-duration: 4s;
+        animation-timing-function: linear;
+        animation-iteration-count: 4;
+        animation-direction: alternate;
+      }
+      @keyframes move {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(300px, 0);
+        }
+        50% {
+          transform: translate(300px, 300px);
+        }
+        75% {
+          transform: translate(0, 300px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+      @keyframes changeFontSize {
+        0% {
+          font-size: 20px;
+        }
+        25% {
+          font-size: 30px;
+        }
+        50% {
+          font-size: 40px;
+        }
+        75% {
+          font-size: 50px;
+        }
+        100% {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="running">running</button>
+    <button class="paused">paused</button>
+    <div class="box">box</div>
+
+    <script>
+      const box = document.querySelector('.box');
+      const runBtn = document.querySelector('.running');
+      const pausedBtn = document.querySelector('.paused');
+
+      document.addEventListener('click', function(e) {
+        const { target } = e;
+        switch (target.className) {
+          case 'running':
+            box.style.animationPlayState = 'running';
+            break;
+
+          case 'paused':
+            box.style.animationPlayState = 'paused';
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="icon" href="#">
+  <style>
+    .container {
+      border: 5px solid purple;
+      background-color: lightpink;
+      /* 创建BFC使浮动元素与周围的内容等高 */
+      overflow: auto;
+    }
+    .box {
+      float: left;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">I am a floated box.</div>
+    <p>I am content inside the container.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Lodash.js</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script src="https://s2.pstatp.com/cdn/expire-1-M/lodash.js/4.17.12-pre/lodash.min.js"></script>
+    <script>
+      // _.chunk(array, [size=1])
+      // 将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
+      /* console.log(_.chunk([1, 2, 3, 4], 1));
+      console.log(_.chunk([1, 2, 3, 4], 2));
+      console.log(_.chunk([1, 2, 3, 4], 3)); */
+
+      // _.compact(array)
+      // 创建一个新数组，包含原数组中所有的非假值元素。例如false, null, 0, "", undefined, 和 NaN 都是被认为是“假值”。
+      /* console.log(_.compact([1, '', 2, null, undefined, 3])); */
+
+      // _.concat(array, [values])
+      // 创建一个新数组，将array与任何数组或值连接在一起。不改变原数组。
+      /* console.log(_.concat([1], 2, [3], [[4]])); */
+
+      // _.difference(array, [values])
+      // 创建一个具有唯一array值的数组，每个值不包含在其他给定的数组中。（即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值）
+      /* console.log(_.difference([1, 2, 3], [1, 3]));
+      console.log(_.difference(['a', 'b', 'c', 'd'], ['b', 'd'])); */
+
+      // _.differenceBy(array, [values], [iteratee=_.identity])
+      /* console.log(
+        _.differenceBy([1.1, 2.2, 3.3, 4.4], [2.5, 3.5, 4.5], Math.floor)
+      );
+      console.log(
+        _.differenceBy(
+          [
+            { x: 1, y: 2 },
+            { x: 2, y: 1 }
+          ],
+          [{ x: 1, y: 1 }],
+          'y'
+        )
+      ); */
+
+      // _.differenceWith(array, [values], [comparator])
+      const obj = [
+        {
+          x: 1,
+          y: 2
+        },
+        {
+          x: 2,
+          y: 1
+        }
+      ];
+      const another = [
+        {
+          x: 1,
+          y: 2
+        }
+      ];
+      console.log(_.differenceWith(obj, another, _.isEqual));
+    </script>
+  </body>
+</html>
