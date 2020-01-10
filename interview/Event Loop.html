@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /* console.log('script start');
+      setTimeout(() => {
+        console.log(setTimeout);
+      }, 0);
+      // 微任务
+      Promise.resolve()
+        .then(() => {
+          console.log('promise1');
+        })
+        .then(() => {
+          console.log('promise2');
+        });
+      console.log('script end'); */
+
+      console.log('script start');
+
+      // 微任务
+      Promise.resolve().then(() => {
+        console.log('p 1');
+      });
+
+      // 宏任务
+      setTimeout(() => {
+        console.log('setTimeout');
+      }, 0);
+
+      var s = new Date();
+      while (new Date() - s < 50); // 阻塞50ms
+
+      // 微任务
+      Promise.resolve().then(() => {
+        console.log('p 2');
+      });
+
+      console.log('script ent');
+    </script>
+  </body>
+</html>

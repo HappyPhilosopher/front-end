@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      /**
+       * Object.create(obj)
+       * 生成一个新对象，该对象为 obj 的实例
+       */
+      function create(obj) {
+        var F = function() {};
+        F.prototype = obj;
+        return new F();
+      }
+
+      var obj = { name: 'zhangsan' };
+      var newObj = create(obj);
+
+      console.log(Object.getPrototypeOf(newObj) === obj);
+    </script>
+  </body>
+</html>

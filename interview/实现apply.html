@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <script>
+      Function.prototype.apply2 = function(ctx, arr) {
+        ctx = ctx || window;
+        ctx.fn = this;
+        var result;
+        if (!arr) {
+          ctx.fn();
+        } else {
+          var args = [];
+          var len = arr.length;
+          for (var i = 0; i < len; i++) {
+            args.push('arr[' + i + ']');
+          }
+          result = eval('ctx.fn(' + args + ')');
+        }
+        delete ctx.fn;
+        return result;
+      };
+
+      var foo = {
+        value: 1
+      };
+
+      function bar(name, age) {
+        console.log(name);
+        console.log(age);
+        console.log(this.value);
+      }
+
+      bar.apply2(foo, ['zhangsan', 18]);
+    </script>
+  </body>
+</html>
