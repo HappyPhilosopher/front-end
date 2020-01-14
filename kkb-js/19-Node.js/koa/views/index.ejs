@@ -7,8 +7,168 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/home.css" />
     <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 640px;
+        margin: 10px auto;
+      }
+      ul,
+      ol {
+        list-style: none;
+      }
+      .news__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .paginations {
+        display: flex;
+      }
+      .pagination__item {
+        margin-right: 10px;
+      }
+      .pagination__item-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 2px;
+        border: 1px solid #eee;
+        font-style: normal;
+        color: #555;
+        text-decoration: none;
+      }
+      .active {
+        background-color: lightblue;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="container">
+      <ul class="news">
+        <!-- <li class="news__item">
+          <img
+            src="//d.ifengimg.com/w144_h80_q70/x0.ifengimg.com/ucms/2020_03/DD11F55563AD14DA1E608E965EB3A1D8C752C19E_w698_h392.png"
+            alt=""
+            class="news__item-img"
+          />
+          <h3 class="news__item-title">
+            香港3少年为8000港币劫千万现金，警方追缉幕后主脑
+          </h3>
+        </li> -->
+      </ul>
+
+      <ol class="paginations">
+        <!-- <li class="pagination__item">
+          <a href="#" class="pagination__item-cell active">1</a>
+        </li> -->
+      </ol>
+    </div>
+
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script>
+      (function() {
+        'use strict';
+        class News {
+          constructor() {
+            this.pageView = 5;
+            this.data = [];
+            this.init();
+          }
+          async init() {
+            const data = await this.getData();
+            const hash = parseInt(window.location.hash.slice(2));
+            this.renderNews(
+              {
+                page: hash || 0
+              },
+              data
+            );
+            this.renderPaginations(
+              {
+                page: hash || 0
+              },
+              data
+            );
+            this.listenHash(data);
+          }
+          async getData() {
+            const url = 'http://localhost:3000/data.json';
+            const { data } = await axios.get(url);
+            return data;
+          }
+          renderNews(options, data) {
+            let el_news = document.querySelector('.news');
+            const { page } = options;
+            const startItem = page * this.pageView;
+            const endItem = (page + 1) * this.pageView;
+            const filterData = data.filter(
+              (item, index) => index >= startItem && index < endItem
+            );
+
+            let html = '';
+            filterData.forEach(item => {
+              html += `
+                <li class="news__item">
+                  <img
+                    src="${item.img}"
+                    class="news__item-img"
+                  />
+                  <h3 class="news__item-title">${item.title}</h3>
+                </li>
+              `;
+            });
+            el_news.innerHTML = html;
+          }
+          renderPaginations(options, data) {
+            let el_paginations = document.querySelector('.paginations');
+            const { page } = options;
+            console.log(page);
+            const totalPage = Math.ceil(data.length / this.pageView);
+
+            let html = '';
+            for (let i = 0; i < totalPage; i++) {
+              html += `
+                <li class="pagination__item">
+                  <a href="#/${i}" class="pagination__item-cell ${
+                i === page ? 'active' : ''
+              }">${i + 1}</a>
+                </li>
+              `;
+            }
+            el_paginations.innerHTML = html;
+          }
+          listenHash(data) {
+            window.addEventListener('hashchange', () => {
+              const hash = parseInt(window.location.hash.slice(2));
+              this.renderNews(
+                {
+                  page: hash
+                },
+                data
+              );
+              this.renderPaginations(
+                {
+                  page: hash
+                },
+                data
+              );
+            });
+          }
+        }
+
+        new News();
+      })();
+    </script>
   </body>
 </html>
