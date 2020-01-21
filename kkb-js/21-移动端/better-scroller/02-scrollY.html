@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .wrapper {
+        width: 100%;
+        height: 300px;
+        border: 1px solid #000;
+        overflow: hidden;
+      }
+      #list {
+        display: flex;
+        list-style: none;
+        width: 500vw;
+        height: 100%;
+      }
+      li {
+        width: 100vw;
+        height: 100%;
+        text-align: center;
+        line-height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <ul id="list"></ul>
+    </div>
+
+    <script src="node_modules/better-scroll/dist/bscroll.min.js"></script>
+    <script>
+      const wrapper = document.querySelector('.wrapper');
+      const list = document.querySelector('#list');
+
+      list.innerHTML = [...'.'.repeat(5)]
+        .map((item, index) => `<li>这是第${index}个li.</li>`)
+        .join('');
+
+      new BScroll(wrapper, {
+        scrollX: true,
+        // bounce: false
+        // momentum: false
+      });
+    </script>
+  </body>
+</html>

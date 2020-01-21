@@ -31,6 +31,19 @@
         opacity: 0;
         cursor: pointer;
       }
+      .preview {
+        position: relative;
+      }
+      .preview .loading-bar {
+        display: none;
+        position: absolute;
+        left: 50%;
+        bottom: 20%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 20px;
+        background-color: lightblue;
+      }
       .preview img {
         width: 200px;
         margin: 10px;
@@ -52,7 +65,9 @@
       </div>
       <div class="file-info">
         <div class="file-name"></div>
-        <div class="preview"></div>
+        <div class="preview">
+          <div class="loading-bar"></div>
+        </div>
       </div>
       <button class="upload">upload</button>
     </div>
@@ -68,6 +83,7 @@
       const fileName = document.querySelector('.file-name');
       const preview = document.querySelector('.preview');
       const upload = document.querySelector('.upload');
+      const loadingBar = document.querySelector('.loading-bar');
 
       findBtn.addEventListener('click', async () => {
         try {
@@ -178,25 +194,17 @@
           });
         });
 
-        // if (!fileInfos.type.match(/image.*/)) return;
-
-        // const reader = new FileReader();
-        // reader.readAsDataURL(fileInfos);
-        // reader.addEventListener('load', arg => {
-        //   const img = new Image();
-        //   img.src = arg.target.result;
-        //   preview.appendChild(img);
-        // });
-
         upload.addEventListener('click', async () => {
-
           const { data } = await axios.post('/users/upload', formData, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
+            // 处理原生进度事件
             onUploadProgress(e) {
-              console.log(e);
+              loadingBar.style.display = 'block';
+              loadingBar.style.width = e.loaded / e.total * 150 + 'px';
               if (e.loaded === e.total) {
+                loadingBar.style.display = 'none';
                 console.log('文件上传成功');
               }
             }
