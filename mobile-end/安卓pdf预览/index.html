@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="icon" href="#" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .example {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="example"></div>
+
+    <script src="./pdfobject.min.js"></script>
+    <script>
+      PDFObject.embed(
+        './2019年App Store推广运营行情指南(PDF)(2).pdf',
+        '.example'
+      );
+    </script>
+  </body>
+</html>
