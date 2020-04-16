@@ -1,0 +1,103 @@
+@import './reset.scss';
+
+// @function px2vw($px) {
+//   @return $px / 750 * 100vw;
+// }
+
+// @function px2percent($px) {
+//   @return $px / 1334 * 100%;
+// }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background: url(../images/bg.png) no-repeat;
+  background-size: 100% 100%;
+  // padding-top: px2percent(88);
+  box-sizing: border-box;
+
+  // @media screen and (min-height: 668px) {
+  //   padding-top: px2percent(120);
+  // }
+}
+
+.title {
+  // width: px2vw(230);
+  // height: px2vw(57);
+  background: url(../images/title.png) no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
+}
+
+.sub-title {
+  // width: px2vw(329);
+  // height: px2vw(48);
+  background: url(../images/sub-title.png) no-repeat;
+  background-size: 100% 100%;
+  // margin: px2percent(30) auto 0;
+
+  // @media screen and (min-height: 668px) {
+  //   margin: px2percent(60) auto 0;
+  // }
+}
+
+.content-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  // width: px2vw(579);
+  // height: px2vw(1077);
+  background: url(../images/phone.png) no-repeat;
+  background-size: 100% 100%;
+  // padding-top: px2vw(132);
+  box-sizing: border-box;
+
+  .content {
+    // width: px2vw(510);
+    // height: px2vw(901);
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    // width: px2vw(400);
+    // height: px2vw(80);
+    // border-radius: px2vw(40);
+    background-color: #f00;
+    // box-shadow: 0 px2vw(10) px2vw(10) rgba(0, 0, 0, 0.2);
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    // padding: 0 px2vw(35);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 0.18rem;
+    line-height: 0.3rem;
+    color: #ccc;
+    text-align: center;
+  }
+}

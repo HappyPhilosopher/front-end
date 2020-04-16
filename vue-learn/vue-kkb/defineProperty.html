@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object.defineProperty</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <p>你好，<span id="name">Tom</span></p>
+
+    <script>
+      let obj = {};
+      Object.defineProperty(obj, 'name', {
+        get() {
+          console.log('有人试图获取name属性');
+        },
+        set(name) {
+          console.log('有人想设置name属性');
+          document.querySelector('#name').innerHTML = name;
+        }
+      });
+    </script>
+  </body>
+</html>

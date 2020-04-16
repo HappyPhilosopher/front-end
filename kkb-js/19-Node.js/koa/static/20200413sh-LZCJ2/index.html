@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>正版炒股软件</title>
+    <link rel="stylesheet" href="./css/index.min.css" />
+    <link rel="icon" href="#" />
+    <!-- 移动端适配 -->
+    <script type="text/javascript">
+      (function (doc, win) {
+        var docEl = doc.documentElement,
+          isIOS = navigator.userAgent.match(/iphone|ipod|ipad/gi),
+          dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1,
+          dpr = window.top === window.self ? dpr : 1, //被iframe引用时，禁止缩放
+          dpr = 1, // 首页引用IFRAME，强制为1
+          scale = 1 / dpr,
+          resizeEvt =
+            'orientationchange' in window ? 'orientationchange' : 'resize';
+        docEl.dataset.dpr = win.devicePixelRatio;
+        if (
+          navigator.userAgent.match(/iphone/gi) &&
+          screen.width == 375 &&
+          win.devicePixelRatio == 2
+        ) {
+          docEl.classList.add('iphone6');
+        }
+        if (
+          navigator.userAgent.match(/iphone/gi) &&
+          screen.width == 414 &&
+          win.devicePixelRatio == 3
+        ) {
+          docEl.classList.add('iphone6p');
+        }
+        var metaEl = doc.createElement('meta');
+        metaEl.name = 'viewport';
+        metaEl.content =
+          'initial-scale=' +
+          scale +
+          ',maximum-scale=' +
+          scale +
+          ', minimum-scale=' +
+          scale;
+        docEl.firstElementChild.appendChild(metaEl);
+        var recalc = function () {
+          var width = docEl.clientWidth;
+          if (width / dpr > 750) {
+            width = 750 * dpr;
+          }
+          docEl.style.fontSize = 100 * (width / 750) + 'px';
+        };
+        recalc();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+      })(document, window);
+    </script>
+  </head>
+  <body>
+    <div class="title"></div>
+    <div class="sub-title"></div>
+    <div class="content-wrapper">
+      <div class="content">
+        <img src="./images/pic.png" />
+      </div>
+      <a href="javascript:;" class="btn">立即下载</a>
+      <div class="copyright">
+        投资有风险，入市需谨慎<br />
+        从事证券投资或期货交易，请通过合法证券期货经营机构进行。<br />
+        合法机构名单可到中国证监会网站（www.csrv.gov.vn）<br />
+        备案/许可编号：沪ICP备18014860号-5 www.lcwinner.com<br />
+        地址：上海市金山区阳镇海盛路689号202室<br />
+        电话：（012）61435453
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/zepto/1.2.0/zepto.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

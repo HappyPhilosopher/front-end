@@ -7,6 +7,7 @@ const Login = () => import('@/components/dynamicRouter/Login');
 const VuexLearn = () => import('@/pages/vuex');
 const VueSlots = () => import('@/pages/slots');
 const DynamicComponents = () => import('@/pages/dynamicComponents');
+const VueStyle = () => import('@/pages/styles');
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
   {
     path: '/dynamicComponents',
     component: DynamicComponents
+  },
+  {
+    path: '/styles',
+    component: VueStyle
   }
 ];
 

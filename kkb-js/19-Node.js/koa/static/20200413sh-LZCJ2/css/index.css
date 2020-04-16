@@ -1,0 +1,156 @@
+@charset "UTF-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 100%;
+}
+
+s, i, em {
+  font-style: normal;
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+/* 清除移动端默认的点击链接和文本框产生的半透明遮罩区 */
+a, input, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 取消默认的文本聚焦样式 */
+input, textarea {
+  outline: none;
+}
+
+input, button {
+  /* 去掉原生样式 */
+  -webkit-appearance: none;
+  border: 0;
+  outline: none;
+}
+
+/* 浮动 */
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/* 清除浮动 */
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/* 设置placeholder颜色 */
+input::-webkit-input-placeholder {
+  color: #8f8f8f;
+}
+
+input:-moz-placeholder {
+  color: #8f8f8f;
+}
+
+input::-moz-placeholder {
+  color: #8f8f8f;
+}
+
+input:-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background: url(../images/bg.png) no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  background: url(../images/title.png) no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto;
+}
+
+.sub-title {
+  background: url(../images/sub-title.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.content-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url(../images/phone.png) no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+}
+
+.content-wrapper .content {
+  margin: 0 auto;
+}
+
+.content-wrapper .content img {
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrapper .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f00;
+  font-size: 0.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.content-wrapper .copyright {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 0.18rem;
+  line-height: 0.3rem;
+  color: #ccc;
+  text-align: center;
+}

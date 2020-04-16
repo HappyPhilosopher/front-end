@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KVue</title>
+    <link rel="icon" href="#" />
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ name }}</p>
+      <p k-text="name"></p>
+      <div>
+        <p>{{ name }}</p>
+      </div>
+      <p>{{ age }}</p>
+      <p>{{ doubleAge }}</p>
+      <input type="text" k-model="name" />
+      <button @click="changeName">hehe</button>
+    </div>
+
+    <script src="compile.js"></script>
+    <script src="KVue.js"></script>
+    <script>
+      const app = new KVue({
+        el: '#app',
+        data: {
+          name: 'Tom',
+          age: 18,
+          doubleAge: 36
+        }
+      });
+    </script>
+  </body>
+</html>
